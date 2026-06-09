@@ -1,0 +1,4588 @@
+{
+  "Proof": [
+    {
+      "src": "music/00_00%20%28Zero%20O%27Clock%29.mp3",
+      "title": "00:00 (Zero O'Clock)",
+      "artist": "BANGTANTV",
+      "cover": "covers/proof.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/BTS%20Cypher%20PT.3%20%EF%BC%9A%20KILLER%20%28Feat.%20Supreme%20Boi%29.mp3",
+      "title": "BTS Cypher PT.3 : KILLER (Feat. Supreme Boi)",
+      "artist": "BANGTANTV",
+      "cover": "covers/proof.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/Born%20Singer.mp3",
+      "title": "Born Singer",
+      "artist": "BANGTANTV",
+      "cover": "covers/proof.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/Butter.mp3",
+      "title": "Butter",
+      "artist": "BANGTANTV",
+      "cover": "covers/proof.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/DNA.mp3",
+      "title": "DNA",
+      "artist": "BANGTANTV",
+      "cover": "covers/proof.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/Danger.mp3",
+      "title": "Danger",
+      "artist": "BANGTANTV",
+      "cover": "covers/proof.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/Dynamite.mp3",
+      "title": "Dynamite",
+      "artist": "BANGTANTV",
+      "cover": "covers/proof.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/Euphoria.mp3",
+      "title": "Euphoria",
+      "artist": "BANGTANTV",
+      "cover": "covers/proof.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/FAKE%20LOVE.mp3",
+      "title": "FAKE LOVE",
+      "artist": "BANGTANTV",
+      "cover": "covers/proof.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/Filter.mp3",
+      "title": "Filter",
+      "artist": "BANGTANTV",
+      "cover": "covers/proof.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/For%20Youth.mp3",
+      "title": "For Youth",
+      "artist": "BANGTANTV",
+      "cover": "covers/proof.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/Her.mp3",
+      "title": "Her",
+      "artist": "BANGTANTV",
+      "cover": "covers/proof.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/I%20NEED%20U.mp3",
+      "title": "I NEED U",
+      "artist": "BANGTANTV",
+      "cover": "covers/proof.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/IDOL.mp3",
+      "title": "IDOL",
+      "artist": "BANGTANTV",
+      "cover": "covers/proof.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/Intro%20%EF%BC%9A%20Persona.mp3",
+      "title": "Intro : Persona",
+      "artist": "BANGTANTV",
+      "cover": "covers/proof.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/Jamais%20Vu.mp3",
+      "title": "Jamais Vu",
+      "artist": "BANGTANTV",
+      "cover": "covers/proof.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/Moon.mp3",
+      "title": "Moon",
+      "artist": "BANGTANTV",
+      "cover": "covers/proof.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/N.O.mp3",
+      "title": "N.O",
+      "artist": "BANGTANTV",
+      "cover": "covers/proof.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/No%20More%20Dream.mp3",
+      "title": "No More Dream",
+      "artist": "BANGTANTV",
+      "cover": "covers/proof.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/ON.mp3",
+      "title": "ON",
+      "artist": "BANGTANTV",
+      "cover": "covers/proof.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/Outro%20%EF%BC%9A%20Ego.mp3",
+      "title": "Outro : Ego",
+      "artist": "BANGTANTV",
+      "cover": "covers/proof.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/RUN.mp3",
+      "title": "RUN",
+      "artist": "BANGTANTV",
+      "cover": "covers/proof.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/Singularity.mp3",
+      "title": "Singularity",
+      "artist": "BANGTANTV",
+      "cover": "covers/proof.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/Stay.mp3",
+      "title": "Stay",
+      "artist": "BANGTANTV",
+      "cover": "covers/proof.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/Trivia%20%E8%BD%89%20%EF%BC%9A%20Seesaw.mp3",
+      "title": "Trivia 轉 : Seesaw",
+      "artist": "BANGTANTV",
+      "cover": "covers/proof.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/Yet%20To%20Come.mp3",
+      "title": "Yet To Come",
+      "artist": "BANGTANTV",
+      "cover": "covers/proof.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/%EB%8B%AC%EB%A0%A4%EB%9D%BC%20%EB%B0%A9%ED%83%84.mp3",
+      "title": "달려라 방탄",
+      "artist": "BANGTANTV",
+      "cover": "covers/proof.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/%EB%B3%B4%EC%A1%B0%EA%B0%9C.mp3",
+      "title": "보조개",
+      "artist": "BANGTANTV",
+      "cover": "covers/proof.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/%EB%B4%84%EB%82%A0.mp3",
+      "title": "봄날",
+      "artist": "BANGTANTV",
+      "cover": "covers/proof.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/%EB%B6%88%ED%83%80%EC%98%A4%EB%A5%B4%EB%84%A4%20%28FIRE%29.mp3",
+      "title": "불타오르네 (FIRE)",
+      "artist": "BANGTANTV",
+      "cover": "covers/proof.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/%EC%83%81%EB%82%A8%EC%9E%90%20%28Boy%20In%20Luv%29.mp3",
+      "title": "상남자 (Boy In Luv)",
+      "artist": "BANGTANTV",
+      "cover": "covers/proof.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/%EC%9E%91%EC%9D%80%20%EA%B2%83%EB%93%A4%EC%9D%84%20%EC%9C%84%ED%95%9C%20%EC%8B%9C%20%28Boy%20With%20Luv%29%20%28Feat.%20Halsey%29.mp3",
+      "title": "작은 것들을 위한 시 (Boy With Luv) (Feat. Halsey)",
+      "artist": "BANGTANTV",
+      "cover": "covers/proof.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/%EC%B9%9C%EA%B5%AC.mp3",
+      "title": "친구",
+      "artist": "BANGTANTV",
+      "cover": "covers/proof.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/%ED%94%BC%20%EB%95%80%20%EB%88%88%EB%AC%BC.mp3",
+      "title": "피 땀 눈물",
+      "artist": "BANGTANTV",
+      "cover": "covers/proof.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    }
+  ],
+  "MAP OF THE SOUL : 7": [
+    {
+      "src": "music/00_00%20%28Zero%20O%E2%80%99Clock%29.mp3",
+      "title": "00:00 (Zero O’Clock)",
+      "artist": "BANGTANTV",
+      "cover": "covers/map_of_the_soul___7.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/Black%20Swan.mp3",
+      "title": "Black Swan",
+      "artist": "BANGTANTV",
+      "cover": "covers/map_of_the_soul___7.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/Boy%20With%20Luv%20%28Feat.%20Halsey%29.mp3",
+      "title": "Boy With Luv (Feat. Halsey)",
+      "artist": "BANGTANTV",
+      "cover": "covers/map_of_the_soul___7.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/Dionysus.mp3",
+      "title": "Dionysus",
+      "artist": "BANGTANTV",
+      "cover": "covers/map_of_the_soul___7.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/Friends.mp3",
+      "title": "Friends",
+      "artist": "BANGTANTV",
+      "cover": "covers/map_of_the_soul___7.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/Inner%20Child.mp3",
+      "title": "Inner Child",
+      "artist": "BANGTANTV",
+      "cover": "covers/map_of_the_soul___7.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/Interlude%20%EF%BC%9A%20Shadow.mp3",
+      "title": "Interlude : Shadow",
+      "artist": "BANGTANTV",
+      "cover": "covers/map_of_the_soul___7.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/Louder%20than%20bombs.mp3",
+      "title": "Louder than bombs",
+      "artist": "BANGTANTV",
+      "cover": "covers/map_of_the_soul___7.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/Make%20It%20Right.mp3",
+      "title": "Make It Right",
+      "artist": "BANGTANTV",
+      "cover": "covers/map_of_the_soul___7.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/My%20Time.mp3",
+      "title": "My Time",
+      "artist": "BANGTANTV",
+      "cover": "covers/map_of_the_soul___7.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/ON%20%28Feat.%20Sia%29.mp3",
+      "title": "ON (Feat. Sia)",
+      "artist": "BANGTANTV",
+      "cover": "covers/map_of_the_soul___7.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/Respect.mp3",
+      "title": "Respect",
+      "artist": "BANGTANTV",
+      "cover": "covers/map_of_the_soul___7.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/UGH%21.mp3",
+      "title": "UGH!",
+      "artist": "BANGTANTV",
+      "cover": "covers/map_of_the_soul___7.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/We%20are%20Bulletproof%20%EF%BC%9A%20the%20Eternal.mp3",
+      "title": "We are Bulletproof : the Eternal",
+      "artist": "BANGTANTV",
+      "cover": "covers/map_of_the_soul___7.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    }
+  ],
+  "LOVE YOURSELF 轉 'Tear'": [
+    {
+      "src": "music/134340.mp3",
+      "title": "134340",
+      "artist": "BANGTANTV",
+      "cover": "covers/love_yourself____tear_.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/Intro%20%EF%BC%9A%20Singularity.mp3",
+      "title": "Intro : Singularity",
+      "artist": "BANGTANTV",
+      "cover": "covers/love_yourself____tear_.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/Love%20Maze.mp3",
+      "title": "Love Maze",
+      "artist": "BANGTANTV",
+      "cover": "covers/love_yourself____tear_.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/Outro%20%EF%BC%9A%20Tear.mp3",
+      "title": "Outro : Tear",
+      "artist": "BANGTANTV",
+      "cover": "covers/love_yourself____tear_.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/Paradise.mp3",
+      "title": "Paradise",
+      "artist": "BANGTANTV",
+      "cover": "covers/love_yourself____tear_.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/So%20What.mp3",
+      "title": "So What",
+      "artist": "BANGTANTV",
+      "cover": "covers/love_yourself____tear_.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    }
+  ],
+  "Agust D": [
+    {
+      "src": "music/140503%20at%20dawn.mp3",
+      "title": "140503 at dawn",
+      "artist": "SUGA - Topic",
+      "cover": "covers/agust_d.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/724148.mp3",
+      "title": "724148",
+      "artist": "SUGA - Topic",
+      "cover": "covers/agust_d.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/Agust%20D.mp3",
+      "title": "Agust D",
+      "artist": "SUGA - Topic",
+      "cover": "covers/agust_d.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/Interlude%20%EF%BC%9A%20Dream%2C%20Reality.mp3",
+      "title": "Interlude : Dream, Reality",
+      "artist": "SUGA - Topic",
+      "cover": "covers/agust_d.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/Intro%20%EF%BC%9A%20DT%20sugA%20%28Feat.%20DJ%20Friz%29.mp3",
+      "title": "Intro : DT sugA (Feat. DJ Friz)",
+      "artist": "SUGA - Topic",
+      "cover": "covers/agust_d.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/The%20Last.mp3",
+      "title": "The Last",
+      "artist": "SUGA - Topic",
+      "cover": "covers/agust_d.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/Tony%20Montana%20%28Feat.%20Yankie%29.mp3",
+      "title": "Tony Montana (Feat. Yankie)",
+      "artist": "SUGA - Topic",
+      "cover": "covers/agust_d.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/give%20it%20to%20me.mp3",
+      "title": "give it to me",
+      "artist": "SUGA - Topic",
+      "cover": "covers/agust_d.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/so%20far%20away%20%28Feat.%20Suran%29.mp3",
+      "title": "so far away (Feat. Suran)",
+      "artist": "SUGA - Topic",
+      "cover": "covers/agust_d.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    }
+  ],
+  "WINGS": [
+    {
+      "src": "music/2%21%203%21.mp3",
+      "title": "2! 3!",
+      "artist": "BANGTANTV",
+      "cover": "covers/wings.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/21st%20Century%20Girl.mp3",
+      "title": "21st Century Girl",
+      "artist": "BANGTANTV",
+      "cover": "covers/wings.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/Am%20I%20Wrong.mp3",
+      "title": "Am I Wrong",
+      "artist": "BANGTANTV",
+      "cover": "covers/wings.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/Awake.mp3",
+      "title": "Awake",
+      "artist": "BANGTANTV",
+      "cover": "covers/wings.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/BTS%20Cypher%204.mp3",
+      "title": "BTS Cypher 4",
+      "artist": "BANGTANTV",
+      "cover": "covers/wings.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/Begin.mp3",
+      "title": "Begin",
+      "artist": "BANGTANTV",
+      "cover": "covers/wings.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/Blood%20Sweat%20%26%20Tears.mp3",
+      "title": "Blood Sweat & Tears",
+      "artist": "BANGTANTV",
+      "cover": "covers/wings.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/First%20Love.mp3",
+      "title": "First Love",
+      "artist": "BANGTANTV",
+      "cover": "covers/wings.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/Interlude%20%EF%BC%9A%20Wings.mp3",
+      "title": "Interlude : Wings",
+      "artist": "BANGTANTV",
+      "cover": "covers/wings.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/Intro%20%EF%BC%9A%20Boy%20Meets%20Evil.mp3",
+      "title": "Intro : Boy Meets Evil",
+      "artist": "BANGTANTV",
+      "cover": "covers/wings.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/Lie.mp3",
+      "title": "Lie",
+      "artist": "BANGTANTV",
+      "cover": "covers/wings.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/Lost.mp3",
+      "title": "Lost",
+      "artist": "BANGTANTV",
+      "cover": "covers/wings.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/MAMA.mp3",
+      "title": "MAMA",
+      "artist": "BANGTANTV",
+      "cover": "covers/wings.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/Reflection.mp3",
+      "title": "Reflection",
+      "artist": "BANGTANTV",
+      "cover": "covers/wings.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/Stigma.mp3",
+      "title": "Stigma",
+      "artist": "BANGTANTV",
+      "cover": "covers/wings.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    }
+  ],
+  "ARIRANG": [
+    {
+      "src": "music/2.0.mp3",
+      "title": "2.0",
+      "artist": "BANGTANTV",
+      "cover": "covers/arirang.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/Aliens.mp3",
+      "title": "Aliens",
+      "artist": "BANGTANTV",
+      "cover": "covers/arirang.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/Body%20to%20Body.mp3",
+      "title": "Body to Body",
+      "artist": "BANGTANTV",
+      "cover": "covers/arirang.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/FYA.mp3",
+      "title": "FYA",
+      "artist": "BANGTANTV",
+      "cover": "covers/arirang.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/Hooligan.mp3",
+      "title": "Hooligan",
+      "artist": "BANGTANTV",
+      "cover": "covers/arirang.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/Into%20the%20Sun.mp3",
+      "title": "Into the Sun",
+      "artist": "BANGTANTV",
+      "cover": "covers/arirang.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/Like%20Animals.mp3",
+      "title": "Like Animals",
+      "artist": "BANGTANTV",
+      "cover": "covers/arirang.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/Merry%20Go%20Round.mp3",
+      "title": "Merry Go Round",
+      "artist": "BANGTANTV",
+      "cover": "covers/arirang.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/NORMAL%20%28Explicit%20Ver.%29.mp3",
+      "title": "NORMAL (Explicit Ver.)",
+      "artist": "BANGTANTV",
+      "cover": "covers/arirang.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/No.%2029.mp3",
+      "title": "No. 29",
+      "artist": "BANGTANTV",
+      "cover": "covers/arirang.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/One%20More%20Night.mp3",
+      "title": "One More Night",
+      "artist": "BANGTANTV",
+      "cover": "covers/arirang.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/Please.mp3",
+      "title": "Please",
+      "artist": "BANGTANTV",
+      "cover": "covers/arirang.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/they%20don%27t%20know%20%27bout%20us.mp3",
+      "title": "they don't know 'bout us",
+      "artist": "BANGTANTV",
+      "cover": "covers/arirang.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    }
+  ],
+  "DARK & WILD": [
+    {
+      "src": "music/24%E2%A7%B87%3Dheaven.mp3",
+      "title": "24/7=heaven",
+      "artist": "BANGTANTV",
+      "cover": "covers/dark___wild.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/2%ED%95%99%EB%85%84.mp3",
+      "title": "2학년",
+      "artist": "BANGTANTV",
+      "cover": "covers/dark___wild.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/Intro%20%EF%BC%9A%20What%20Am%20I%20To%20You.mp3",
+      "title": "Intro : What Am I To You",
+      "artist": "BANGTANTV",
+      "cover": "covers/dark___wild.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/Let%20Me%20Know.mp3",
+      "title": "Let Me Know",
+      "artist": "BANGTANTV",
+      "cover": "covers/dark___wild.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/Outro%20%EF%BC%9A%20%EA%B7%B8%EA%B2%8C%20%EB%A7%90%EC%9D%B4%20%EB%8F%BC%EF%BC%9F.mp3",
+      "title": "Outro : 그게 말이 돼?",
+      "artist": "BANGTANTV",
+      "cover": "covers/dark___wild.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/Rain.mp3",
+      "title": "Rain",
+      "artist": "BANGTANTV",
+      "cover": "covers/dark___wild.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/%EC%97%AC%EA%B8%B0%20%EB%B4%90.mp3",
+      "title": "여기 봐",
+      "artist": "BANGTANTV",
+      "cover": "covers/dark___wild.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/%EC%9D%B4%EB%B6%88%ED%82%A5.mp3",
+      "title": "이불킥",
+      "artist": "BANGTANTV",
+      "cover": "covers/dark___wild.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/%ED%95%B8%EB%93%9C%ED%8F%B0%20%EC%A2%80%20%EA%BA%BC%EC%A4%84%EB%9E%98.mp3",
+      "title": "핸드폰 좀 꺼줄래",
+      "artist": "BANGTANTV",
+      "cover": "covers/dark___wild.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/%ED%98%B8%EB%A5%B4%EB%AA%AC%20%EC%A0%84%EC%9F%81.mp3",
+      "title": "호르몬 전쟁",
+      "artist": "BANGTANTV",
+      "cover": "covers/dark___wild.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/%ED%9E%99%ED%95%A9%EC%84%B1%EC%95%A0%EC%9E%90.mp3",
+      "title": "힙합성애자",
+      "artist": "BANGTANTV",
+      "cover": "covers/dark___wild.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    }
+  ],
+  "3D : The Remixes": [
+    {
+      "src": "music/3D%20%28feat.%20Jack%20Harlow%29%20-%20A.%20G.%20Cook%20Remix.mp3",
+      "title": "3D (feat. Jack Harlow) - A. G. Cook Remix",
+      "artist": "Jung Kook - Topic",
+      "cover": "covers/3d___the_remixes.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/3D%20%28feat.%20Jack%20Harlow%29%20-%20Clean%20Ver..mp3",
+      "title": "3D (feat. Jack Harlow) - Clean Ver.",
+      "artist": "Jung Kook - Topic",
+      "cover": "covers/3d___the_remixes.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/3D%20%28feat.%20Jack%20Harlow%29%20-%20Instrumental.mp3",
+      "title": "3D (feat. Jack Harlow) - Instrumental",
+      "artist": "Jung Kook - Topic",
+      "cover": "covers/3d___the_remixes.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/3D%20%28feat.%20Jack%20Harlow%29%20-%20Slowed%20Down.mp3",
+      "title": "3D (feat. Jack Harlow) - Slowed Down",
+      "artist": "Jung Kook - Topic",
+      "cover": "covers/3d___the_remixes.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/3D%20%28feat.%20Jack%20Harlow%29%20-%20Sped%20Up.mp3",
+      "title": "3D (feat. Jack Harlow) - Sped Up",
+      "artist": "Jung Kook - Topic",
+      "cover": "covers/3d___the_remixes.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/3D%20-%20Alternate%20Ver..mp3",
+      "title": "3D - Alternate Ver.",
+      "artist": "Jung Kook - Topic",
+      "cover": "covers/3d___the_remixes.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    }
+  ],
+  "3D (feat. Jack Harlow) - MK Remix": [
+    {
+      "src": "music/3D%20%28feat.%20Jack%20Harlow%29%20-%20MK%20Remix.mp3",
+      "title": "3D (feat. Jack Harlow) - MK Remix",
+      "artist": "Jung Kook - Topic",
+      "cover": "covers/3d__feat__jack_harlow____mk_remix.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    }
+  ],
+  "GOLDEN": [
+    {
+      "src": "music/3D%20%28feat.%20Jack%20Harlow%29.mp3",
+      "title": "3D (feat. Jack Harlow)",
+      "artist": "Jung Kook - Topic",
+      "cover": "covers/golden.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/Closer%20to%20You%20%28feat.%20Major%20Lazer%29.mp3",
+      "title": "Closer to You (feat. Major Lazer)",
+      "artist": "Jung Kook - Topic",
+      "cover": "covers/golden.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/Hate%20You.mp3",
+      "title": "Hate You",
+      "artist": "Jung Kook - Topic",
+      "cover": "covers/golden.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/Please%20Don%27t%20Change%20%28feat.%20DJ%20Snake%29.mp3",
+      "title": "Please Don't Change (feat. DJ Snake)",
+      "artist": "Jung Kook - Topic",
+      "cover": "covers/golden.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/Seven%20%28feat.%20Latto%29%20-%20Clean%20Ver..mp3",
+      "title": "Seven (feat. Latto) - Clean Ver.",
+      "artist": "Jung Kook - Topic",
+      "cover": "covers/golden.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/Seven%20%28feat.%20Latto%29%20-%20Explicit%20Ver..mp3",
+      "title": "Seven (feat. Latto) - Explicit Ver.",
+      "artist": "Jung Kook - Topic",
+      "cover": "covers/golden.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/Shot%20Glass%20of%20Tears.mp3",
+      "title": "Shot Glass of Tears",
+      "artist": "Jung Kook - Topic",
+      "cover": "covers/golden.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/Somebody.mp3",
+      "title": "Somebody",
+      "artist": "Jung Kook - Topic",
+      "cover": "covers/golden.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/Too%20Sad%20to%20Dance.mp3",
+      "title": "Too Sad to Dance",
+      "artist": "Jung Kook - Topic",
+      "cover": "covers/golden.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/Yes%20or%20No.mp3",
+      "title": "Yes or No",
+      "artist": "Jung Kook - Topic",
+      "cover": "covers/golden.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    }
+  ],
+  "3D - Justin Timberlake Remix": [
+    {
+      "src": "music/3D%20-%20Justin%20Timberlake%20Remix.mp3",
+      "title": "3D - Justin Timberlake Remix",
+      "artist": "Jung Kook - Topic",
+      "cover": "covers/3d___justin_timberlake_remix.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    }
+  ],
+  "Jack In The Box (HOPE Edition)": [
+    {
+      "src": "music/%3D%20%28Equal%20Sign%29.mp3",
+      "title": "= (Equal Sign)",
+      "artist": "j-hope - Topic",
+      "cover": "covers/jack_in_the_box__hope_edition_.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/Equal%20Sign%20%28Lollapalooza%20ver.%29.mp3",
+      "title": "Equal Sign (Lollapalooza ver.)",
+      "artist": "j-hope - Topic",
+      "cover": "covers/jack_in_the_box__hope_edition_.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/Future%20%28Lollapalooza%20ver.%29.mp3",
+      "title": "Future (Lollapalooza ver.)",
+      "artist": "j-hope - Topic",
+      "cover": "covers/jack_in_the_box__hope_edition_.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/Future.mp3",
+      "title": "Future",
+      "artist": "j-hope - Topic",
+      "cover": "covers/jack_in_the_box__hope_edition_.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/Intro.mp3",
+      "title": "Intro",
+      "artist": "j-hope - Topic",
+      "cover": "covers/jack_in_the_box__hope_edition_.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/MORE%20%28Instrumental%29.mp3",
+      "title": "MORE (Instrumental)",
+      "artist": "j-hope - Topic",
+      "cover": "covers/jack_in_the_box__hope_edition_.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/MORE.mp3",
+      "title": "MORE",
+      "artist": "j-hope - Topic",
+      "cover": "covers/jack_in_the_box__hope_edition_.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/Music%20Box%20%EF%BC%9A%20Reflection.mp3",
+      "title": "Music Box : Reflection",
+      "artist": "j-hope - Topic",
+      "cover": "covers/jack_in_the_box__hope_edition_.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/Pandora%27s%20Box.mp3",
+      "title": "Pandora's Box",
+      "artist": "j-hope - Topic",
+      "cover": "covers/jack_in_the_box__hope_edition_.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/STOP%20%28Lollapalooza%20ver.%29.mp3",
+      "title": "STOP (Lollapalooza ver.)",
+      "artist": "j-hope - Topic",
+      "cover": "covers/jack_in_the_box__hope_edition_.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/STOP%20%28%EC%84%B8%EC%83%81%EC%97%90%20%EB%82%98%EC%81%9C%20%EC%82%AC%EB%9E%8C%EC%9D%80%20%EC%97%86%EB%8B%A4%29.mp3",
+      "title": "STOP (세상에 나쁜 사람은 없다)",
+      "artist": "j-hope - Topic",
+      "cover": "covers/jack_in_the_box__hope_edition_.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/Safety%20Zone.mp3",
+      "title": "Safety Zone",
+      "artist": "j-hope - Topic",
+      "cover": "covers/jack_in_the_box__hope_edition_.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/What%20if....mp3",
+      "title": "What if...",
+      "artist": "j-hope - Topic",
+      "cover": "covers/jack_in_the_box__hope_edition_.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/%EB%B0%A9%ED%99%94%20%28Arson%29.mp3",
+      "title": "방화 (Arson)",
+      "artist": "j-hope - Topic",
+      "cover": "covers/jack_in_the_box__hope_edition_.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/%EB%B0%A9%ED%99%94%20%28Instrumental%29.mp3",
+      "title": "방화 (Instrumental)",
+      "artist": "j-hope - Topic",
+      "cover": "covers/jack_in_the_box__hope_edition_.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    }
+  ],
+  "A Brand New Day (BTS World Original Soundtrack) (Pt. 2)": [
+    {
+      "src": "music/A%20Brand%20New%20Day%20%28BTS%20World%20Original%20Soundtrack%29%20%28Pt.%202%29.mp3",
+      "title": "A Brand New Day (BTS World Original Soundtrack) (Pt. 2)",
+      "artist": "BANGTANTV",
+      "cover": "covers/a_brand_new_day__bts_world_original_soun.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    }
+  ],
+  "YOU NEVER WALK ALONE": [
+    {
+      "src": "music/A%20Supplementary%20Story%20%EF%BC%9A%20You%20Never%20Walk%20Alone.mp3",
+      "title": "A Supplementary Story : You Never Walk Alone",
+      "artist": "BANGTANTV",
+      "cover": "covers/you_never_walk_alone.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/BTS%20%E2%80%A2%20%EB%B4%84%EB%82%A0%20Spring%20Day%20%28V%20Demo%20Ver.%29%20%5BAudio%5D.mp3",
+      "title": "BTS • 봄날 Spring Day (V Demo Ver.) [Audio]",
+      "artist": "aroha music",
+      "cover": "covers/you_never_walk_alone.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/Not%20Today.mp3",
+      "title": "Not Today",
+      "artist": "BANGTANTV",
+      "cover": "covers/you_never_walk_alone.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/Outro%20%EF%BC%9A%20Wings.mp3",
+      "title": "Outro : Wings",
+      "artist": "BANGTANTV",
+      "cover": "covers/you_never_walk_alone.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    }
+  ],
+  "D-DAY": [
+    {
+      "src": "music/AMYGDALA.mp3",
+      "title": "AMYGDALA",
+      "artist": "SUGA - Topic",
+      "cover": "covers/d_day.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/D-Day.mp3",
+      "title": "D-Day",
+      "artist": "SUGA - Topic",
+      "cover": "covers/d_day.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/HUH%EF%BC%9F%21%20%28feat.%20j-hope%29.mp3",
+      "title": "HUH?! (feat. j-hope)",
+      "artist": "SUGA - Topic",
+      "cover": "covers/d_day.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/Interlude%20%EF%BC%9A%20Dawn.mp3",
+      "title": "Interlude : Dawn",
+      "artist": "SUGA - Topic",
+      "cover": "covers/d_day.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/Life%20Goes%20On.mp3",
+      "title": "Life Goes On",
+      "artist": "SUGA - Topic",
+      "cover": "covers/d_day.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/SDL.mp3",
+      "title": "SDL",
+      "artist": "SUGA - Topic",
+      "cover": "covers/d_day.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/Snooze%20%28feat.%20Ryuichi%20Sakamoto%2C%20%EA%B9%80%EC%9A%B0%EC%84%B1%20of%20The%20Rose%29.mp3",
+      "title": "Snooze (feat. Ryuichi Sakamoto, 김우성 of The Rose)",
+      "artist": "SUGA - Topic",
+      "cover": "covers/d_day.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/%EA%B7%B9%EC%95%BC.mp3",
+      "title": "극야",
+      "artist": "SUGA - Topic",
+      "cover": "covers/d_day.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/%EC%82%AC%EB%9E%8C%20Pt.2%20%28feat.%20%EC%95%84%EC%9D%B4%EC%9C%A0%29.mp3",
+      "title": "사람 Pt.2 (feat. 아이유)",
+      "artist": "SUGA - Topic",
+      "cover": "covers/d_day.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/%ED%95%B4%EA%B8%88.mp3",
+      "title": "해금",
+      "artist": "SUGA - Topic",
+      "cover": "covers/d_day.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    }
+  ],
+  "Abyss": [
+    {
+      "src": "music/Abyss.mp3",
+      "title": "Abyss",
+      "artist": "Jin - Topic",
+      "cover": "covers/abyss.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    }
+  ],
+  "BTS, THE BEST": [
+    {
+      "src": "music/Airplane%20pt.2%20%28Japanese%20ver.%29.mp3",
+      "title": "Airplane pt.2 (Japanese ver.)",
+      "artist": "BANGTANTV",
+      "cover": "covers/bts__the_best.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/Best%20Of%20Me%20%28Japanese%20ver.%29.mp3",
+      "title": "Best Of Me (Japanese ver.)",
+      "artist": "BANGTANTV",
+      "cover": "covers/bts__the_best.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/Black%20Swan%20%28Japanese%20ver.%29.mp3",
+      "title": "Black Swan (Japanese ver.)",
+      "artist": "BANGTANTV",
+      "cover": "covers/bts__the_best.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/Blood%20Sweat%20%26%20Tears%20%28Japanese%20ver.%29.mp3",
+      "title": "Blood Sweat & Tears (Japanese ver.)",
+      "artist": "BANGTANTV",
+      "cover": "covers/bts__the_best.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/Boy%20With%20Luv%20%28Japanese%20ver.%29.mp3",
+      "title": "Boy With Luv (Japanese ver.)",
+      "artist": "BANGTANTV",
+      "cover": "covers/bts__the_best.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/Crystal%20Snow.mp3",
+      "title": "Crystal Snow",
+      "artist": "BANGTANTV",
+      "cover": "covers/bts__the_best.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/DNA%20%28Japanese%20ver.%29.mp3",
+      "title": "DNA (Japanese ver.)",
+      "artist": "BANGTANTV",
+      "cover": "covers/bts__the_best.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/Dionysus%20%28Japanese%20ver.%29.mp3",
+      "title": "Dionysus (Japanese ver.)",
+      "artist": "BANGTANTV",
+      "cover": "covers/bts__the_best.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/Don%27t%20Leave%20Me.mp3",
+      "title": "Don't Leave Me",
+      "artist": "BANGTANTV",
+      "cover": "covers/bts__the_best.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/FAKE%20LOVE%20%28Japanese%20ver.%29.mp3",
+      "title": "FAKE LOVE (Japanese ver.)",
+      "artist": "BANGTANTV",
+      "cover": "covers/bts__the_best.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/Film%20out.mp3",
+      "title": "Film out",
+      "artist": "BANGTANTV",
+      "cover": "covers/bts__the_best.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/Go%20Go%20%28Japanese%20ver.%29.mp3",
+      "title": "Go Go (Japanese ver.)",
+      "artist": "BANGTANTV",
+      "cover": "covers/bts__the_best.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/IDOL%20%28Japanese%20ver.%29.mp3",
+      "title": "IDOL (Japanese ver.)",
+      "artist": "BANGTANTV",
+      "cover": "covers/bts__the_best.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/Let%20Go.mp3",
+      "title": "Let Go",
+      "artist": "BANGTANTV",
+      "cover": "covers/bts__the_best.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/Lights.mp3",
+      "title": "Lights",
+      "artist": "BANGTANTV",
+      "cover": "covers/bts__the_best.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/MIC%20Drop%20%28Japanese%20ver.%29.mp3",
+      "title": "MIC Drop (Japanese ver.)",
+      "artist": "BANGTANTV",
+      "cover": "covers/bts__the_best.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/Make%20It%20Right%20%28Japanese%20ver.%29.mp3",
+      "title": "Make It Right (Japanese ver.)",
+      "artist": "BANGTANTV",
+      "cover": "covers/bts__the_best.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/Not%20Today%20%28Japanese%20ver.%29.mp3",
+      "title": "Not Today (Japanese ver.)",
+      "artist": "BANGTANTV",
+      "cover": "covers/bts__the_best.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/ON%20%28Japanese%20ver.%29.mp3",
+      "title": "ON (Japanese ver.)",
+      "artist": "BANGTANTV",
+      "cover": "covers/bts__the_best.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/Spring%20Day%20%28Japanese%20ver.%29.mp3",
+      "title": "Spring Day (Japanese ver.)",
+      "artist": "BANGTANTV",
+      "cover": "covers/bts__the_best.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/Stay%20Gold.mp3",
+      "title": "Stay Gold",
+      "artist": "BANGTANTV",
+      "cover": "covers/bts__the_best.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/Your%20eyes%20tell.mp3",
+      "title": "Your eyes tell",
+      "artist": "BANGTANTV",
+      "cover": "covers/bts__the_best.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    }
+  ],
+  "PERMISSION TO DANCE ON STAGE - LIVE": [
+    {
+      "src": "music/Airplane%20pt.2%20-%20Live.mp3",
+      "title": "Airplane pt.2 - Live",
+      "artist": "BANGTANTV",
+      "cover": "covers/permission_to_dance_on_stage___live.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/Black%20Swan%20-%20Live.mp3",
+      "title": "Black Swan - Live",
+      "artist": "BANGTANTV",
+      "cover": "covers/permission_to_dance_on_stage___live.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/Blue%20%26%20Grey%20-%20Live.mp3",
+      "title": "Blue & Grey - Live",
+      "artist": "BANGTANTV",
+      "cover": "covers/permission_to_dance_on_stage___live.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/Butter%20-%20Live.mp3",
+      "title": "Butter - Live",
+      "artist": "BANGTANTV",
+      "cover": "covers/permission_to_dance_on_stage___live.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/DNA%20-%20Live.mp3",
+      "title": "DNA - Live",
+      "artist": "BANGTANTV",
+      "cover": "covers/permission_to_dance_on_stage___live.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/Dynamite%20-%20Live.mp3",
+      "title": "Dynamite - Live",
+      "artist": "BANGTANTV",
+      "cover": "covers/permission_to_dance_on_stage___live.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/FAKE%20LOVE%20-%20Live.mp3",
+      "title": "FAKE LOVE - Live",
+      "artist": "BANGTANTV",
+      "cover": "covers/permission_to_dance_on_stage___live.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/IDOL%20-%20Live.mp3",
+      "title": "IDOL - Live",
+      "artist": "BANGTANTV",
+      "cover": "covers/permission_to_dance_on_stage___live.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/Life%20Goes%20On%20-%20Live.mp3",
+      "title": "Life Goes On - Live",
+      "artist": "BANGTANTV",
+      "cover": "covers/permission_to_dance_on_stage___live.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/ON%20-%20Live.mp3",
+      "title": "ON - Live",
+      "artist": "BANGTANTV",
+      "cover": "covers/permission_to_dance_on_stage___live.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/Outro%20%EF%BC%9A%20Wings%20-%20Live.mp3",
+      "title": "Outro : Wings - Live",
+      "artist": "BANGTANTV",
+      "cover": "covers/permission_to_dance_on_stage___live.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/Permission%20to%20Dance%20-%20Live.mp3",
+      "title": "Permission to Dance - Live",
+      "artist": "BANGTANTV",
+      "cover": "covers/permission_to_dance_on_stage___live.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/So%20What%20-%20Live.mp3",
+      "title": "So What - Live",
+      "artist": "BANGTANTV",
+      "cover": "covers/permission_to_dance_on_stage___live.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/Stay%20-%20Live.mp3",
+      "title": "Stay - Live",
+      "artist": "BANGTANTV",
+      "cover": "covers/permission_to_dance_on_stage___live.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/%EB%B1%81%EC%83%88%20-%20Live.mp3",
+      "title": "뱁새 - Live",
+      "artist": "BANGTANTV",
+      "cover": "covers/permission_to_dance_on_stage___live.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/%EB%B3%91%20-%20Live.mp3",
+      "title": "병 - Live",
+      "artist": "BANGTANTV",
+      "cover": "covers/permission_to_dance_on_stage___live.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/%EB%B4%84%EB%82%A0%20-%20Live.mp3",
+      "title": "봄날 - Live",
+      "artist": "BANGTANTV",
+      "cover": "covers/permission_to_dance_on_stage___live.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/%EB%B6%88%ED%83%80%EC%98%A4%EB%A5%B4%EB%84%A4%20%28FIRE%29%20-%20Live.mp3",
+      "title": "불타오르네 (FIRE) - Live",
+      "artist": "BANGTANTV",
+      "cover": "covers/permission_to_dance_on_stage___live.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/%EC%9E%91%EC%9D%80%20%EA%B2%83%EB%93%A4%EC%9D%84%20%EC%9C%84%ED%95%9C%20%EC%8B%9C%20%28Boy%20With%20Luv%29%20%28Feat.%20Halsey%29%20-%20Live.mp3",
+      "title": "작은 것들을 위한 시 (Boy With Luv) (Feat. Halsey) - Live",
+      "artist": "BANGTANTV",
+      "cover": "covers/permission_to_dance_on_stage___live.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/%EC%9E%A0%EC%8B%9C%20-%20Live.mp3",
+      "title": "잠시 - Live",
+      "artist": "BANGTANTV",
+      "cover": "covers/permission_to_dance_on_stage___live.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/%EC%A9%94%EC%96%B4%20-%20Live.mp3",
+      "title": "쩔어 - Live",
+      "artist": "BANGTANTV",
+      "cover": "covers/permission_to_dance_on_stage___live.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/%ED%94%BC%20%EB%95%80%20%EB%88%88%EB%AC%BC%20-%20Live.mp3",
+      "title": "피 땀 눈물 - Live",
+      "artist": "BANGTANTV",
+      "cover": "covers/permission_to_dance_on_stage___live.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    }
+  ],
+  "LOVE YOURSELF 結 'Answer'": [
+    {
+      "src": "music/Airplane%20pt.2.mp3",
+      "title": "Airplane pt.2",
+      "artist": "BANGTANTV",
+      "cover": "covers/love_yourself____answer_.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/Anpanman.mp3",
+      "title": "Anpanman",
+      "artist": "BANGTANTV",
+      "cover": "covers/love_yourself____answer_.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/Answer%20%EF%BC%9A%20Love%20Myself.mp3",
+      "title": "Answer : Love Myself",
+      "artist": "BANGTANTV",
+      "cover": "covers/love_yourself____answer_.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/Best%20Of%20Me.mp3",
+      "title": "Best Of Me",
+      "artist": "BANGTANTV",
+      "cover": "covers/love_yourself____answer_.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/DNA%20%28Pedal%202%20LA%20Mix%29.mp3",
+      "title": "DNA (Pedal 2 LA Mix)",
+      "artist": "BANGTANTV",
+      "cover": "covers/love_yourself____answer_.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/Dimple.mp3",
+      "title": "Dimple",
+      "artist": "BANGTANTV",
+      "cover": "covers/love_yourself____answer_.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/Epiphany.mp3",
+      "title": "Epiphany",
+      "artist": "BANGTANTV",
+      "cover": "covers/love_yourself____answer_.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/FAKE%20LOVE%20%28Rocking%20Vibe%20Mix%29.mp3",
+      "title": "FAKE LOVE (Rocking Vibe Mix)",
+      "artist": "BANGTANTV",
+      "cover": "covers/love_yourself____answer_.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/Go%20Go.mp3",
+      "title": "Go Go",
+      "artist": "BANGTANTV",
+      "cover": "covers/love_yourself____answer_.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/I%27m%20Fine.mp3",
+      "title": "I'm Fine",
+      "artist": "BANGTANTV",
+      "cover": "covers/love_yourself____answer_.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/IDOL%20%28feat.%20Nicki%20Minaj%29.mp3",
+      "title": "IDOL (feat. Nicki Minaj)",
+      "artist": "BANGTANTV",
+      "cover": "covers/love_yourself____answer_.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/MIC%20Drop%20%28Steve%20Aoki%20Remix%29%20%28Full%20Length%20Edition%29.mp3",
+      "title": "MIC Drop (Steve Aoki Remix) (Full Length Edition)",
+      "artist": "BANGTANTV",
+      "cover": "covers/love_yourself____answer_.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/MIC%20Drop.mp3",
+      "title": "MIC Drop",
+      "artist": "BANGTANTV",
+      "cover": "covers/love_yourself____answer_.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/Magic%20Shop.mp3",
+      "title": "Magic Shop",
+      "artist": "BANGTANTV",
+      "cover": "covers/love_yourself____answer_.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/Serendipity%20%28Full%20Length%20Edition%29.mp3",
+      "title": "Serendipity (Full Length Edition)",
+      "artist": "BANGTANTV",
+      "cover": "covers/love_yourself____answer_.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/Tear.mp3",
+      "title": "Tear",
+      "artist": "BANGTANTV",
+      "cover": "covers/love_yourself____answer_.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/The%20Truth%20Untold%20%28Feat.%20Steve%20Aoki%29.mp3",
+      "title": "The Truth Untold (Feat. Steve Aoki)",
+      "artist": "BANGTANTV",
+      "cover": "covers/love_yourself____answer_.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/Trivia%20%E6%89%BF%20%EF%BC%9A%20Love.mp3",
+      "title": "Trivia 承 : Love",
+      "artist": "BANGTANTV",
+      "cover": "covers/love_yourself____answer_.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/Trivia%20%E8%B5%B7%20%EF%BC%9A%20Just%20Dance.mp3",
+      "title": "Trivia 起 : Just Dance",
+      "artist": "BANGTANTV",
+      "cover": "covers/love_yourself____answer_.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    }
+  ],
+  "Hope World": [
+    {
+      "src": "music/Airplane.mp3",
+      "title": "Airplane",
+      "artist": "j-hope - Topic",
+      "cover": "covers/hope_world.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/Base%20Line.mp3",
+      "title": "Base Line",
+      "artist": "j-hope - Topic",
+      "cover": "covers/hope_world.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/Daydream.mp3",
+      "title": "Daydream",
+      "artist": "j-hope - Topic",
+      "cover": "covers/hope_world.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/Hope%20World.mp3",
+      "title": "Hope World",
+      "artist": "j-hope - Topic",
+      "cover": "covers/hope_world.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/P.O.P.mp3",
+      "title": "P.O.P",
+      "artist": "j-hope - Topic",
+      "cover": "covers/hope_world.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/%ED%95%AD%EC%83%81.mp3",
+      "title": "항상",
+      "artist": "j-hope - Topic",
+      "cover": "covers/hope_world.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    }
+  ],
+  "Indigo": [
+    {
+      "src": "music/All%20Day%20%28with%20Tablo%29.mp3",
+      "title": "All Day (with Tablo)",
+      "artist": "RM - Topic",
+      "cover": "covers/indigo.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/Change%20pt.2.mp3",
+      "title": "Change pt.2",
+      "artist": "RM - Topic",
+      "cover": "covers/indigo.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/Closer%20%28with%20Paul%20Blanco%2C%20Mahalia%29.mp3",
+      "title": "Closer (with Paul Blanco, Mahalia)",
+      "artist": "RM - Topic",
+      "cover": "covers/indigo.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/Hectic%20%28with%20Colde%29.mp3",
+      "title": "Hectic (with Colde)",
+      "artist": "RM - Topic",
+      "cover": "covers/indigo.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/Lonely.mp3",
+      "title": "Lonely",
+      "artist": "RM - Topic",
+      "cover": "covers/indigo.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/No.2%20%28with%20%EB%B0%95%EC%A7%80%EC%9C%A4%29.mp3",
+      "title": "No.2 (with 박지윤)",
+      "artist": "RM - Topic",
+      "cover": "covers/indigo.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/RM%20-%20Life%20%28Audio%29.mp3",
+      "title": "RM - Life (Audio)",
+      "artist": "Playlist Bts",
+      "cover": "covers/indigo.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/Still%20Life%20%28with%20Anderson%20.Paak%29.mp3",
+      "title": "Still Life (with Anderson .Paak)",
+      "artist": "RM - Topic",
+      "cover": "covers/indigo.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/Yun%20%28with%20Erykah%20Badu%29.mp3",
+      "title": "Yun (with Erykah Badu)",
+      "artist": "RM - Topic",
+      "cover": "covers/indigo.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/%EA%B1%B4%EB%A7%9D%EC%A6%9D%20%28with%20%EA%B9%80%EC%82%AC%EC%9B%94%29.mp3",
+      "title": "건망증 (with 김사월)",
+      "artist": "RM - Topic",
+      "cover": "covers/indigo.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/%EB%93%A4%EA%BD%83%EB%86%80%EC%9D%B4%20%28with%20%EC%A1%B0%EC%9C%A0%EC%A7%84%29.mp3",
+      "title": "들꽃놀이 (with 조유진)",
+      "artist": "RM - Topic",
+      "cover": "covers/indigo.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    }
+  ],
+  "All Night (BTS World Original Soundtrack) (Pt. 3)": [
+    {
+      "src": "music/All%20Night%20%28BTS%20World%20Original%20Soundtrack%29%20%28Pt.%203%29.mp3",
+      "title": "All Night (BTS World Original Soundtrack) (Pt. 3)",
+      "artist": "BANGTANTV",
+      "cover": "covers/all_night__bts_world_original_soundtrack.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    }
+  ],
+  "FACE": [
+    {
+      "src": "music/Alone.mp3",
+      "title": "Alone",
+      "artist": "Jimin - Topic",
+      "cover": "covers/face.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/Face-off.mp3",
+      "title": "Face-off",
+      "artist": "Jimin - Topic",
+      "cover": "covers/face.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/Interlude%20%EF%BC%9A%20Dive.mp3",
+      "title": "Interlude : Dive",
+      "artist": "Jimin - Topic",
+      "cover": "covers/face.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/Set%20Me%20Free%20Pt.2.mp3",
+      "title": "Set Me Free Pt.2",
+      "artist": "Jimin - Topic",
+      "cover": "covers/face.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    }
+  ],
+  "Angel Pt. 1 (feat. Jimin of BTS, JVKE & Muni Long) [Trailer Version]": [
+    {
+      "src": "music/Angel%20Pt.%201%20%28feat.%20Jimin%20of%20BTS%2C%20JVKE%20%26%20Muni%20Long%29.mp3",
+      "title": "Angel Pt. 1 (feat. Jimin of BTS, JVKE & Muni Long)",
+      "artist": "Kodak Black",
+      "cover": "covers/angel_pt__1__feat__jimin_of_bts__jvke___.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    }
+  ],
+  "Angel Anniversary Edition (feat. Muni Long, JVKE, NLE Choppa)": [
+    {
+      "src": "music/Angel%20Pt.%202%20%28feat.%20Jimin%20of%20BTS%20%26%20JVKE%20feat.%20Charlie%20Puth%20%26%20Muni%20Long%29.mp3",
+      "title": "Angel Pt. 2 (feat. Jimin of BTS & JVKE feat. Charlie Puth & Muni Long)",
+      "artist": "JVKE",
+      "cover": "covers/angel_anniversary_edition__feat__muni_lo.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    }
+  ],
+  "Happy - :D (Remixes)": [
+    {
+      "src": "music/Another%20Level.mp3",
+      "title": "Another Level",
+      "artist": "Jin - Topic",
+      "cover": "covers/happy____d__remixes_.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/Heart%20on%20the%20Window%20%28with%20%EC%9B%AC%EB%94%94%29.mp3",
+      "title": "Heart on the Window (with 웬디)",
+      "artist": "Jin - Topic",
+      "cover": "covers/happy____d__remixes_.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/I%27ll%20Be%20There.mp3",
+      "title": "I'll Be There",
+      "artist": "Jin - Topic",
+      "cover": "covers/happy____d__remixes_.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/%EA%B7%B8%EB%A6%AC%EC%9B%80%EC%97%90.mp3",
+      "title": "그리움에",
+      "artist": "Jin - Topic",
+      "cover": "covers/happy____d__remixes_.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/%EB%84%A4%EA%B2%8C%20%EB%8B%BF%EC%9D%84%20%EB%95%8C%EA%B9%8C%EC%A7%80.mp3",
+      "title": "네게 닿을 때까지",
+      "artist": "Jin - Topic",
+      "cover": "covers/happy____d__remixes_.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    }
+  ],
+  "Right Place, Wrong Person": [
+    {
+      "src": "music/Around%20the%20world%20in%20a%20day%20%28feat.%20Moses%20Sumney%29.mp3",
+      "title": "Around the world in a day (feat. Moses Sumney)",
+      "artist": "RM - Topic",
+      "cover": "covers/right_place__wrong_person.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/Come%20back%20to%20me.mp3",
+      "title": "Come back to me",
+      "artist": "RM - Topic",
+      "cover": "covers/right_place__wrong_person.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/Domodachi%20%28feat.%20Little%20Simz%29.mp3",
+      "title": "Domodachi (feat. Little Simz)",
+      "artist": "RM - Topic",
+      "cover": "covers/right_place__wrong_person.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/Groin.mp3",
+      "title": "Groin",
+      "artist": "RM - Topic",
+      "cover": "covers/right_place__wrong_person.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/Heaven.mp3",
+      "title": "Heaven",
+      "artist": "RM - Topic",
+      "cover": "covers/right_place__wrong_person.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/LOST%21.mp3",
+      "title": "LOST!",
+      "artist": "RM - Topic",
+      "cover": "covers/right_place__wrong_person.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/Nuts.mp3",
+      "title": "Nuts",
+      "artist": "RM - Topic",
+      "cover": "covers/right_place__wrong_person.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/Right%20People%2C%20Wrong%20Place.mp3",
+      "title": "Right People, Wrong Place",
+      "artist": "RM - Topic",
+      "cover": "covers/right_place__wrong_person.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/out%20of%20love.mp3",
+      "title": "out of love",
+      "artist": "RM - Topic",
+      "cover": "covers/right_place__wrong_person.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/%E3%85%A0%E3%85%A0%20%28Credit%20Roll%29.mp3",
+      "title": "ㅠㅠ (Credit Roll)",
+      "artist": "RM - Topic",
+      "cover": "covers/right_place__wrong_person.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/%EF%BC%9F%20%28Interlude%29.mp3",
+      "title": "? (Interlude)",
+      "artist": "RM - Topic",
+      "cover": "covers/right_place__wrong_person.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    }
+  ],
+  "O!RUL8,2?": [
+    {
+      "src": "music/Attack%20on%20Bangtan.mp3",
+      "title": "Attack on Bangtan",
+      "artist": "BANGTANTV",
+      "cover": "covers/o_rul8_2_.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/BTS%20Cypher%20PT.1.mp3",
+      "title": "BTS Cypher PT.1",
+      "artist": "BANGTANTV",
+      "cover": "covers/o_rul8_2_.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/Coffee.mp3",
+      "title": "Coffee",
+      "artist": "BANGTANTV",
+      "cover": "covers/o_rul8_2_.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/INTRO%20%EF%BC%9A%20O%21RUL8%2C2%EF%BC%9F.mp3",
+      "title": "INTRO : O!RUL8,2?",
+      "artist": "BANGTANTV",
+      "cover": "covers/o_rul8_2_.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/If%20I%20Ruled%20The%20World.mp3",
+      "title": "If I Ruled The World",
+      "artist": "BANGTANTV",
+      "cover": "covers/o_rul8_2_.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/OUTRO%20%EF%BC%9A%20LUV%20IN%20SKOOL.mp3",
+      "title": "OUTRO : LUV IN SKOOL",
+      "artist": "BANGTANTV",
+      "cover": "covers/o_rul8_2_.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/Paldogangsan.mp3",
+      "title": "Paldogangsan",
+      "artist": "BANGTANTV",
+      "cover": "covers/o_rul8_2_.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/We%20On.mp3",
+      "title": "We On",
+      "artist": "BANGTANTV",
+      "cover": "covers/o_rul8_2_.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    }
+  ],
+  "Playlist Bts": [
+    {
+      "src": "music/BTS%20-%20Path%20%E2%A7%B8%20Road%20%28Audio%29.mp3",
+      "title": "BTS - Path / Road (Audio)",
+      "artist": "Playlist Bts",
+      "cover": "covers/playlist_bts.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/RM%20-%20Awakening%20%28%E1%84%80%E1%85%A1%E1%86%A8%E1%84%89%E1%85%A5%E1%86%BC%29%20%28Audio%29.mp3",
+      "title": "RM - Awakening (각성) (Audio)",
+      "artist": "Playlist Bts",
+      "cover": "covers/playlist_bts.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/RM%20-%20Cypher%20Ruff%20%28Audio%29.mp3",
+      "title": "RM - Cypher Ruff (Audio)",
+      "artist": "Playlist Bts",
+      "cover": "covers/playlist_bts.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/RM%20-%20Drifting%20%28%E1%84%91%E1%85%AD%E1%84%85%E1%85%B2%29%20%28Audio%29.mp3",
+      "title": "RM - Drifting (표류) (Audio)",
+      "artist": "Playlist Bts",
+      "cover": "covers/playlist_bts.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/RM%20-%20Joke%20%28%E1%84%82%E1%85%A9%E1%86%BC%E1%84%83%E1%85%A1%E1%86%B7%29%20%28Audio%29.mp3",
+      "title": "RM - Joke (농담) (Audio)",
+      "artist": "Playlist Bts",
+      "cover": "covers/playlist_bts.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/RM%20-%20Throw%20Away%20%28%E1%84%87%E1%85%A5%E1%84%85%E1%85%A7%29%20%28Audio%29.mp3",
+      "title": "RM - Throw Away (버려) (Audio)",
+      "artist": "Playlist Bts",
+      "cover": "covers/playlist_bts.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/RM%20-%20Voice%20%28%E1%84%86%E1%85%A9%E1%86%A8%E1%84%89%E1%85%A9%E1%84%85%E1%85%B5%29%20%28Audio%29.mp3",
+      "title": "RM - Voice (목소리) (Audio)",
+      "artist": "Playlist Bts",
+      "cover": "covers/playlist_bts.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    }
+  ],
+  "Skool Luv Affair": [
+    {
+      "src": "music/BTS%20Cypher%20PT.2%EF%BC%9A%20Triptych.mp3",
+      "title": "BTS Cypher PT.2: Triptych",
+      "artist": "BANGTANTV",
+      "cover": "covers/skool_luv_affair.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/BTS%20%E2%80%A2%20%EC%83%81%EB%82%A8%EC%9E%90%20%28Boy%20In%20Luv%29%20%28Demo%20Ver.%29%20%5BAudio%5D.mp3",
+      "title": "BTS • 상남자 (Boy In Luv) (Demo Ver.) [Audio]",
+      "artist": "aroha music",
+      "cover": "covers/skool_luv_affair.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/Boy%20In%20Luv.mp3",
+      "title": "Boy In Luv",
+      "artist": "BANGTANTV",
+      "cover": "covers/skool_luv_affair.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/Intro%EF%BC%9A%20Skool%20Luv%20Affair.mp3",
+      "title": "Intro: Skool Luv Affair",
+      "artist": "BANGTANTV",
+      "cover": "covers/skool_luv_affair.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/JUMP.mp3",
+      "title": "JUMP",
+      "artist": "BANGTANTV",
+      "cover": "covers/skool_luv_affair.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/Just%20One%20Day.mp3",
+      "title": "Just One Day",
+      "artist": "BANGTANTV",
+      "cover": "covers/skool_luv_affair.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/Outro%EF%BC%9A%20Propose.mp3",
+      "title": "Outro: Propose",
+      "artist": "BANGTANTV",
+      "cover": "covers/skool_luv_affair.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/Spine%20Breaker.mp3",
+      "title": "Spine Breaker",
+      "artist": "BANGTANTV",
+      "cover": "covers/skool_luv_affair.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/Tomorrow.mp3",
+      "title": "Tomorrow",
+      "artist": "BANGTANTV",
+      "cover": "covers/skool_luv_affair.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/Where%20You%20From.mp3",
+      "title": "Where You From",
+      "artist": "BANGTANTV",
+      "cover": "covers/skool_luv_affair.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    }
+  ],
+  "LOVE YOURSELF 承 'Her'": [
+    {
+      "src": "music/BTS%20%E2%80%A2%20DNA%20%28J-Hope%20Demo%20Ver.%29%20%5BAudio%5D.mp3",
+      "title": "BTS • DNA (J-Hope Demo Ver.) [Audio]",
+      "artist": "aroha music",
+      "cover": "covers/love_yourself____her_.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    }
+  ],
+  "Love Yourself 結 'Answer'": [
+    {
+      "src": "music/BTS%20%E2%80%A2%20Epiphany%20%28Jin%20Demo%20Ver.%29%20%5BAudio%5D.mp3",
+      "title": "BTS • Epiphany (Jin Demo Ver.) [Audio]",
+      "artist": "aroha music",
+      "cover": "covers/love_yourself____answer_.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    }
+  ],
+  "The Most Beautiful Moment in Life: Young Forever": [
+    {
+      "src": "music/BTS%20%E2%80%A2%20I%20NEED%20U%20%28Demo%20Ver.%29%20%5BAudio%5D.mp3",
+      "title": "BTS • I NEED U (Demo Ver.) [Audio]",
+      "artist": "aroha music",
+      "cover": "covers/the_most_beautiful_moment_in_life__young.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/BTS%20%E2%80%A2%20Young%20Forever%20%28RM%20Demo%20Ver.%29%20%5BAudio%5D.mp3",
+      "title": "BTS • Young Forever (RM Demo Ver.) [Audio]",
+      "artist": "aroha music",
+      "cover": "covers/the_most_beautiful_moment_in_life__young.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    }
+  ],
+  "aroha music": [
+    {
+      "src": "music/BTS%20%E2%80%A2%20Jump%20%28Demo%20Ver.%29%20%5BAudio%5D.mp3",
+      "title": "BTS • Jump (Demo Ver.) [Audio]",
+      "artist": "aroha music",
+      "cover": "covers/aroha_music.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/BTS%20%E2%80%A2%20Seesaw%20%28Demo%20Ver.%29%20%5BAudio%5D.mp3",
+      "title": "BTS • Seesaw (Demo Ver.) [Audio]",
+      "artist": "aroha music",
+      "cover": "covers/aroha_music.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/BTS%20%E2%80%A2%20Tony%20Montana%20%28with%20Jimin%29%20%5BAudio%5D.mp3",
+      "title": "BTS • Tony Montana (with Jimin) [Audio]",
+      "artist": "aroha music",
+      "cover": "covers/aroha_music.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/BTS%20%E2%80%A2%20%EB%94%B0%EC%98%B4%ED%91%9C%20Quotation%20Mark%20%5BAudio%5D.mp3",
+      "title": "BTS • 따옴표 Quotation Mark [Audio]",
+      "artist": "aroha music",
+      "cover": "covers/aroha_music.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    }
+  ],
+  "Still With You - Single": [
+    {
+      "src": "music/BTS%20%E2%80%A2%20Still%20With%20You%20%28Acapella%29%20%5BAudio%5D.mp3",
+      "title": "BTS • Still With You (Acapella) [Audio]",
+      "artist": "aroha music",
+      "cover": "covers/still_with_you___single.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    }
+  ],
+  "Love Theory": [
+    {
+      "src": "music/BTS%20%E2%80%A2%20%EC%95%A0%EB%A7%A4%ED%95%9C%20%EC%82%AC%EC%9D%B4%20Young%20Love%20%5BAudio%5D.mp3",
+      "title": "BTS • 애매한 사이 Young Love [Audio]",
+      "artist": "aroha music",
+      "cover": "covers/love_theory.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    }
+  ],
+  "The Most Beautiful Moment in Life, Pt. 1": [
+    {
+      "src": "music/BTS%20%E2%80%A2%20%ED%9D%A5%ED%83%84%EC%86%8C%EB%85%84%EB%8B%A8%20Boyz%20With%20Fun%20%28Demo%20Ver.%29%20%5BAudio%5D.mp3",
+      "title": "BTS • 흥탄소년단 Boyz With Fun (Demo Ver.) [Audio]",
+      "artist": "aroha music",
+      "cover": "covers/the_most_beautiful_moment_in_life__pt__1.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    }
+  ],
+  "Echo": [
+    {
+      "src": "music/Background.mp3",
+      "title": "Background",
+      "artist": "Jin - Topic",
+      "cover": "covers/echo.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/Don%E2%80%99t%20Say%20You%20Love%20Me.mp3",
+      "title": "Don’t Say You Love Me",
+      "artist": "Jin - Topic",
+      "cover": "covers/echo.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/Loser%20%28feat.%20YENA%28%EC%B5%9C%EC%98%88%EB%82%98%29%29.mp3",
+      "title": "Loser (feat. YENA(최예나))",
+      "artist": "Jin - Topic",
+      "cover": "covers/echo.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/Nothing%20Without%20Your%20Love.mp3",
+      "title": "Nothing Without Your Love",
+      "artist": "Jin - Topic",
+      "cover": "covers/echo.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/Rope%20It.mp3",
+      "title": "Rope It",
+      "artist": "Jin - Topic",
+      "cover": "covers/echo.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/%EA%B5%AC%EB%A6%84%EA%B3%BC%20%EB%96%A0%EB%82%98%EB%8A%94%20%EC%97%AC%ED%96%89.mp3",
+      "title": "구름과 떠나는 여행",
+      "artist": "Jin - Topic",
+      "cover": "covers/echo.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/%EC%98%A4%EB%8A%98%EC%9D%98%20%EB%82%98%EC%97%90%EA%B2%8C.mp3",
+      "title": "오늘의 나에게",
+      "artist": "Jin - Topic",
+      "cover": "covers/echo.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    }
+  ],
+  "Bad Decisions": [
+    {
+      "src": "music/Bad%20Decisions.mp3",
+      "title": "Bad Decisions",
+      "artist": "benny blanco",
+      "cover": "covers/bad_decisions.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    }
+  ],
+  "Be Mine (English Version)": [
+    {
+      "src": "music/Be%20Mine%20%28English%20Version%29.mp3",
+      "title": "Be Mine (English Version)",
+      "artist": "Jimin - Topic",
+      "cover": "covers/be_mine__english_version_.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    }
+  ],
+  "MUSE (WANDER ver.)": [
+    {
+      "src": "music/Be%20Mine.mp3",
+      "title": "Be Mine",
+      "artist": "Jimin - Topic",
+      "cover": "covers/muse__wander_ver__.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/Closer%20Than%20This.mp3",
+      "title": "Closer Than This",
+      "artist": "Jimin - Topic",
+      "cover": "covers/muse__wander_ver__.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/Interlude%20%EF%BC%9A%20Showtime.mp3",
+      "title": "Interlude : Showtime",
+      "artist": "Jimin - Topic",
+      "cover": "covers/muse__wander_ver__.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/Rebirth%20%28Intro%29.mp3",
+      "title": "Rebirth (Intro)",
+      "artist": "Jimin - Topic",
+      "cover": "covers/muse__wander_ver__.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/Slow%20Dance%20%28feat.%20Sofia%20Carson%29.mp3",
+      "title": "Slow Dance (feat. Sofia Carson)",
+      "artist": "Jimin - Topic",
+      "cover": "covers/muse__wander_ver__.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/Smeraldo%20Garden%20Marching%20Band%20%28feat.%20Loco%29.mp3",
+      "title": "Smeraldo Garden Marching Band (feat. Loco)",
+      "artist": "Jimin - Topic",
+      "cover": "covers/muse__wander_ver__.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/Who%20%28Beautiful%20Mind%20Remix%29.mp3",
+      "title": "Who (Beautiful Mind Remix)",
+      "artist": "Jimin - Topic",
+      "cover": "covers/muse__wander_ver__.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/Who%20%28Funky%20Remix%29.mp3",
+      "title": "Who (Funky Remix)",
+      "artist": "Jimin - Topic",
+      "cover": "covers/muse__wander_ver__.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/Who%20%28Shibuyakei%20Remix%29.mp3",
+      "title": "Who (Shibuyakei Remix)",
+      "artist": "Jimin - Topic",
+      "cover": "covers/muse__wander_ver__.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/Who.mp3",
+      "title": "Who",
+      "artist": "Jimin - Topic",
+      "cover": "covers/muse__wander_ver__.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    }
+  ],
+  "Bicycle": [
+    {
+      "src": "music/Bicycle.mp3",
+      "title": "Bicycle",
+      "artist": "RM - Topic",
+      "cover": "covers/bicycle.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    }
+  ],
+  "BE": [
+    {
+      "src": "music/Blue%20%26%20Grey.mp3",
+      "title": "Blue & Grey",
+      "artist": "BANGTANTV",
+      "cover": "covers/be.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/Skit.mp3",
+      "title": "Skit",
+      "artist": "BANGTANTV",
+      "cover": "covers/be.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/%EB%82%B4%20%EB%B0%A9%EC%9D%84%20%EC%97%AC%ED%96%89%ED%95%98%EB%8A%94%20%EB%B2%95.mp3",
+      "title": "내 방을 여행하는 법",
+      "artist": "BANGTANTV",
+      "cover": "covers/be.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/%EB%B3%91.mp3",
+      "title": "병",
+      "artist": "BANGTANTV",
+      "cover": "covers/be.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/%EC%9E%A0%EC%8B%9C.mp3",
+      "title": "잠시",
+      "artist": "BANGTANTV",
+      "cover": "covers/be.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    }
+  ],
+  "Blue Side": [
+    {
+      "src": "music/Blue%20Side.mp3",
+      "title": "Blue Side",
+      "artist": "j-hope - Topic",
+      "cover": "covers/blue_side.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    }
+  ],
+  "Layover": [
+    {
+      "src": "music/Blue.mp3",
+      "title": "Blue",
+      "artist": "V - Topic",
+      "cover": "covers/layover.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/For%20Us.mp3",
+      "title": "For Us",
+      "artist": "V - Topic",
+      "cover": "covers/layover.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/Love%20Me%20Again.mp3",
+      "title": "Love Me Again",
+      "artist": "V - Topic",
+      "cover": "covers/layover.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/Rainy%20Days.mp3",
+      "title": "Rainy Days",
+      "artist": "V - Topic",
+      "cover": "covers/layover.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/Slow%20Dancing%20%28Piano%20Ver.%29.mp3",
+      "title": "Slow Dancing (Piano Ver.)",
+      "artist": "V - Topic",
+      "cover": "covers/layover.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/Slow%20Dancing.mp3",
+      "title": "Slow Dancing",
+      "artist": "V - Topic",
+      "cover": "covers/layover.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    }
+  ],
+  "Colour Vision": [
+    {
+      "src": "music/Blueberry%20Eyes%20%28feat.%20SUGA%20of%20BTS%29%20%28Steve%20Aoki%20Remix%29.mp3",
+      "title": "Blueberry Eyes (feat. SUGA of BTS) (Steve Aoki Remix)",
+      "artist": "MAX",
+      "cover": "covers/colour_vision.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    }
+  ],
+  "Blueberry Eyes (feat. SUGA of BTS)": [
+    {
+      "src": "music/Blueberry%20Eyes%20%28feat.%20SUGA%20of%20BTS%29.mp3",
+      "title": "Blueberry Eyes (feat. SUGA of BTS)",
+      "artist": "MAX",
+      "cover": "covers/blueberry_eyes__feat__suga_of_bts_.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    }
+  ],
+  "Boy In Luv (Japanese Ver.)": [
+    {
+      "src": "music/Boy%20In%20Luv%20%28Japanese%20Ver.%29.mp3",
+      "title": "Boy In Luv (Japanese Ver.)",
+      "artist": "Release - Topic",
+      "cover": "covers/boy_in_luv__japanese_ver__.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/Just%20One%20Day%20%28Japanese%20Ver.%29.mp3",
+      "title": "Just One Day (Japanese Ver.)",
+      "artist": "Release - Topic",
+      "cover": "covers/boy_in_luv__japanese_ver__.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/N.O%20%28Japanese%20Ver.%29.mp3",
+      "title": "N.O (Japanese Ver.)",
+      "artist": "Release - Topic",
+      "cover": "covers/boy_in_luv__japanese_ver__.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    }
+  ],
+  "D-2": [
+    {
+      "src": "music/Burn%20It%20%28feat.%20MAX%29.mp3",
+      "title": "Burn It (feat. MAX)",
+      "artist": "SUGA - Topic",
+      "cover": "covers/d_2.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/Interlude%20%EF%BC%9A%20Set%20me%20free.mp3",
+      "title": "Interlude : Set me free",
+      "artist": "SUGA - Topic",
+      "cover": "covers/d_2.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/%EB%8C%80%EC%B7%A8%ED%83%80.mp3",
+      "title": "대취타",
+      "artist": "SUGA - Topic",
+      "cover": "covers/d_2.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/%EC%82%AC%EB%9E%8C.mp3",
+      "title": "사람",
+      "artist": "SUGA - Topic",
+      "cover": "covers/d_2.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/%EC%96%B4%EB%95%A0%EC%9D%84%EA%B9%8C%20%28feat.%20%EA%B9%80%EC%A2%85%EC%99%84%20of%20NELL%29.mp3",
+      "title": "어땠을까 (feat. 김종완 of NELL)",
+      "artist": "SUGA - Topic",
+      "cover": "covers/d_2.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/%EC%96%B4%EB%96%BB%EA%B2%8C%20%EC%83%9D%EA%B0%81%ED%95%B4%EF%BC%9F.mp3",
+      "title": "어떻게 생각해?",
+      "artist": "SUGA - Topic",
+      "cover": "covers/d_2.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/%EC%9D%B4%EC%83%81%ED%95%98%EC%A7%80%20%EC%95%8A%EC%9D%80%EA%B0%80%20%28feat.%20RM%29.mp3",
+      "title": "이상하지 않은가 (feat. RM)",
+      "artist": "SUGA - Topic",
+      "cover": "covers/d_2.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/%EC%A0%80%20%EB%8B%AC.mp3",
+      "title": "저 달",
+      "artist": "SUGA - Topic",
+      "cover": "covers/d_2.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/%EC%A0%90%EC%A0%90%20%EC%96%B4%EB%A5%B8%EC%9D%B4%20%EB%90%98%EB%82%98%EB%B4%90%20%28feat.%20%EB%8B%88%ED%99%94%29.mp3",
+      "title": "점점 어른이 되나봐 (feat. 니화)",
+      "artist": "SUGA - Topic",
+      "cover": "covers/d_2.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/%ED%98%BC%EC%88%A0.mp3",
+      "title": "혼술",
+      "artist": "SUGA - Topic",
+      "cover": "covers/d_2.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    }
+  ],
+  "Butter (Hotter, Sweeter, Cooler)": [
+    {
+      "src": "music/Butter%20%28Cooler%20Remix%29.mp3",
+      "title": "Butter (Cooler Remix)",
+      "artist": "BANGTANTV",
+      "cover": "covers/butter__hotter__sweeter__cooler_.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/Butter%20%28Sweeter%20Remix%29.mp3",
+      "title": "Butter (Sweeter Remix)",
+      "artist": "BANGTANTV",
+      "cover": "covers/butter__hotter__sweeter__cooler_.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    }
+  ],
+  "Butter (Holiday Remix)": [
+    {
+      "src": "music/Butter%20%28Holiday%20Remix%29.mp3",
+      "title": "Butter (Holiday Remix)",
+      "artist": "BANGTANTV",
+      "cover": "covers/butter__holiday_remix_.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    }
+  ],
+  "Butter (Hotter Remix)": [
+    {
+      "src": "music/Butter%20%28Hotter%20Remix%29.mp3",
+      "title": "Butter (Hotter Remix)",
+      "artist": "BANGTANTV",
+      "cover": "covers/butter__hotter_remix_.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    }
+  ],
+  "Butter / Permission to Dance": [
+    {
+      "src": "music/Butter%20%28Instrumental%29.mp3",
+      "title": "Butter (Instrumental)",
+      "artist": "BANGTANTV",
+      "cover": "covers/butter___permission_to_dance.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/Permission%20to%20Dance%20%28Instrumental%29.mp3",
+      "title": "Permission to Dance (Instrumental)",
+      "artist": "BANGTANTV",
+      "cover": "covers/butter___permission_to_dance.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/Permission%20to%20Dance.mp3",
+      "title": "Permission to Dance",
+      "artist": "BANGTANTV",
+      "cover": "covers/butter___permission_to_dance.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    }
+  ],
+  "Butter (feat. Megan Thee Stallion)": [
+    {
+      "src": "music/Butter%20%28feat.%20Megan%20Thee%20Stallion%29.mp3",
+      "title": "Butter (feat. Megan Thee Stallion)",
+      "artist": "BANGTANTV",
+      "cover": "covers/butter__feat__megan_thee_stallion_.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    }
+  ],
+  "YOUTH": [
+    {
+      "src": "music/Butterfly%20%28Japanese%20Ver.%29.mp3",
+      "title": "Butterfly (Japanese Ver.)",
+      "artist": "BANGTANTV",
+      "cover": "covers/youth.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/DOPE%E2%80%90%E8%B6%85%E3%83%A4%E3%83%99%E3%83%BC%21%E2%80%90%20%28Japanese%20Ver.%29.mp3",
+      "title": "DOPE‐超ヤベー!‐ (Japanese Ver.)",
+      "artist": "BANGTANTV",
+      "cover": "covers/youth.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/EPILOGUE%20%EF%BC%9A%20Young%20Forever%20%28Japanese%20Ver.%29.mp3",
+      "title": "EPILOGUE : Young Forever (Japanese Ver.)",
+      "artist": "BANGTANTV",
+      "cover": "covers/youth.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/FIRE%20%28Japanese%20Ver.%29.mp3",
+      "title": "FIRE (Japanese Ver.)",
+      "artist": "BANGTANTV",
+      "cover": "covers/youth.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/FOR%20YOU.mp3",
+      "title": "FOR YOU",
+      "artist": "BANGTANTV",
+      "cover": "covers/youth.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/Good%20Day.mp3",
+      "title": "Good Day",
+      "artist": "BANGTANTV",
+      "cover": "covers/youth.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/I%20NEED%20U%20%28Japanese%20Ver.%29.mp3",
+      "title": "I NEED U (Japanese Ver.)",
+      "artist": "BANGTANTV",
+      "cover": "covers/youth.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/INTRODUCTION%20%EF%BC%9A%20YOUTH.mp3",
+      "title": "INTRODUCTION : YOUTH",
+      "artist": "BANGTANTV",
+      "cover": "covers/youth.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/RUN%20%28Japanese%20Ver.%29.mp3",
+      "title": "RUN (Japanese Ver.)",
+      "artist": "BANGTANTV",
+      "cover": "covers/youth.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/Save%20ME%20%28Japanese%20Ver.%29.mp3",
+      "title": "Save ME (Japanese Ver.)",
+      "artist": "BANGTANTV",
+      "cover": "covers/youth.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/Wishing%20on%20a%20star.mp3",
+      "title": "Wishing on a star",
+      "artist": "BANGTANTV",
+      "cover": "covers/youth.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/%E3%83%95%E3%83%B3%E3%82%BF%E3%83%B3%E5%B0%91%E5%B9%B4%E5%9B%A3%20%28Japanese%20Ver.%29.mp3",
+      "title": "フンタン少年団 (Japanese Ver.)",
+      "artist": "BANGTANTV",
+      "cover": "covers/youth.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/%E3%83%9A%E3%83%83%E3%83%97%E3%82%BB%20%28Japanese%20Ver.%29.mp3",
+      "title": "ペップセ (Japanese Ver.)",
+      "artist": "BANGTANTV",
+      "cover": "covers/youth.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    }
+  ],
+  "화양연화 Young Forever": [
+    {
+      "src": "music/Butterfly%20%28alternative%20mix%29.mp3",
+      "title": "Butterfly (alternative mix)",
+      "artist": "BANGTANTV",
+      "cover": "covers/_____young_forever.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/Butterfly%20prologue%20mix.mp3",
+      "title": "Butterfly prologue mix",
+      "artist": "BANGTANTV",
+      "cover": "covers/_____young_forever.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/EPILOGUE%20%EF%BC%9A%20Young%20Forever.mp3",
+      "title": "EPILOGUE : Young Forever",
+      "artist": "BANGTANTV",
+      "cover": "covers/_____young_forever.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/House%20Of%20Cards%20%28full%20length%20edition%29.mp3",
+      "title": "House Of Cards (full length edition)",
+      "artist": "BANGTANTV",
+      "cover": "covers/_____young_forever.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/I%20NEED%20U%20remix.mp3",
+      "title": "I NEED U remix",
+      "artist": "BANGTANTV",
+      "cover": "covers/_____young_forever.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/I%20NEED%20U%20urban%20mix.mp3",
+      "title": "I NEED U urban mix",
+      "artist": "BANGTANTV",
+      "cover": "covers/_____young_forever.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/Love%20is%20not%20over%20%28full%20length%20edition%29.mp3",
+      "title": "Love is not over (full length edition)",
+      "artist": "BANGTANTV",
+      "cover": "covers/_____young_forever.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/RUN%20%28alternative%20mix%29.mp3",
+      "title": "RUN (alternative mix)",
+      "artist": "BANGTANTV",
+      "cover": "covers/_____young_forever.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/RUN%20ballad%20mix.mp3",
+      "title": "RUN ballad mix",
+      "artist": "BANGTANTV",
+      "cover": "covers/_____young_forever.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/Save%20ME.mp3",
+      "title": "Save ME",
+      "artist": "BANGTANTV",
+      "cover": "covers/_____young_forever.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    }
+  ],
+  "The most beautiful moment in life pt.2": [
+    {
+      "src": "music/Butterfly.mp3",
+      "title": "Butterfly",
+      "artist": "BANGTANTV",
+      "cover": "covers/the_most_beautiful_moment_in_life_pt_2.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/INTRO%20%EF%BC%9A%20Never%20Mind.mp3",
+      "title": "INTRO : Never Mind",
+      "artist": "BANGTANTV",
+      "cover": "covers/the_most_beautiful_moment_in_life_pt_2.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/Ma%20City.mp3",
+      "title": "Ma City",
+      "artist": "BANGTANTV",
+      "cover": "covers/the_most_beautiful_moment_in_life_pt_2.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/OUTRO%20%EF%BC%9A%20House%20Of%20Cards.mp3",
+      "title": "OUTRO : House Of Cards",
+      "artist": "BANGTANTV",
+      "cover": "covers/the_most_beautiful_moment_in_life_pt_2.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/Whalien%2052.mp3",
+      "title": "Whalien 52",
+      "artist": "BANGTANTV",
+      "cover": "covers/the_most_beautiful_moment_in_life_pt_2.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/%EA%B3%A0%EC%97%BD.mp3",
+      "title": "고엽",
+      "artist": "BANGTANTV",
+      "cover": "covers/the_most_beautiful_moment_in_life_pt_2.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/%EB%B1%81%EC%83%88.mp3",
+      "title": "뱁새",
+      "artist": "BANGTANTV",
+      "cover": "covers/the_most_beautiful_moment_in_life_pt_2.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    }
+  ],
+  "Champion": [
+    {
+      "src": "music/Champion%20%28Remix%29.mp3",
+      "title": "Champion (Remix)",
+      "artist": "Fall Out Boy",
+      "cover": "covers/champion.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    }
+  ],
+  "Chicken Noodle Soup (feat. Becky G)": [
+    {
+      "src": "music/Chicken%20Noodle%20Soup%20%28feat.%20Becky%20G%29.mp3",
+      "title": "Chicken Noodle Soup (feat. Becky G)",
+      "artist": "j-hope - Topic",
+      "cover": "covers/chicken_noodle_soup__feat__becky_g_.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    }
+  ],
+  "Christmas Love": [
+    {
+      "src": "music/Christmas%20Love.mp3",
+      "title": "Christmas Love",
+      "artist": "Jimin - Topic",
+      "cover": "covers/christmas_love.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    }
+  ],
+  "그 해 우리는 OST Part.5": [
+    {
+      "src": "music/Christmas%20Tree%20%28Inst.%29.mp3",
+      "title": "Christmas Tree (Inst.)",
+      "artist": "V - Topic",
+      "cover": "covers/________ost_part_5.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/Christmas%20Tree.mp3",
+      "title": "Christmas Tree",
+      "artist": "V - Topic",
+      "cover": "covers/________ost_part_5.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    }
+  ],
+  "When the Stars Gossip OST Part.3": [
+    {
+      "src": "music/Close%20to%20You%20%28Close%20to%20You%29.mp3",
+      "title": "Close to You (Close to You)",
+      "artist": "Jin - Topic",
+      "cover": "covers/when_the_stars_gossip_ost_part_3.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/Close%20to%20You%20%28Inst.%29%20%28Close%20to%20You%20%28Inst.%29%29.mp3",
+      "title": "Close to You (Inst.) (Close to You (Inst.))",
+      "artist": "Jin - Topic",
+      "cover": "covers/when_the_stars_gossip_ost_part_3.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    }
+  ],
+  "Come Back Home": [
+    {
+      "src": "music/Come%20Back%20Home.mp3",
+      "title": "Come Back Home",
+      "artist": "BANGTANTV",
+      "cover": "covers/come_back_home.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    }
+  ],
+  "Come back to me": [
+    {
+      "src": "music/Come%20back%20to%20me%20%28Radio%20Edit%29.mp3",
+      "title": "Come back to me (Radio Edit)",
+      "artist": "RM - Topic",
+      "cover": "covers/come_back_to_me.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    }
+  ],
+  "화양연화 pt.1": [
+    {
+      "src": "music/Converse%20High.mp3",
+      "title": "Converse High",
+      "artist": "BANGTANTV",
+      "cover": "covers/_____pt_1.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/Intro%20%EF%BC%9A%20%ED%99%94%EC%96%91%EC%97%B0%ED%99%94.mp3",
+      "title": "Intro : 화양연화",
+      "artist": "BANGTANTV",
+      "cover": "covers/_____pt_1.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/Outro%20%EF%BC%9A%20Love%20is%20Not%20Over.mp3",
+      "title": "Outro : Love is Not Over",
+      "artist": "BANGTANTV",
+      "cover": "covers/_____pt_1.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/%EC%9D%B4%EC%82%AC.mp3",
+      "title": "이사",
+      "artist": "BANGTANTV",
+      "cover": "covers/_____pt_1.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/%EC%9E%A1%EC%95%84%EC%A4%98%20%28Hold%20Me%20Tight%29.mp3",
+      "title": "잡아줘 (Hold Me Tight)",
+      "artist": "BANGTANTV",
+      "cover": "covers/_____pt_1.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/%EC%A9%94%EC%96%B4.mp3",
+      "title": "쩔어",
+      "artist": "BANGTANTV",
+      "cover": "covers/_____pt_1.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/%ED%9D%A5%ED%83%84%EC%86%8C%EB%85%84%EB%8B%A8.mp3",
+      "title": "흥탄소년단",
+      "artist": "BANGTANTV",
+      "cover": "covers/_____pt_1.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    }
+  ],
+  "Crying Over You ◐ (feat. RM & BEKA)": [
+    {
+      "src": "music/Crying%20Over%20You%20%E2%97%90%20%28feat.%20RM%20%26%20BEKA%29.mp3",
+      "title": "Crying Over You ◐ (feat. RM & BEKA)",
+      "artist": "H O N N E",
+      "cover": "covers/crying_over_you____feat__rm___beka_.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    }
+  ],
+  "Danger (Mo-Blue-Mix) (Feat. Thanh)": [
+    {
+      "src": "music/Danger%20%28Mo-Blue-Mix%29%20%28Feat.%20Thanh%29.mp3",
+      "title": "Danger (Mo-Blue-Mix) (Feat. Thanh)",
+      "artist": "BANGTANTV",
+      "cover": "covers/danger__mo_blue_mix___feat__thanh_.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    }
+  ],
+  "Fragile": [
+    {
+      "src": "music/Don%27t%20%28feat.%20RM%29%20%28%EA%B7%B8%EB%9F%AC%EC%A7%80%20%EB%A7%88%20%28feat.%20RM%29%29.mp3",
+      "title": "Don't (feat. RM) (그러지 마 (feat. RM))",
+      "artist": "이이언 eAeon",
+      "cover": "covers/fragile.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    }
+  ],
+  "Don't Say You Love Me (Remixes)": [
+    {
+      "src": "music/Don%27t%20Say%20You%20Love%20Me%20%2890s%20Pop%20Remix%29.mp3",
+      "title": "Don't Say You Love Me (90s Pop Remix)",
+      "artist": "Jin - Topic",
+      "cover": "covers/don_t_say_you_love_me__remixes_.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/Don%27t%20Say%20You%20Love%20Me%20%28Band%20Ver.%29.mp3",
+      "title": "Don't Say You Love Me (Band Ver.)",
+      "artist": "Jin - Topic",
+      "cover": "covers/don_t_say_you_love_me__remixes_.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/Don%27t%20Say%20You%20Love%20Me%20%28Disco%20Remix%29.mp3",
+      "title": "Don't Say You Love Me (Disco Remix)",
+      "artist": "Jin - Topic",
+      "cover": "covers/don_t_say_you_love_me__remixes_.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/Don%27t%20Say%20You%20Love%20Me%20%28Future%20Pop%20Remix%29.mp3",
+      "title": "Don't Say You Love Me (Future Pop Remix)",
+      "artist": "Jin - Topic",
+      "cover": "covers/don_t_say_you_love_me__remixes_.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/Don%27t%20Say%20You%20Love%20Me%20%28Instrumental%29.mp3",
+      "title": "Don't Say You Love Me (Instrumental)",
+      "artist": "Jin - Topic",
+      "cover": "covers/don_t_say_you_love_me__remixes_.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/Don%27t%20Say%20You%20Love%20Me%20%28Lofi%20Remix%29.mp3",
+      "title": "Don't Say You Love Me (Lofi Remix)",
+      "artist": "Jin - Topic",
+      "cover": "covers/don_t_say_you_love_me__remixes_.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/Don%27t%20Say%20You%20Love%20Me%20%28Synthwave%20Remix%29.mp3",
+      "title": "Don't Say You Love Me (Synthwave Remix)",
+      "artist": "Jin - Topic",
+      "cover": "covers/don_t_say_you_love_me__remixes_.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/Don%27t%20Say%20You%20Love%20Me.mp3",
+      "title": "Don't Say You Love Me",
+      "artist": "Jin - Topic",
+      "cover": "covers/don_t_say_you_love_me__remixes_.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    }
+  ],
+  "Love Part 2": [
+    {
+      "src": "music/Don%27t%20ever%20say%20love%20me%20%28feat.%20RM%20of%20BTS%29.mp3",
+      "title": "Don't ever say love me (feat. RM of BTS)",
+      "artist": "콜드 Colde",
+      "cover": "covers/love_part_2.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    }
+  ],
+  "Dream Glow (BTS World Original Soundtrack) (Pt. 1)": [
+    {
+      "src": "music/Dream%20Glow%20%28BTS%20World%20Original%20Soundtrack%29%20%28Pt.%201%29.mp3",
+      "title": "Dream Glow (BTS World Original Soundtrack) (Pt. 1)",
+      "artist": "BANGTANTV",
+      "cover": "covers/dream_glow__bts_world_original_soundtrac.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    }
+  ],
+  "Dreamers (Music from the FIFA World Cup Qatar 2022 Official Soundtrack)": [
+    {
+      "src": "music/Dreamers%20%5BMusic%20from%20the%20FIFA%20World%20Cup%20Qatar%202022%20Official%20Soundtrack%5D.mp3",
+      "title": "Dreamers [Music from the FIFA World Cup Qatar 2022 Official Soundtrack]",
+      "artist": "Jung Kook - Topic",
+      "cover": "covers/dreamers__music_from_the_fifa_world_cup_.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    }
+  ],
+  "Dynamite (DayTime Version)": [
+    {
+      "src": "music/Dynamite%20%28Acoustic%20Remix%29.mp3",
+      "title": "Dynamite (Acoustic Remix)",
+      "artist": "BANGTANTV",
+      "cover": "covers/dynamite__daytime_version_.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/Dynamite%20%28EDM%20Remix%29.mp3",
+      "title": "Dynamite (EDM Remix)",
+      "artist": "BANGTANTV",
+      "cover": "covers/dynamite__daytime_version_.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/Dynamite%20%28Poolside%20Remix%29.mp3",
+      "title": "Dynamite (Poolside Remix)",
+      "artist": "BANGTANTV",
+      "cover": "covers/dynamite__daytime_version_.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/Dynamite%20%28Tropical%20Remix%29.mp3",
+      "title": "Dynamite (Tropical Remix)",
+      "artist": "BANGTANTV",
+      "cover": "covers/dynamite__daytime_version_.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    }
+  ],
+  "Dynamite (NightTime Version)": [
+    {
+      "src": "music/Dynamite%20%28Bedroom%20Remix%29.mp3",
+      "title": "Dynamite (Bedroom Remix)",
+      "artist": "BANGTANTV",
+      "cover": "covers/dynamite__nighttime_version_.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/Dynamite%20%28Instrumental%29.mp3",
+      "title": "Dynamite (Instrumental)",
+      "artist": "BANGTANTV",
+      "cover": "covers/dynamite__nighttime_version_.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/Dynamite%20%28Midnight%20Remix%29.mp3",
+      "title": "Dynamite (Midnight Remix)",
+      "artist": "BANGTANTV",
+      "cover": "covers/dynamite__nighttime_version_.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/Dynamite%20%28Retro%20Remix%29.mp3",
+      "title": "Dynamite (Retro Remix)",
+      "artist": "BANGTANTV",
+      "cover": "covers/dynamite__nighttime_version_.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/Dynamite%20%28Slow%20Jam%20Remix%29.mp3",
+      "title": "Dynamite (Slow Jam Remix)",
+      "artist": "BANGTANTV",
+      "cover": "covers/dynamite__nighttime_version_.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    }
+  ],
+  "Dynamite (Holiday Remix)": [
+    {
+      "src": "music/Dynamite%20%28Holiday%20Remix%29.mp3",
+      "title": "Dynamite (Holiday Remix)",
+      "artist": "BANGTANTV",
+      "cover": "covers/dynamite__holiday_remix_.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    }
+  ],
+  "FAKE LOVE / Airplane pt.2": [
+    {
+      "src": "music/FAKE%20LOVE%20%28Japanese%20Version%20%E2%A7%B8%20Remix%29.mp3",
+      "title": "FAKE LOVE (Japanese Version / Remix)",
+      "artist": "BANGTANTV",
+      "cover": "covers/fake_love___airplane_pt_2.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    }
+  ],
+  "FRI(END)S": [
+    {
+      "src": "music/FRI%20%28END%29%20S%20-%20Instrumental.mp3",
+      "title": "FRI (END) S - Instrumental",
+      "artist": "V - Topic",
+      "cover": "covers/fri_end_s.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/FRI%20%28END%29%20S%20-%20Slowed%20Down.mp3",
+      "title": "FRI (END) S - Slowed Down",
+      "artist": "V - Topic",
+      "cover": "covers/fri_end_s.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/FRI%20%28END%29%20S%20-%20Sped%20Up.mp3",
+      "title": "FRI (END) S - Sped Up",
+      "artist": "V - Topic",
+      "cover": "covers/fri_end_s.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/FRI%20%28END%29%20S.mp3",
+      "title": "FRI (END) S",
+      "artist": "V - Topic",
+      "cover": "covers/fri_end_s.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    }
+  ],
+  "Fighting Demons": [
+    {
+      "src": "music/Girl%20Of%20My%20Dreams.mp3",
+      "title": "Girl Of My Dreams",
+      "artist": "Juice WRLD",
+      "cover": "covers/fighting_demons.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    }
+  ],
+  "MAP OF THE SOUL : PERSONA": [
+    {
+      "src": "music/HOME.mp3",
+      "title": "HOME",
+      "artist": "BANGTANTV",
+      "cover": "covers/map_of_the_soul___persona.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/%EC%86%8C%EC%9A%B0%EC%A3%BC%20%28Mikrokosmos%29.mp3",
+      "title": "소우주 (Mikrokosmos)",
+      "artist": "BANGTANTV",
+      "cover": "covers/map_of_the_soul___persona.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/%EC%9E%91%EC%9D%80%20%EA%B2%83%EB%93%A4%EC%9D%84%20%EC%9C%84%ED%95%9C%20%EC%8B%9C%20%28Boy%20with%20Luv%29%20feat.%20Halsey.mp3",
+      "title": "작은 것들을 위한 시 (Boy with Luv) feat. Halsey",
+      "artist": "BANGTANTV",
+      "cover": "covers/map_of_the_soul___persona.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    }
+  ],
+  "BTS WORLD (Original Soundtrack)": [
+    {
+      "src": "music/Heartbeat%20%28BTS%20World%20Original%20Soundtrack%29.mp3",
+      "title": "Heartbeat (BTS World Original Soundtrack)",
+      "artist": "BANGTANTV",
+      "cover": "covers/bts_world__original_soundtrack_.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    }
+  ],
+  "MAP OF THE SOUL : 7 ~ THE JOURNEY ~": [
+    {
+      "src": "music/INTRO%20%EF%BC%9A%20Calling.mp3",
+      "title": "INTRO : Calling",
+      "artist": "BANGTANTV",
+      "cover": "covers/map_of_the_soul___7___the_journey__.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/OUTRO%20%EF%BC%9A%20The%20Journey.mp3",
+      "title": "OUTRO : The Journey",
+      "artist": "BANGTANTV",
+      "cover": "covers/map_of_the_soul___7___the_journey__.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    }
+  ],
+  "FACE YOURSELF": [
+    {
+      "src": "music/INTRO%20%EF%BC%9A%20Ringwanderung.mp3",
+      "title": "INTRO : Ringwanderung",
+      "artist": "BANGTANTV",
+      "cover": "covers/face_yourself.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/OUTRO%20%EF%BC%9A%20Crack.mp3",
+      "title": "OUTRO : Crack",
+      "artist": "BANGTANTV",
+      "cover": "covers/face_yourself.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    }
+  ],
+  "2 COOL 4 SKOOL": [
+    {
+      "src": "music/Interlude.mp3",
+      "title": "Interlude",
+      "artist": "BANGTANTV",
+      "cover": "covers/2_cool_4_skool.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/Intro%20%EF%BC%9A%202%20COOL%204%20SKOOL%20feat.%20DJ%20Friz.mp3",
+      "title": "Intro : 2 COOL 4 SKOOL feat. DJ Friz",
+      "artist": "BANGTANTV",
+      "cover": "covers/2_cool_4_skool.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/Like.mp3",
+      "title": "Like",
+      "artist": "BANGTANTV",
+      "cover": "covers/2_cool_4_skool.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/Outro%20%EF%BC%9A%20Circle%20room%20cypher.mp3",
+      "title": "Outro : Circle room cypher",
+      "artist": "BANGTANTV",
+      "cover": "covers/2_cool_4_skool.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/Skit%20%EF%BC%9A%20Circle%20room%20talk.mp3",
+      "title": "Skit : Circle room talk",
+      "artist": "BANGTANTV",
+      "cover": "covers/2_cool_4_skool.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/We%20are%20bulletproof%20PT.2.mp3",
+      "title": "We are bulletproof PT.2",
+      "artist": "BANGTANTV",
+      "cover": "covers/2_cool_4_skool.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    }
+  ],
+  "LOVE YOURSELF 승 'Her'": [
+    {
+      "src": "music/Intro%20%EF%BC%9A%20Serendipity.mp3",
+      "title": "Intro : Serendipity",
+      "artist": "BANGTANTV",
+      "cover": "covers/love_yourself____her_.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/Outro%20%EF%BC%9A%20Her.mp3",
+      "title": "Outro : Her",
+      "artist": "BANGTANTV",
+      "cover": "covers/love_yourself____her_.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/Pied%20Piper.mp3",
+      "title": "Pied Piper",
+      "artist": "BANGTANTV",
+      "cover": "covers/love_yourself____her_.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    }
+  ],
+  "Happy": [
+    {
+      "src": "music/I%E2%80%99ll%20Be%20There.mp3",
+      "title": "I’ll Be There",
+      "artist": "Jin - Topic",
+      "cover": "covers/happy.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    }
+  ],
+  "Killin' It Girl (feat. GloRilla) (Remixes)": [
+    {
+      "src": "music/Killin%27%20It%20Girl%20%28Solo%20Version%29.mp3",
+      "title": "Killin' It Girl (Solo Version)",
+      "artist": "j-hope - Topic",
+      "cover": "covers/killin__it_girl__feat__glorilla___remixe.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/Killin%27%20It%20Girl%20%28feat.%20GloRilla%29%20%28Band%20Remix%29.mp3",
+      "title": "Killin' It Girl (feat. GloRilla) (Band Remix)",
+      "artist": "j-hope - Topic",
+      "cover": "covers/killin__it_girl__feat__glorilla___remixe.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/Killin%27%20It%20Girl%20%28feat.%20GloRilla%29%20%28Boom%20Bap%20Remix%29.mp3",
+      "title": "Killin' It Girl (feat. GloRilla) (Boom Bap Remix)",
+      "artist": "j-hope - Topic",
+      "cover": "covers/killin__it_girl__feat__glorilla___remixe.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/Killin%27%20It%20Girl%20%28feat.%20GloRilla%29%20%28Brazilian%20Phonk%20Remix%29.mp3",
+      "title": "Killin' It Girl (feat. GloRilla) (Brazilian Phonk Remix)",
+      "artist": "j-hope - Topic",
+      "cover": "covers/killin__it_girl__feat__glorilla___remixe.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/Killin%27%20It%20Girl%20%28feat.%20GloRilla%29%20%28Clean%20Version%29.mp3",
+      "title": "Killin' It Girl (feat. GloRilla) (Clean Version)",
+      "artist": "j-hope - Topic",
+      "cover": "covers/killin__it_girl__feat__glorilla___remixe.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/Killin%27%20It%20Girl%20%28feat.%20GloRilla%29%20%28Electro%20Pop%20Remix%29.mp3",
+      "title": "Killin' It Girl (feat. GloRilla) (Electro Pop Remix)",
+      "artist": "j-hope - Topic",
+      "cover": "covers/killin__it_girl__feat__glorilla___remixe.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/Killin%27%20It%20Girl%20%28feat.%20GloRilla%29%20%28Instrumental%29.mp3",
+      "title": "Killin' It Girl (feat. GloRilla) (Instrumental)",
+      "artist": "j-hope - Topic",
+      "cover": "covers/killin__it_girl__feat__glorilla___remixe.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/Killin%27%20It%20Girl%20%28feat.%20GloRilla%29%20%28Soul%20Remix%29.mp3",
+      "title": "Killin' It Girl (feat. GloRilla) (Soul Remix)",
+      "artist": "j-hope - Topic",
+      "cover": "covers/killin__it_girl__feat__glorilla___remixe.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/Killin%27%20It%20Girl%20%28feat.%20GloRilla%29%20%28West%20Coast%20Remix%29.mp3",
+      "title": "Killin' It Girl (feat. GloRilla) (West Coast Remix)",
+      "artist": "j-hope - Topic",
+      "cover": "covers/killin__it_girl__feat__glorilla___remixe.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/Killin%27%20It%20Girl%20%28feat.%20GloRilla%29.mp3",
+      "title": "Killin' It Girl (feat. GloRilla)",
+      "artist": "j-hope - Topic",
+      "cover": "covers/killin__it_girl__feat__glorilla___remixe.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    }
+  ],
+  "Killin' It Girl (feat. GloRilla)": [
+    {
+      "src": "music/Killin%E2%80%99%20It%20Girl%20%28Solo%20Version%29.mp3",
+      "title": "Killin’ It Girl (Solo Version)",
+      "artist": "j-hope - Topic",
+      "cover": "covers/killin__it_girl__feat__glorilla_.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    }
+  ],
+  "LV Bag (feat. j-hope of BTS & Pharrell Williams)": [
+    {
+      "src": "music/LV%20Bag%20%28feat.%20j-hope%20of%20BTS%20%26%20Pharrell%20Williams%29.mp3",
+      "title": "LV Bag (feat. j-hope of BTS & Pharrell Williams)",
+      "artist": "Don Toliver",
+      "cover": "covers/lv_bag__feat__j_hope_of_bts___pharrell_w.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    }
+  ],
+  "Left and Right (Feat. Jung Kook of BTS)": [
+    {
+      "src": "music/Left%20and%20Right%20%28Feat.%20Jung%20Kook%20of%20BTS%29.mp3",
+      "title": "Left and Right (Feat. Jung Kook of BTS)",
+      "artist": "Charlie Puth",
+      "cover": "covers/left_and_right__feat__jung_kook_of_bts_.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    }
+  ],
+  "BTS 2nd MINI ALBUM - Special Addition (MISS RIGHT)": [
+    {
+      "src": "music/Like%20%28Slow%20Jam%20Remix%29.mp3",
+      "title": "Like (Slow Jam Remix)",
+      "artist": "BANGTANTV",
+      "cover": "covers/bts_2nd_mini_album___special_addition__m.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/MISS%20RIGHT.mp3",
+      "title": "MISS RIGHT",
+      "artist": "BANGTANTV",
+      "cover": "covers/bts_2nd_mini_album___special_addition__m.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    }
+  ],
+  "Like Crazy (Remixes)": [
+    {
+      "src": "music/Like%20Crazy%20%28Deep%20House%20Remix%29.mp3",
+      "title": "Like Crazy (Deep House Remix)",
+      "artist": "Jimin - Topic",
+      "cover": "covers/like_crazy__remixes_.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/Like%20Crazy%20%28English%20Version%29.mp3",
+      "title": "Like Crazy (English Version)",
+      "artist": "Jimin - Topic",
+      "cover": "covers/like_crazy__remixes_.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/Like%20Crazy%20%28Instrumental%29.mp3",
+      "title": "Like Crazy (Instrumental)",
+      "artist": "Jimin - Topic",
+      "cover": "covers/like_crazy__remixes_.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/Like%20Crazy%20%28UK%20Garage%20Remix%29.mp3",
+      "title": "Like Crazy (UK Garage Remix)",
+      "artist": "Jimin - Topic",
+      "cover": "covers/like_crazy__remixes_.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/Like%20Crazy.mp3",
+      "title": "Like Crazy",
+      "artist": "Jimin - Topic",
+      "cover": "covers/like_crazy__remixes_.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    }
+  ],
+  "Lilith (feat. SUGA) (Diablo IV Anthem)": [
+    {
+      "src": "music/Lilith%20%28Diablo%20IV%20Anthem%29.mp3",
+      "title": "Lilith (Diablo IV Anthem)",
+      "artist": "Halsey",
+      "cover": "covers/lilith__feat__suga___diablo_iv_anthem_.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    }
+  ],
+  "MIC Drop (Steve Aoki Remix) Feat. Desiigner": [
+    {
+      "src": "music/MIC%20Drop%20%28Steve%20Aoki%20Remix%29%20Feat.%20Desiigner.mp3",
+      "title": "MIC Drop (Steve Aoki Remix) Feat. Desiigner",
+      "artist": "BANGTANTV",
+      "cover": "covers/mic_drop__steve_aoki_remix__feat__desiig.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    }
+  ],
+  "MONA LISA (Remix so fine)": [
+    {
+      "src": "music/MONA%20LISA%20%28Afro%20House%20Remix%29.mp3",
+      "title": "MONA LISA (Afro House Remix)",
+      "artist": "j-hope - Topic",
+      "cover": "covers/mona_lisa__remix_so_fine_.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/MONA%20LISA%20%28Slowed%20Down%29.mp3",
+      "title": "MONA LISA (Slowed Down)",
+      "artist": "j-hope - Topic",
+      "cover": "covers/mona_lisa__remix_so_fine_.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/MONA%20LISA%20%28Sped%20Up%29.mp3",
+      "title": "MONA LISA (Sped Up)",
+      "artist": "j-hope - Topic",
+      "cover": "covers/mona_lisa__remix_so_fine_.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/MONA%20LISA%20%28UK%20Garage%20Remix%29.mp3",
+      "title": "MONA LISA (UK Garage Remix)",
+      "artist": "j-hope - Topic",
+      "cover": "covers/mona_lisa__remix_so_fine_.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/MONA%20LISA.mp3",
+      "title": "MONA LISA",
+      "artist": "j-hope - Topic",
+      "cover": "covers/mona_lisa__remix_so_fine_.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    }
+  ],
+  "MONA LISA (Remixes)": [
+    {
+      "src": "music/MONA%20LISA%20%28Afropop%20Remix%29.mp3",
+      "title": "MONA LISA (Afropop Remix)",
+      "artist": "j-hope - Topic",
+      "cover": "covers/mona_lisa__remixes_.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/MONA%20LISA%20%28Band%20Remix%29.mp3",
+      "title": "MONA LISA (Band Remix)",
+      "artist": "j-hope - Topic",
+      "cover": "covers/mona_lisa__remixes_.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    }
+  ],
+  "Make It Right (feat. Lauv) (Acoustic Remix)": [
+    {
+      "src": "music/Make%20It%20Right%20%28feat.%20Lauv%29%20%28Acoustic%20Remix%29.mp3",
+      "title": "Make It Right (feat. Lauv) (Acoustic Remix)",
+      "artist": "BANGTANTV",
+      "cover": "covers/make_it_right__feat__lauv___acoustic_rem.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    }
+  ],
+  "Make It Right (feat. Lauv) (EDM Remix)": [
+    {
+      "src": "music/Make%20It%20Right%20%28feat.%20Lauv%29%20%28EDM%20Remix%29.mp3",
+      "title": "Make It Right (feat. Lauv) (EDM Remix)",
+      "artist": "BANGTANTV",
+      "cover": "covers/make_it_right__feat__lauv___edm_remix_.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    }
+  ],
+  "Make It Right (feat. Lauv)": [
+    {
+      "src": "music/Make%20It%20Right%20%28feat.%20Lauv%29.mp3",
+      "title": "Make It Right (feat. Lauv)",
+      "artist": "BANGTANTV",
+      "cover": "covers/make_it_right__feat__lauv_.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    }
+  ],
+  "My Universe": [
+    {
+      "src": "music/My%20Universe%20%28Acoustic%20Version%29.mp3",
+      "title": "My Universe (Acoustic Version)",
+      "artist": "Coldplay",
+      "cover": "covers/my_universe.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/My%20Universe%20%28David%20Guetta%20Remix%29.mp3",
+      "title": "My Universe (David Guetta Remix)",
+      "artist": "Coldplay",
+      "cover": "covers/my_universe.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/My%20Universe%20%28Galantis%20Remix%29.mp3",
+      "title": "My Universe (Galantis Remix)",
+      "artist": "Coldplay",
+      "cover": "covers/my_universe.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/My%20Universe%20%28Instrumental%29.mp3",
+      "title": "My Universe (Instrumental)",
+      "artist": "Coldplay",
+      "cover": "covers/my_universe.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/My%20Universe%20%28SUGA%27s%20Remix%29.mp3",
+      "title": "My Universe (SUGA's Remix)",
+      "artist": "Coldplay",
+      "cover": "covers/my_universe.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/My%20Universe%20%28Supernova%207%20Mix%29.mp3",
+      "title": "My Universe (Supernova 7 Mix)",
+      "artist": "Coldplay",
+      "cover": "covers/my_universe.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/My%20Universe.mp3",
+      "title": "My Universe",
+      "artist": "Coldplay",
+      "cover": "covers/my_universe.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    }
+  ],
+  "My You": [
+    {
+      "src": "music/My%20You.mp3",
+      "title": "My You",
+      "artist": "Jung Kook - Topic",
+      "cover": "covers/my_you.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    }
+  ],
+  "HOPE ON THE STREET VOL.1": [
+    {
+      "src": "music/NEURON.mp3",
+      "title": "NEURON",
+      "artist": "j-hope - Topic",
+      "cover": "covers/hope_on_the_street_vol_1.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/i%20don%27t%20know.mp3",
+      "title": "i don't know",
+      "artist": "j-hope - Topic",
+      "cover": "covers/hope_on_the_street_vol_1.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/i%20wonder....mp3",
+      "title": "i wonder...",
+      "artist": "j-hope - Topic",
+      "cover": "covers/hope_on_the_street_vol_1.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/lock%20%E2%A7%B8%20unlock%20%28feat.%20benny%20blanco%29.mp3",
+      "title": "lock / unlock (feat. benny blanco)",
+      "artist": "j-hope - Topic",
+      "cover": "covers/hope_on_the_street_vol_1.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/on%20the%20street%20%28solo%20Version%29.mp3",
+      "title": "on the street (solo Version)",
+      "artist": "j-hope - Topic",
+      "cover": "covers/hope_on_the_street_vol_1.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/what%20if%20%28dance%20mix%29.mp3",
+      "title": "what if (dance mix)",
+      "artist": "j-hope - Topic",
+      "cover": "covers/hope_on_the_street_vol_1.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    }
+  ],
+  "Neva Play (feat. RM of BTS)": [
+    {
+      "src": "music/Neva%20Play%20%28feat.%20RM%20of%20BTS%29.mp3",
+      "title": "Neva Play (feat. RM of BTS)",
+      "artist": "Megan Thee Stallion",
+      "cover": "covers/neva_play__feat__rm_of_bts_.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    }
+  ],
+  "Never Let Go": [
+    {
+      "src": "music/Never%20Let%20Go.mp3",
+      "title": "Never Let Go",
+      "artist": "Jung Kook - Topic",
+      "cover": "covers/never_let_go.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    }
+  ],
+  "Old Town Road (feat. RM of BTS)": [
+    {
+      "src": "music/Old%20Town%20Road%20%28feat.%20RM%20of%20BTS%29%20%28Seoul%20Town%20Road%20Remix%29.mp3",
+      "title": "Old Town Road (feat. RM of BTS) (Seoul Town Road Remix)",
+      "artist": "Lil Nas X",
+      "cover": "covers/old_town_road__feat__rm_of_bts_.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    }
+  ],
+  "Jack In The Box": [
+    {
+      "src": "music/Pandora%E2%80%99s%20Box.mp3",
+      "title": "Pandora’s Box",
+      "artist": "j-hope - Topic",
+      "cover": "covers/jack_in_the_box.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/What%20if%E2%80%A6.mp3",
+      "title": "What if…",
+      "artist": "j-hope - Topic",
+      "cover": "covers/jack_in_the_box.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    }
+  ],
+  "Permission to Dance": [
+    {
+      "src": "music/Permission%20to%20Dance%20%28R%20%26%20B%20Remix%29.mp3",
+      "title": "Permission to Dance (R & B Remix)",
+      "artist": "BANGTANTV",
+      "cover": "covers/permission_to_dance.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    }
+  ],
+  "They Want My Soul": [
+    {
+      "src": "music/RM%20-%20Do%20You%20%28Audio%29.mp3",
+      "title": "RM - Do You (Audio)",
+      "artist": "Playlist Bts",
+      "cover": "covers/they_want_my_soul.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    }
+  ],
+  "My World (iTunes Exclusive Edition)": [
+    {
+      "src": "music/RM%20-%20Favorite%20Girl%20%28Audio%29.mp3",
+      "title": "RM - Favorite Girl (Audio)",
+      "artist": "Playlist Bts",
+      "cover": "covers/my_world__itunes_exclusive_edition_.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    }
+  ],
+  "ASTROWORLD": [
+    {
+      "src": "music/RM%20-%20God%20Rap%20%28Audio%29.mp3",
+      "title": "RM - God Rap (Audio)",
+      "artist": "Playlist Bts",
+      "cover": "covers/astroworld.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    }
+  ],
+  "Rejoice (Live)": [
+    {
+      "src": "music/RM%20-%20I%20Believe%20%28Audio%29.mp3",
+      "title": "RM - I Believe (Audio)",
+      "artist": "Playlist Bts",
+      "cover": "covers/rejoice__live_.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    }
+  ],
+  "Old Town Road (feat. RM of BTS) [Seoul Town Road Remix] - Single": [
+    {
+      "src": "music/RM%20-%20Monster%20%28Audio%29.mp3",
+      "title": "RM - Monster (Audio)",
+      "artist": "Playlist Bts",
+      "cover": "covers/old_town_road__feat__rm_of_bts___seoul_t.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    }
+  ],
+  "TM Interlude - Single": [
+    {
+      "src": "music/RM%20-%20Monterlude%20%28Audio%29.mp3",
+      "title": "RM - Monterlude (Audio)",
+      "artist": "Playlist Bts",
+      "cover": "covers/tm_interlude___single.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    }
+  ],
+  "I Surrender (feat. The Kaleidoscope Kid) - Single": [
+    {
+      "src": "music/RM%20-%20Rush%20%28ft.%20Krizz%20Kaliko%29%20%28Audio%29.mp3",
+      "title": "RM - Rush (ft. Krizz Kaliko) (Audio)",
+      "artist": "Playlist Bts",
+      "cover": "covers/i_surrender__feat__the_kaleidoscope_kid_.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    }
+  ],
+  "걸스데이 미니앨범 3집 - EP": [
+    {
+      "src": "music/RM%20-%20Something%20%28Audio%29.mp3",
+      "title": "RM - Something (Audio)",
+      "artist": "Playlist Bts",
+      "cover": "covers/__________3____ep.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    }
+  ],
+  "THE FIRST TIME": [
+    {
+      "src": "music/RM%20-%20Too%20Much%20%28Audio%29.mp3",
+      "title": "RM - Too Much (Audio)",
+      "artist": "Playlist Bts",
+      "cover": "covers/the_first_time.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    }
+  ],
+  "Señorita - Single": [
+    {
+      "src": "music/RM%20-%20Where%20U%20At%20%28Audio%29.mp3",
+      "title": "RM - Where U At (Audio)",
+      "artist": "Playlist Bts",
+      "cover": "covers/se_orita___single.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    }
+  ],
+  "Running Wild (Remixes)": [
+    {
+      "src": "music/Running%20Wild%20%28Afropop%20Remix%29.mp3",
+      "title": "Running Wild (Afropop Remix)",
+      "artist": "Jin - Topic",
+      "cover": "covers/running_wild__remixes_.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/Running%20Wild%20%28Ballad%20Remix%29.mp3",
+      "title": "Running Wild (Ballad Remix)",
+      "artist": "Jin - Topic",
+      "cover": "covers/running_wild__remixes_.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/Running%20Wild%20%28Band%20Ver.%29.mp3",
+      "title": "Running Wild (Band Ver.)",
+      "artist": "Jin - Topic",
+      "cover": "covers/running_wild__remixes_.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/Running%20Wild%20%28Extended%20Ver.%29.mp3",
+      "title": "Running Wild (Extended Ver.)",
+      "artist": "Jin - Topic",
+      "cover": "covers/running_wild__remixes_.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/Running%20Wild%20%28Holiday%20Remix%29.mp3",
+      "title": "Running Wild (Holiday Remix)",
+      "artist": "Jin - Topic",
+      "cover": "covers/running_wild__remixes_.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/Running%20Wild%20%28Instrumental%29.mp3",
+      "title": "Running Wild (Instrumental)",
+      "artist": "Jin - Topic",
+      "cover": "covers/running_wild__remixes_.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/Running%20Wild%20%28UK%20Garage%20Remix%29.mp3",
+      "title": "Running Wild (UK Garage Remix)",
+      "artist": "Jin - Topic",
+      "cover": "covers/running_wild__remixes_.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/Running%20Wild.mp3",
+      "title": "Running Wild",
+      "artist": "Jin - Topic",
+      "cover": "covers/running_wild__remixes_.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    }
+  ],
+  "Rush Hour": [
+    {
+      "src": "music/Rush%20Hour%20%28Feat.%20j-hope%20of%20BTS%29.mp3",
+      "title": "Rush Hour (Feat. j-hope of BTS)",
+      "artist": "Crush",
+      "cover": "covers/rush_hour.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    }
+  ],
+  "SPAGHETTI": [
+    {
+      "src": "music/SPAGHETTI%20%28feat.%20j-hope%20of%20BTS%29%20%28Clean%20ver.%29.mp3",
+      "title": "SPAGHETTI (feat. j-hope of BTS) (Clean ver.)",
+      "artist": "LE SSERAFIM",
+      "cover": "covers/spaghetti.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/SPAGHETTI%20%28feat.%20j-hope%20of%20BTS%29%20%28English%20ver.%29%20%28Clean%20ver.%29.mp3",
+      "title": "SPAGHETTI (feat. j-hope of BTS) (English ver.) (Clean ver.)",
+      "artist": "LE SSERAFIM",
+      "cover": "covers/spaghetti.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/SPAGHETTI%20%28feat.%20j-hope%20of%20BTS%29%20%28English%20ver.%29.mp3",
+      "title": "SPAGHETTI (feat. j-hope of BTS) (English ver.)",
+      "artist": "LE SSERAFIM",
+      "cover": "covers/spaghetti.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    }
+  ],
+  "SPAGHETTI (Bon Appétit Remixes)": [
+    {
+      "src": "music/SPAGHETTI%20%28feat.%20j-hope%20of%20BTS%29%20%28Creamy%20Cheese%20ver.%29.mp3",
+      "title": "SPAGHETTI (feat. j-hope of BTS) (Creamy Cheese ver.)",
+      "artist": "LE SSERAFIM",
+      "cover": "covers/spaghetti__bon_app_tit_remixes_.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/SPAGHETTI%20%28feat.%20j-hope%20of%20BTS%29%20%28Hot%20Chili%20ver.%29.mp3",
+      "title": "SPAGHETTI (feat. j-hope of BTS) (Hot Chili ver.)",
+      "artist": "LE SSERAFIM",
+      "cover": "covers/spaghetti__bon_app_tit_remixes_.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/SPAGHETTI%20%28feat.%20j-hope%20of%20BTS%29%20%28Instrumental%29.mp3",
+      "title": "SPAGHETTI (feat. j-hope of BTS) (Instrumental)",
+      "artist": "LE SSERAFIM",
+      "cover": "covers/spaghetti__bon_app_tit_remixes_.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/SPAGHETTI%20%28feat.%20j-hope%20of%20BTS%29%20%28Slowed%20%2B%20Reverb%20ver.%29.mp3",
+      "title": "SPAGHETTI (feat. j-hope of BTS) (Slowed + Reverb ver.)",
+      "artist": "LE SSERAFIM",
+      "cover": "covers/spaghetti__bon_app_tit_remixes_.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/SPAGHETTI%20%28feat.%20j-hope%20of%20BTS%29%20%28Sped%20Up%20ver.%29.mp3",
+      "title": "SPAGHETTI (feat. j-hope of BTS) (Sped Up ver.)",
+      "artist": "LE SSERAFIM",
+      "cover": "covers/spaghetti__bon_app_tit_remixes_.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/SPAGHETTI%20%28feat.%20j-hope%20of%20BTS%29%20%28Spicy%20Jalapeno%20ver.%29.mp3",
+      "title": "SPAGHETTI (feat. j-hope of BTS) (Spicy Jalapeno ver.)",
+      "artist": "LE SSERAFIM",
+      "cover": "covers/spaghetti__bon_app_tit_remixes_.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/SPAGHETTI%20%28feat.%20j-hope%20of%20BTS%29.mp3",
+      "title": "SPAGHETTI (feat. j-hope of BTS)",
+      "artist": "LE SSERAFIM",
+      "cover": "covers/spaghetti__bon_app_tit_remixes_.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    }
+  ],
+  "Manic": [
+    {
+      "src": "music/SUGA%27s%20Interlude.mp3",
+      "title": "SUGA's Interlude",
+      "artist": "Halsey",
+      "cover": "covers/manic.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    }
+  ],
+  "SWIM (Underwater Remix)": [
+    {
+      "src": "music/SWIM%20%28Instrumental%29.mp3",
+      "title": "SWIM (Instrumental)",
+      "artist": "BANGTANTV",
+      "cover": "covers/swim__underwater_remix_.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/SWIM%20%28Underwater%20Remix%29.mp3",
+      "title": "SWIM (Underwater Remix)",
+      "artist": "BANGTANTV",
+      "cover": "covers/swim__underwater_remix_.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/SWIM.mp3",
+      "title": "SWIM",
+      "artist": "BANGTANTV",
+      "cover": "covers/swim__underwater_remix_.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    }
+  ],
+  "KEEP SWIMMING": [
+    {
+      "src": "music/SWIM%20with%20Jimin%20%28Slow%20Jam%20R%26B%20Remix%29.mp3",
+      "title": "SWIM with Jimin (Slow Jam R&B Remix)",
+      "artist": "BANGTANTV",
+      "cover": "covers/keep_swimming.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/SWIM%20with%20Jin%20%28Alternative%20Rock%20Remix%29.mp3",
+      "title": "SWIM with Jin (Alternative Rock Remix)",
+      "artist": "BANGTANTV",
+      "cover": "covers/keep_swimming.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/SWIM%20with%20Jung%20Kook%20%28Acoustic%20Lofi%20Remix%29.mp3",
+      "title": "SWIM with Jung Kook (Acoustic Lofi Remix)",
+      "artist": "BANGTANTV",
+      "cover": "covers/keep_swimming.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/SWIM%20with%20RM%20%28Chill%20Hip%20Hop%20Remix%29.mp3",
+      "title": "SWIM with RM (Chill Hip Hop Remix)",
+      "artist": "BANGTANTV",
+      "cover": "covers/keep_swimming.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/SWIM%20with%20SUGA%20%28Melodic%20Techno%20Remix%29.mp3",
+      "title": "SWIM with SUGA (Melodic Techno Remix)",
+      "artist": "BANGTANTV",
+      "cover": "covers/keep_swimming.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/SWIM%20with%20V%20%28Electronic%20Remix%29.mp3",
+      "title": "SWIM with V (Electronic Remix)",
+      "artist": "BANGTANTV",
+      "cover": "covers/keep_swimming.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/SWIM%20with%20j-hope%20%28Afrobeat%20Remix%29.mp3",
+      "title": "SWIM with j-hope (Afrobeat Remix)",
+      "artist": "BANGTANTV",
+      "cover": "covers/keep_swimming.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    }
+  ],
+  "Savage Love (Laxed - Siren Beat)": [
+    {
+      "src": "music/Savage%20Love%20%28Laxed%20-%20Siren%20Beat%29%20%28BTS%20Remix%29.mp3",
+      "title": "Savage Love (Laxed - Siren Beat) (BTS Remix)",
+      "artist": "Jawsh 685",
+      "cover": "covers/savage_love__laxed___siren_beat_.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    }
+  ],
+  "Seven (feat. Latto) - Alesso Remix": [
+    {
+      "src": "music/Seven%20%28feat.%20Latto%29%20-%20Alesso%20Remix.mp3",
+      "title": "Seven (feat. Latto) - Alesso Remix",
+      "artist": "Jung Kook - Topic",
+      "cover": "covers/seven__feat__latto____alesso_remix.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/Seven%20%28feat.%20Latto%29%20-%20Instrumental.mp3",
+      "title": "Seven (feat. Latto) - Instrumental",
+      "artist": "Jung Kook - Topic",
+      "cover": "covers/seven__feat__latto____alesso_remix.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    }
+  ],
+  "Seven (Weekday Ver.)": [
+    {
+      "src": "music/Seven%20%28feat.%20Latto%29%20-%20Band%20Ver..mp3",
+      "title": "Seven (feat. Latto) - Band Ver.",
+      "artist": "Jung Kook - Topic",
+      "cover": "covers/seven__weekday_ver__.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/Seven%20%28feat.%20Latto%29%20-%20Summer%20Mix.mp3",
+      "title": "Seven (feat. Latto) - Summer Mix",
+      "artist": "Jung Kook - Topic",
+      "cover": "covers/seven__weekday_ver__.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    }
+  ],
+  "Seven (feat. Latto) - David Guetta Remix": [
+    {
+      "src": "music/Seven%20%28feat.%20Latto%29%20-%20David%20Guetta%20Remix%20-%20Extended.mp3",
+      "title": "Seven (feat. Latto) - David Guetta Remix - Extended",
+      "artist": "Jung Kook - Topic",
+      "cover": "covers/seven__feat__latto____david_guetta_remix.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/Seven%20%28feat.%20Latto%29%20-%20David%20Guetta%20Remix.mp3",
+      "title": "Seven (feat. Latto) - David Guetta Remix",
+      "artist": "Jung Kook - Topic",
+      "cover": "covers/seven__feat__latto____david_guetta_remix.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    }
+  ],
+  "Seven (Weekend Ver.)": [
+    {
+      "src": "music/Seven%20%28feat.%20Latto%29%20-%20Festival%20Mix.mp3",
+      "title": "Seven (feat. Latto) - Festival Mix",
+      "artist": "Jung Kook - Topic",
+      "cover": "covers/seven__weekend_ver__.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/Seven%20%28feat.%20Latto%29%20-%20Island%20Mix.mp3",
+      "title": "Seven (feat. Latto) - Island Mix",
+      "artist": "Jung Kook - Topic",
+      "cover": "covers/seven__weekend_ver__.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/Seven%20%28feat.%20Latto%29%20-%20Lofi%20Mix.mp3",
+      "title": "Seven (feat. Latto) - Lofi Mix",
+      "artist": "Jung Kook - Topic",
+      "cover": "covers/seven__weekend_ver__.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/Seven%20%28feat.%20Latto%29%20-%20Nightfall%20Mix.mp3",
+      "title": "Seven (feat. Latto) - Nightfall Mix",
+      "artist": "Jung Kook - Topic",
+      "cover": "covers/seven__weekend_ver__.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    }
+  ],
+  "Slow Dancing Remix": [
+    {
+      "src": "music/Slow%20Dancing%20%28Cautious%20Clay%20Remix%29.mp3",
+      "title": "Slow Dancing (Cautious Clay Remix)",
+      "artist": "V - Topic",
+      "cover": "covers/slow_dancing_remix.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/Slow%20Dancing%20%28FRNK%20Remix%29.mp3",
+      "title": "Slow Dancing (FRNK Remix)",
+      "artist": "V - Topic",
+      "cover": "covers/slow_dancing_remix.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    }
+  ],
+  "Episode1 : Love": [
+    {
+      "src": "music/Smoke%20Sprite.mp3",
+      "title": "Smoke Sprite",
+      "artist": "So!YoON! - Topic",
+      "cover": "covers/episode1___love.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    }
+  ],
+  "Snow Flower (feat. Peakboy)": [
+    {
+      "src": "music/Snow%20Flower%20%28feat.%20Peakboy%29.mp3",
+      "title": "Snow Flower (feat. Peakboy)",
+      "artist": "V - Topic",
+      "cover": "covers/snow_flower__feat__peakboy_.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    }
+  ],
+  "Standing Next to You : The Remixes": [
+    {
+      "src": "music/Standing%20Next%20to%20You%20-%20Band%20Ver..mp3",
+      "title": "Standing Next to You - Band Ver.",
+      "artist": "Jung Kook - Topic",
+      "cover": "covers/standing_next_to_you___the_remixes.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/Standing%20Next%20to%20You%20-%20Future%20Funk%20Remix.mp3",
+      "title": "Standing Next to You - Future Funk Remix",
+      "artist": "Jung Kook - Topic",
+      "cover": "covers/standing_next_to_you___the_remixes.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/Standing%20Next%20to%20You%20-%20Holiday%20Remix.mp3",
+      "title": "Standing Next to You - Holiday Remix",
+      "artist": "Jung Kook - Topic",
+      "cover": "covers/standing_next_to_you___the_remixes.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/Standing%20Next%20to%20You%20-%20Instrumental.mp3",
+      "title": "Standing Next to You - Instrumental",
+      "artist": "Jung Kook - Topic",
+      "cover": "covers/standing_next_to_you___the_remixes.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/Standing%20Next%20to%20You%20-%20Latin%20Trap%20Remix.mp3",
+      "title": "Standing Next to You - Latin Trap Remix",
+      "artist": "Jung Kook - Topic",
+      "cover": "covers/standing_next_to_you___the_remixes.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/Standing%20Next%20to%20You%20-%20PBR%20%26%20B%20Remix.mp3",
+      "title": "Standing Next to You - PBR & B Remix",
+      "artist": "Jung Kook - Topic",
+      "cover": "covers/standing_next_to_you___the_remixes.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/Standing%20Next%20to%20You%20-%20Slow%20Jam%20Remix.mp3",
+      "title": "Standing Next to You - Slow Jam Remix",
+      "artist": "Jung Kook - Topic",
+      "cover": "covers/standing_next_to_you___the_remixes.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/Standing%20Next%20to%20You.mp3",
+      "title": "Standing Next to You",
+      "artist": "Jung Kook - Topic",
+      "cover": "covers/standing_next_to_you___the_remixes.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    }
+  ],
+  "Standing Next to You - USHER Remix": [
+    {
+      "src": "music/Standing%20Next%20to%20You%20-%20USHER%20Remix.mp3",
+      "title": "Standing Next to You - USHER Remix",
+      "artist": "Jung Kook - Topic",
+      "cover": "covers/standing_next_to_you___usher_remix.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    }
+  ],
+  "Stay Alive (Prod. SUGA of BTS)": [
+    {
+      "src": "music/Stay%20Alive%20%28Prod.%20SUGA%20of%20BTS%29.mp3",
+      "title": "Stay Alive (Prod. SUGA of BTS)",
+      "artist": "Jung Kook - Topic",
+      "cover": "covers/stay_alive__prod__suga_of_bts_.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    }
+  ],
+  "Still With You": [
+    {
+      "src": "music/Still%20With%20You.mp3",
+      "title": "Still With You",
+      "artist": "Jung Kook - Topic",
+      "cover": "covers/still_with_you.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    }
+  ],
+  "TABLO X RM - Stop The Rain": [
+    {
+      "src": "music/Stop%20The%20Rain%20%28TABLO%20X%20RM%29.mp3",
+      "title": "Stop The Rain (TABLO X RM)",
+      "artist": "TABLO",
+      "cover": "covers/tablo_x_rm___stop_the_rain.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    }
+  ],
+  "Sweet Dreams - zzZ Remixes": [
+    {
+      "src": "music/Sweet%20Dreams%20%28feat.%20Miguel%29%20-%20Band%20Remix.mp3",
+      "title": "Sweet Dreams (feat. Miguel) - Band Remix",
+      "artist": "j-hope - Topic",
+      "cover": "covers/sweet_dreams___zzz_remixes.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/Sweet%20Dreams%20%28feat.%20Miguel%29%20-%20Instrumental.mp3",
+      "title": "Sweet Dreams (feat. Miguel) - Instrumental",
+      "artist": "j-hope - Topic",
+      "cover": "covers/sweet_dreams___zzz_remixes.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/Sweet%20Dreams%20%28feat.%20Miguel%29%20-%20Johnny%20GOLD%20Remix.mp3",
+      "title": "Sweet Dreams (feat. Miguel) - Johnny GOLD Remix",
+      "artist": "j-hope - Topic",
+      "cover": "covers/sweet_dreams___zzz_remixes.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/Sweet%20Dreams%20%28feat.%20Miguel%29%20-%20Slowed%20Down.mp3",
+      "title": "Sweet Dreams (feat. Miguel) - Slowed Down",
+      "artist": "j-hope - Topic",
+      "cover": "covers/sweet_dreams___zzz_remixes.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/Sweet%20Dreams%20%28feat.%20Miguel%29%20-%20Sped%20Up.mp3",
+      "title": "Sweet Dreams (feat. Miguel) - Sped Up",
+      "artist": "j-hope - Topic",
+      "cover": "covers/sweet_dreams___zzz_remixes.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/Sweet%20Dreams%20%28feat.%20Miguel%29.mp3",
+      "title": "Sweet Dreams (feat. Miguel)",
+      "artist": "j-hope - Topic",
+      "cover": "covers/sweet_dreams___zzz_remixes.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    }
+  ],
+  "Sweet Dreams (feat. Miguel) - FNZ Remix": [
+    {
+      "src": "music/Sweet%20Dreams%20%28feat.%20Miguel%29%20-%20FNZ%20Remix.mp3",
+      "title": "Sweet Dreams (feat. Miguel) - FNZ Remix",
+      "artist": "j-hope - Topic",
+      "cover": "covers/sweet_dreams__feat__miguel____fnz_remix.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    }
+  ],
+  "이태원 클라쓰 OST Part 12": [
+    {
+      "src": "music/Sweet%20Night%20%28Inst.%29.mp3",
+      "title": "Sweet Night (Inst.)",
+      "artist": "V - Topic",
+      "cover": "covers/________ost_part_12.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/Sweet%20Night.mp3",
+      "title": "Sweet Night",
+      "artist": "V - Topic",
+      "cover": "covers/________ost_part_12.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    }
+  ],
+  "TOO MUCH": [
+    {
+      "src": "music/TOO%20MUCH.mp3",
+      "title": "TOO MUCH",
+      "artist": "The Kid LAROI.",
+      "cover": "covers/too_much.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    }
+  ],
+  "Take Two": [
+    {
+      "src": "music/Take%20Two.mp3",
+      "title": "Take Two",
+      "artist": "BANGTANTV",
+      "cover": "covers/take_two.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    }
+  ],
+  "싸다9 (PSY 9th)": [
+    {
+      "src": "music/That%20That%20prod.%26ft.%20SUGA%20of%20BTS.mp3",
+      "title": "That That prod.&ft. SUGA of BTS",
+      "artist": "officialpsy",
+      "cover": "covers/__9__psy_9th_.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    }
+  ],
+  "The Astronaut": [
+    {
+      "src": "music/The%20Astronaut.mp3",
+      "title": "The Astronaut",
+      "artist": "Jin - Topic",
+      "cover": "covers/the_astronaut.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    }
+  ],
+  "The Planet": [
+    {
+      "src": "music/The%20Planet.mp3",
+      "title": "The Planet",
+      "artist": "BANGTANTV",
+      "cover": "covers/the_planet.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    }
+  ],
+  "Down to Earth": [
+    {
+      "src": "music/VIBE%20%28feat.%20Jimin%20of%20BTS%29.mp3",
+      "title": "VIBE (feat. Jimin of BTS)",
+      "artist": "TAEYANG",
+      "cover": "covers/down_to_earth.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    }
+  ],
+  "UNSTABLE MINDSET": [
+    {
+      "src": "music/WINTER%20FLOWER%28Feat.RM%29%20%28WINTER%20FLOWER%28%E9%9B%AA%E4%B8%AD%E6%A2%85%29%28Feat.RM%29%29.mp3",
+      "title": "WINTER FLOWER(Feat.RM) (WINTER FLOWER(雪中梅)(Feat.RM))",
+      "artist": "YOUNHA OFFICIAL",
+      "cover": "covers/unstable_mindset.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    }
+  ],
+  "White Christmas (with V of BTS)": [
+    {
+      "src": "music/White%20Christmas%20%28with%20V%20of%20BTS%29.mp3",
+      "title": "White Christmas (with V of BTS)",
+      "artist": "V - Topic",
+      "cover": "covers/white_christmas__with_v_of_bts_.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    }
+  ],
+  "Who (Remixes)": [
+    {
+      "src": "music/Who%20%28Acoustic%20Remix%29.mp3",
+      "title": "Who (Acoustic Remix)",
+      "artist": "Jimin - Topic",
+      "cover": "covers/who__remixes_.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/Who%20%28Instrumental%29.mp3",
+      "title": "Who (Instrumental)",
+      "artist": "Jimin - Topic",
+      "cover": "covers/who__remixes_.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/Who%20%28Rock%20Remix%29.mp3",
+      "title": "Who (Rock Remix)",
+      "artist": "Jimin - Topic",
+      "cover": "covers/who__remixes_.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    }
+  ],
+  "Winter Ahead (with PARK HYO SHIN) : Silent Carol Ver.": [
+    {
+      "src": "music/Winter%20Ahead%20%28with%20%EB%B0%95%ED%9A%A8%EC%8B%A0%29%20-%20Instrumental.mp3",
+      "title": "Winter Ahead (with 박효신) - Instrumental",
+      "artist": "V - Topic",
+      "cover": "covers/winter_ahead__with_park_hyo_shin____sile.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/Winter%20Ahead%20%28with%20%EB%B0%95%ED%9A%A8%EC%8B%A0%29%20%EF%BC%9A%20Silent%20Carol%20Ver..mp3",
+      "title": "Winter Ahead (with 박효신) : Silent Carol Ver.",
+      "artist": "V - Topic",
+      "cover": "covers/winter_ahead__with_park_hyo_shin____sile.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    }
+  ],
+  "Winter Ahead (with PARK HYO SHIN) : YUNSEOKCHEOL TRIO Ver.": [
+    {
+      "src": "music/Winter%20Ahead%20%28with%20%EB%B0%95%ED%9A%A8%EC%8B%A0%29%20%EF%BC%9A%20%EC%9C%A4%EC%84%9D%EC%B2%A0%ED%8A%B8%EB%A6%AC%EC%98%A4%20Ver..mp3",
+      "title": "Winter Ahead (with 박효신) : 윤석철트리오 Ver.",
+      "artist": "V - Topic",
+      "cover": "covers/winter_ahead__with_park_hyo_shin____yuns.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/Winter%20Ahead%20%28with%20%EB%B0%95%ED%9A%A8%EC%8B%A0%29.mp3",
+      "title": "Winter Ahead (with 박효신)",
+      "artist": "V - Topic",
+      "cover": "covers/winter_ahead__with_park_hyo_shin____yuns.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    }
+  ],
+  "Winter Bear": [
+    {
+      "src": "music/Winter%20Bear.mp3",
+      "title": "Winter Bear",
+      "artist": "V - Topic",
+      "cover": "covers/winter_bear.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    }
+  ],
+  "Our Blues, Pt. 4 (Original Television Soundtrack)": [
+    {
+      "src": "music/With%20you%20%28Inst.%29.mp3",
+      "title": "With you (Inst.)",
+      "artist": "Jimin - Topic",
+      "cover": "covers/our_blues__pt__4__original_television_so.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/With%20you.mp3",
+      "title": "With you",
+      "artist": "Jimin - Topic",
+      "cover": "covers/our_blues__pt__4__original_television_so.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    }
+  ],
+  "Yet To Come (Hyundai Ver.)": [
+    {
+      "src": "music/Yet%20To%20Come%20%28Hyundai%20Ver.%29.mp3",
+      "title": "Yet To Come (Hyundai Ver.)",
+      "artist": "BANGTANTV",
+      "cover": "covers/yet_to_come__hyundai_ver__.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    }
+  ],
+  "Jirisan (Original Television Soundtrack) Pt. 4": [
+    {
+      "src": "music/Yours%20%28Instrumental%29.mp3",
+      "title": "Yours (Instrumental)",
+      "artist": "Jin - Topic",
+      "cover": "covers/jirisan__original_television_soundtrack_.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/Yours.mp3",
+      "title": "Yours",
+      "artist": "Jin - Topic",
+      "cover": "covers/jirisan__original_television_soundtrack_.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    }
+  ],
+  "mono.": [
+    {
+      "src": "music/badbye.mp3",
+      "title": "badbye",
+      "artist": "RM - Topic",
+      "cover": "covers/mono_.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    },
+    {
+      "src": "music/everythingoes.mp3",
+      "title": "everythingoes",
+      "artist": "RM - Topic",
+      "cover": "covers/mono_.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    },
+    {
+      "src": "music/forever%20rain.mp3",
+      "title": "forever rain",
+      "artist": "RM - Topic",
+      "cover": "covers/mono_.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    },
+    {
+      "src": "music/moonchild.mp3",
+      "title": "moonchild",
+      "artist": "RM - Topic",
+      "cover": "covers/mono_.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/seoul.mp3",
+      "title": "seoul",
+      "artist": "RM - Topic",
+      "cover": "covers/mono_.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/tokyo.mp3",
+      "title": "tokyo",
+      "artist": "RM - Topic",
+      "cover": "covers/mono_.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    },
+    {
+      "src": "music/uhgood.mp3",
+      "title": "uhgood",
+      "artist": "RM - Topic",
+      "cover": "covers/mono_.jpg",
+      "bg": "linear-gradient(135deg,#1a0030,#003040)"
+    }
+  ],
+  "eight": [
+    {
+      "src": "music/eight%28Prod.%26Feat.%20SUGA%20of%20BTS%29%20%28%EC%97%90%EC%9E%87%28Prod.%26Feat.%20SUGA%20of%20BTS%29%29.mp3",
+      "title": "eight(Prod.&Feat. SUGA of BTS) (에잇(Prod.&Feat. SUGA of BTS))",
+      "artist": "이지금 [IU Official]",
+      "cover": "covers/eight.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    }
+  ],
+  "on the street (with J. Cole)": [
+    {
+      "src": "music/on%20the%20street%20%28with%20J.%20Cole%29.mp3",
+      "title": "on the street (with J. Cole)",
+      "artist": "j-hope - Topic",
+      "cover": "covers/on_the_street__with_j__cole_.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    }
+  ],
+  "wherever u r (ft. V of BTS)": [
+    {
+      "src": "music/wherever%20u%20r%20%28ft.%20V%20of%20BTS%29%20-%20%28Instrumental%29.mp3",
+      "title": "wherever u r (ft. V of BTS) - (Instrumental)",
+      "artist": "UMI",
+      "cover": "covers/wherever_u_r__ft__v_of_bts_.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    },
+    {
+      "src": "music/wherever%20u%20r%20%28ft.%20V%20of%20BTS%29%20-%20Lullaby%20%28V-Ron%20Mix%29.mp3",
+      "title": "wherever u r (ft. V of BTS) - Lullaby (V-Ron Mix)",
+      "artist": "UMI",
+      "cover": "covers/wherever_u_r__ft__v_of_bts_.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    },
+    {
+      "src": "music/wherever%20u%20r%20%28ft.%20V%20of%20BTS%29%20-%20Meditation%20%28V-Ron%20Mix%29.mp3",
+      "title": "wherever u r (ft. V of BTS) - Meditation (V-Ron Mix)",
+      "artist": "UMI",
+      "cover": "covers/wherever_u_r__ft__v_of_bts_.jpg",
+      "bg": "linear-gradient(135deg,#1e0a2e,#0a1e2e)"
+    },
+    {
+      "src": "music/wherever%20u%20r%20%28ft.%20V%20of%20BTS%29.mp3",
+      "title": "wherever u r (ft. V of BTS)",
+      "artist": "UMI",
+      "cover": "covers/wherever_u_r__ft__v_of_bts_.jpg",
+      "bg": "linear-gradient(135deg,#002010,#001a30)"
+    }
+  ],
+  "Falling (feat. Taka)": [
+    {
+      "src": "music/%EB%84%A4%EA%B2%8C%20%EB%8B%BF%EC%9D%84%20%EB%95%8C%EA%B9%8C%EC%A7%80%20%28feat.%20Taka%29.mp3",
+      "title": "네게 닿을 때까지 (feat. Taka)",
+      "artist": "Jin - Topic",
+      "cover": "covers/falling__feat__taka_.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    }
+  ],
+  "섹시느낌 (feat. RM of BTS)": [
+    {
+      "src": "music/%EC%84%B9%EC%8B%9C%EB%8A%90%EB%82%8C%20%28feat.%20RM%20of%20BTS%29.mp3",
+      "title": "섹시느낌 (feat. RM of BTS)",
+      "artist": "Balming Tiger",
+      "cover": "covers/______feat__rm_of_bts_.jpg",
+      "bg": "linear-gradient(135deg,#200010,#100030)"
+    }
+  ],
+  "Super Tuna": [
+    {
+      "src": "music/%EC%8A%88%ED%8D%BC%20%EC%B0%B8%EC%B9%98.mp3",
+      "title": "슈퍼 참치",
+      "artist": "Jin - Topic",
+      "cover": "covers/super_tuna.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    }
+  ],
+  "신청곡 (Feat. SUGA of BTS)": [
+    {
+      "src": "music/%EC%8B%A0%EC%B2%AD%EA%B3%A1%20%28Feat.%20SUGA%20of%20BTS%29.mp3",
+      "title": "신청곡 (Feat. SUGA of BTS)",
+      "artist": "Lee Sora - Topic",
+      "cover": "covers/_____feat__suga_of_bts_.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    }
+  ],
+  "약속": [
+    {
+      "src": "music/%EC%95%BD%EC%86%8D.mp3",
+      "title": "약속",
+      "artist": "Jimin - Topic",
+      "cover": "covers/__.jpg",
+      "bg": "linear-gradient(135deg,#0a1628,#162840)"
+    }
+  ],
+  "이 밤": [
+    {
+      "src": "music/%EC%9D%B4%20%EB%B0%A4.mp3",
+      "title": "이 밤",
+      "artist": "Jin - Topic",
+      "cover": "covers/___.jpg",
+      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
+    }
+  ],
+  "풍경": [
+    {
+      "src": "music/%ED%92%8D%EA%B2%BD.mp3",
+      "title": "풍경",
+      "artist": "V - Topic",
+      "cover": "covers/__.jpg",
+      "bg": "linear-gradient(135deg,#301000,#200030)"
+    }
+  ]
+}

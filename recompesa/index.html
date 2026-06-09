@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FelizCumpleañosMibb</title>
+    <style>
+        /* Definición de la animación de fondo */
+        @keyframes snow {
+            0% {
+                background-position: 0px 0px, 0px 0px, 0px 0px;
+            }
+            100% {
+                background-position: 50000px 50000px, 10000px 20000px, -10000px 15000px;
+            }
+        }
+        
+        /* Estilos del Cuerpo - Usando tu diseño apilado */
+        body { 
+            background-color: lightBlue; 
+            min-height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            display: flex; 
+            flex-direction: column; /* Columna para que el contador y la imagen se apilen */
+            justify-content: center; 
+            align-items: center; 
+            position: relative; 
+            font-family: sans-serif;
+            color: white;
+            text-shadow: 2px 2px 4px #000000;
+        }
+        
+        #snow {
+            background: none;
+            font-family: Androgyne, sans-serif;
+            background-image: 
+                url('1.png'), 
+                url('2.png'), 
+                url('3.png');
+            background-repeat: repeat;
+            position: absolute; 
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; 
+            animation: snow 1000s linear infinite;
+            transform: translate3d(0, 0, 0);
+        }
+
+        #countdown {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            padding: 10px 20px;
+            background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+            border-radius: 8px;
+            z-index: 15;
+            text-align: center;
+        }
+
+        #main-image {
+            max-width: 80%; 
+            max-height: 70vh; 
+            height: auto; 
+            z-index: 10; 
+            border: 5px solid rgba(255, 255, 255, 0.7); 
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); 
+            border-radius: 10px; 
+            margin-top: 20px;
+            transition: opacity 0.5s ease-in-out; /* Animación de fade al cambiar */
+        }
+    </style>
+</head>
+<body>
+    <div id="snow"></div>
+    <div id="countdown">Cargando...</div> 
+    
+    <img id="main-image" src="R (2).jpg" alt="Placeholder Image">
+
+    <script>
+        // 🚨 CONFIGURACIÓN - MODIFICA ESTOS VALORES 🚨
+        // **********************************************
+        const IMAGE_SOURCES = [
+            "R (2).jpg",   
+            "R (5).jpg",   
+            "R (3).jpg",   
+            "R (4).jpg",   
+            "R (1).jpg",    
+            "R (6).jpg" 
+        ];
+        
+        // Duración de cada ciclo en milisegundos (4 horas * 60 min * 60 seg * 1000 ms)
+        const CYCLE_DURATION_MS = 3 * 60 * 60 * 1000; 
+        // **********************************************
+
+        // Claves para localStorage
+        const LS_END_TIME_KEY = 'countdownEndTimeMS'; 
+        const LS_IMAGE_KEY = 'countdownImageIndex';
+
+        // Elementos DOM
+        const countdownEl = document.getElementById('countdown');
+        const mainImage = document.getElementById('main-image');
+
+        let currentEndTimeMS; 
+        let imageIndex;       
+        let countdownInterval;
+
+        /**
+         * Sincroniza el estado (hora de finalización e índice de imagen).
+         */
+        function initializeCountdown() {
+            const now = new Date().getTime();
+            
+            let storedEndTime = localStorage.getItem(LS_END_TIME_KEY);
+            let storedIndex = localStorage.getItem(LS_IMAGE_KEY);
+
+            // 1. Determinar el Índice de la Imagen
+            imageIndex = storedIndex ? parseInt(storedIndex, 10) : 0;
+            
+            // 2. Determinar la Hora de Finalización del Ciclo (Lógica de sincronización)
+            if (storedEndTime) {
+                currentEndTimeMS = parseInt(storedEndTime, 10);
+                
+                // Si el tiempo ya pasó, calcula cuántos ciclos han terminado y actualiza
+                if (now >= currentEndTimeMS) {
+                    const timePassed = now - currentEndTimeMS;
+                    const cyclesCompleted = Math.floor(timePassed / CYCLE_DURATION_MS) + 1; 
+                    
+                    currentEndTimeMS += cyclesCompleted * CYCLE_DURATION_MS;
+                    imageIndex = (imageIndex + cyclesCompleted) % IMAGE_SOURCES.length;
+                    
+                    localStorage.setItem(LS_END_TIME_KEY, currentEndTimeMS);
+                    localStorage.setItem(LS_IMAGE_KEY, imageIndex);
+                }
+            } else {
+                // Primer inicio: establece el final del ciclo 4 horas a partir de ahora
+                currentEndTimeMS = now + CYCLE_DURATION_MS;
+                localStorage.setItem(LS_END_TIME_KEY, currentEndTimeMS);
+                localStorage.setItem(LS_IMAGE_KEY, 0); 
+            }
+
+            // 3. Establece la imagen correcta (sincronizada)
+            mainImage.src = IMAGE_SOURCES[imageIndex];
+            
+            // 4. Inicia el contador para que se mueva
+            updateCountdown(); // Muestra el tiempo de inmediato
+            countdownInterval = setInterval(updateCountdown, 1000); // Inicia el movimiento
+        }
+
+        /**
+         * Lógica para cambiar la imagen y persistir el índice.
+         */
+        function updateImage() {
+            mainImage.style.opacity = 0; 
+            setTimeout(() => {
+                imageIndex = (imageIndex + 1) % IMAGE_SOURCES.length; 
+                localStorage.setItem(LS_IMAGE_KEY, imageIndex); 
+                const newImageSrc = IMAGE_SOURCES[imageIndex];
+                mainImage.src = newImageSrc;
+                mainImage.alt = `Imagen Ciclo ${imageIndex + 1}`; 
+                mainImage.style.opacity = 1;
+            }, 500); 
+        }
+
+        /**
+         * Lógica del contador y reinicio. Actualiza el display y revisa si es hora de cambiar.
+         */
+        function updateCountdown() {
+            const now = new Date().getTime();
+            let remainingTimeMS = currentEndTimeMS - now; 
+
+            if (remainingTimeMS < 0) {
+                // Si el tiempo terminó, llama a updateImage() y programa el siguiente ciclo.
+                updateImage();
+                currentEndTimeMS += CYCLE_DURATION_MS; 
+                localStorage.setItem(LS_END_TIME_KEY, currentEndTimeMS);
+                remainingTimeMS = currentEndTimeMS - now; 
+            }
+            
+            // Cálculo y formateo del tiempo
+            const remainingTime = Math.max(0, remainingTimeMS); 
+            
+            const seconds = Math.floor((remainingTime / 1000) % 60);
+            const minutes = Math.floor((remainingTime / (1000 * 60)) % 60);
+            const hours = Math.floor((remainingTime / (1000 * 60 * 60)));
+
+            const formattedTime = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            // Actualiza el display del contador
+            countdownEl.textContent = formattedTime;
+        }
+
+
+        // 🚀 Ejecución 🚀
+        initializeCountdown();
+    </script>
+</body>
+</html>

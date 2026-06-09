@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Nuestro Calendario : )</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#bfdbfe">
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/2693/2693507.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            background: linear-gradient(-45deg, #bfdbfe, #93c5fd, #c7d2fe, #dbeafe);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            overflow-x: hidden;
+        }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .bubbles {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0; pointer-events: none;
+        }
+        .bubble {
+            position: absolute; bottom: -100px;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            animation: float 10s infinite ease-in;
+        }
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+        .marked-day {
+            background-color: #dbeafe !important;
+            border: 2px solid #60a5fa !important;
+            border-radius: 9999px;
+        }
+        /* FIX #4: días pasados CON evento muestran un estilo diferente para no perder info */
+        .past-day {
+            opacity: 0.4;
+            filter: grayscale(0.8);
+            background-color: #f3f4f6 !important;
+        }
+        .past-day-with-event {
+            opacity: 0.5;
+            filter: grayscale(0.5);
+            background-color: #dbeafe !important;
+            border: 2px dashed #93c5fd !important;
+            border-radius: 9999px;
+        }
+        /* FIX #3: cursor not-allowed para días pasados */
+        .past-day, .past-day-with-event {
+            cursor: not-allowed;
+        }
+        .glass-effect { 
+            background: rgba(255, 255, 255, 0.85); 
+            backdrop-filter: blur(15px); 
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        .day-card { transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .emoji-btn.active {
+            background-color: white !important;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            border: 2px solid #60a5fa;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body class="min-h-screen p-4 pb-20 font-sans text-gray-800">
+    <div class="bubbles" id="bubbles"></div>
+    <div class="max-w-md mx-auto relative z-10">
+        <div class="text-center mb-6 pt-4">
+            <h1 class="text-4xl font-black text-white mb-2 drop-shadow-lg flex items-center justify-center gap-2">
+                Calendario  
+            </h1>
+            <p class="text-blue-600 text-[10px] font-bold bg-white/80 backdrop-blur-sm inline-block px-4 py-1 rounded-full shadow-sm uppercase tracking-widest">
+                Toca un día para agendar un evento Amor!!
+            </p>
+        </div>
+        <div class="glass-effect rounded-[2.5rem] shadow-2xl p-5 mb-6 border-4 border-white">
+            <div class="flex justify-between items-center mb-4 px-2">
+                <span class="text-[10px] text-blue-400 font-black uppercase tracking-widest">Todo bien hoy</span>
+                <button id="btn-notify" class="p-2 rounded-full bg-white shadow-sm transition-transform active:scale-90">
+                    <i data-lucide="bell" id="icon-notify" class="text-gray-300 w-5 h-5"></i>
+                </button>
+            </div>
+            <div class="mb-5 relative overflow-hidden rounded-3xl shadow-inner h-50 bg-blue-50">
+                <img id="month-image" src="" class="w-full h-full object-cover transition-opacity duration-700">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+            </div>
+            <div class="flex items-center justify-between mb-6 px-2">
+                <button id="btn-prev" onclick="changeMonth(-1)" class="bg-blue-300 text-white rounded-2xl w-10 h-10 flex items-center justify-center shadow-lg hover:bg-blue-400 transition-colors">←</button>
+                <div class="text-center">
+                    <h2 id="current-month-name" class="text-3xl font-black text-gray-700 leading-none">Enero</h2>
+                    <p id="current-year" class="text-blue-400 text-xs font-bold tracking-[0.3em] mt-1">2026</p>
+                </div>
+                <button id="btn-next" onclick="changeMonth(1)" class="bg-blue-300 text-white rounded-2xl w-10 h-10 flex items-center justify-center shadow-lg hover:bg-blue-400 transition-colors">→</button>
+            </div>
+            <div id="calendar-grid" class="grid grid-cols-7 gap-2 text-center">
+                <div class="text-[9px] font-bold text-blue-300 uppercase">Do</div>
+                <div class="text-[9px] font-bold text-blue-300 uppercase">Lu</div>
+                <div class="text-[9px] font-bold text-blue-300 uppercase">Ma</div>
+                <div class="text-[9px] font-bold text-blue-300 uppercase">Mi</div>
+                <div class="text-[9px] font-bold text-blue-300 uppercase">Ju</div>
+                <div class="text-[9px] font-bold text-blue-300 uppercase">Vi</div>
+                <div class="text-[9px] font-bold text-blue-300 uppercase">Sa</div>
+            </div>
+            <div id="days-container" class="grid grid-cols-7 gap-2 mt-2"></div>
+        </div>
+        <div id="holidays-container" class="glass-effect rounded-3xl shadow-xl p-5 border-4 border-white hidden">
+            <h4 class="text-[10px] font-black text-blue-400 uppercase mb-4 tracking-widest">Próximos eventos</h4>
+            <div id="holidays-list" class="space-y-2"></div>
+        </div>
+    </div>
+ 
+    <div id="modal" class="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center p-6 z-50 hidden">
+        <div class="bg-white rounded-[2rem] p-6 w-full max-w-sm shadow-2xl border-b-8 border-blue-200">
+            <h3 class="text-xl font-black text-gray-800 mb-2 text-center">Nuevo Plan</h3>
+            <p class="text-center text-xs text-gray-400 mb-6">¿Qué haremos este día mi niña?</p>
+            <input type="text" id="event-name" placeholder="Escribe aquí..." class="w-full p-4 bg-gray-50 border-2 border-gray-100 rounded-2xl mb-4 focus:outline-none focus:border-blue-300 text-center font-bold">
+            <div class="flex flex-wrap justify-center gap-2 mb-6 p-4 max-w-full bg-white/40 backdrop-blur-sm rounded-2xl border border-blue-100 shadow-inner">
+                <button onclick="selectEmoji('✨')" class="emoji-btn flex items-center justify-center w-10 h-10 rounded-xl hover:bg-white transition-all text-xl">✨</button>
+                <button onclick="selectEmoji('🌸')" class="emoji-btn flex items-center justify-center w-10 h-10 rounded-xl hover:bg-white transition-all text-xl">🌸</button>
+                <button onclick="selectEmoji('🎀')" class="emoji-btn flex items-center justify-center w-10 h-10 rounded-xl hover:bg-white transition-all text-xl">🎀</button>
+                <button onclick="selectEmoji('🎂')" class="emoji-btn flex items-center justify-center w-10 h-10 rounded-xl hover:bg-white transition-all text-xl">🎂</button>
+                <button onclick="selectEmoji('😘')" class="emoji-btn flex items-center justify-center w-10 h-10 rounded-xl hover:bg-white transition-all text-xl">😘</button>
+                <button onclick="selectEmoji('🥹')" class="emoji-btn flex items-center justify-center w-10 h-10 rounded-xl hover:bg-white transition-all text-xl">🥹</button>
+                <button onclick="selectEmoji('😽')" class="emoji-btn flex items-center justify-center w-10 h-10 rounded-xl hover:bg-white transition-all text-xl">😽</button>
+                <button onclick="selectEmoji('😋')" class="emoji-btn flex items-center justify-center w-10 h-10 rounded-xl hover:bg-white transition-all text-xl">😋</button>
+                <button onclick="selectEmoji('🥵')" class="emoji-btn flex items-center justify-center w-10 h-10 rounded-xl hover:bg-white transition-all text-xl">🥵</button>
+                <button onclick="selectEmoji('👅')" class="emoji-btn flex items-center justify-center w-10 h-10 rounded-xl hover:bg-white transition-all text-xl">👅</button>
+                <button onclick="selectEmoji('♥️')" class="emoji-btn flex items-center justify-center w-10 h-10 rounded-xl hover:bg-white transition-all text-xl">♥️</button>
+                <button onclick="selectEmoji('🥛')" class="emoji-btn flex items-center justify-center w-10 h-10 rounded-xl hover:bg-white transition-all text-xl">🥛</button>
+                <button onclick="selectEmoji('🥳')" class="emoji-btn flex items-center justify-center w-10 h-10 rounded-xl hover:bg-white transition-all text-xl">🥳</button>
+                <button onclick="selectEmoji('👻')" class="emoji-btn flex items-center justify-center w-10 h-10 rounded-xl hover:bg-white transition-all text-xl">👻</button>
+                <button onclick="selectEmoji('🍑')" class="emoji-btn flex items-center justify-center w-10 h-10 rounded-xl hover:bg-white transition-all text-xl">🍑</button>
+                <button onclick="selectEmoji('🫂')" class="emoji-btn flex items-center justify-center w-10 h-10 rounded-xl hover:bg-white transition-all text-xl">🫂</button>
+                <button onclick="selectEmoji('👾')" class="emoji-btn flex items-center justify-center w-10 h-10 rounded-xl hover:bg-white transition-all text-xl">👾</button>
+                <button onclick="selectEmoji('🥴')" class="emoji-btn flex items-center justify-center w-10 h-10 rounded-xl hover:bg-white transition-all text-xl">🥴</button>
+                <button onclick="selectEmoji('📚')" class="emoji-btn flex items-center justify-center w-10 h-10 rounded-xl hover:bg-white transition-all text-xl">📚</button>
+            </div>
+            <div class="flex gap-2">
+                <button onclick="closeModal()" class="flex-1 bg-gray-100 py-3 rounded-xl text-sm font-bold text-gray-400">Cerrar</button>
+                <button onclick="saveEvent()" class="flex-1 bg-blue-400 text-white py-3 rounded-xl text-sm font-bold shadow-lg shadow-blue-100">Guardar</button>
+            </div>
+        </div>
+    </div>
+ 
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+ 
+        const firebaseConfig = {
+            apiKey: "AIzaSyAWB1qmOHPiDQU-uh9S4b6mEOFWaYkIbFQ",
+            authDomain: "calendario-48188.firebaseapp.com",
+            projectId: "calendario-48188",
+            storageBucket: "calendario-48188.firebasestorage.app",
+            messagingSenderId: "880274056850",
+            appId: "1:880274056850:web:e7f98a66ac8533a8aca84b",
+            databaseURL: "https://calendario-48188-default-rtdb.firebaseio.com"
+        };
+ 
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        const holidaysRef = ref(db, 'holidays');
+ 
+        const IMAGE_PATH = 'imagenes/';
+        const START_YEAR = 2026;
+        let currentDate = new Date(2026, 0, 1);
+        let holidays = [];
+        let selectedDay = null;
+        let activeEmoji = '✨';
+ 
+        let migrationDone = false;
+ 
+        async function migrateLocalData() {
+            if (migrationDone) return;
+            migrationDone = true;
+ 
+            const localData = localStorage.getItem('cute-calendar-holidays');
+            if (!localData) return;
+ 
+            const oldHolidays = JSON.parse(localData);
+            if (oldHolidays.length === 0) return;
+ 
+            console.log("Migrando datos locales a Firebase...");
+            for (const item of oldHolidays) {
+                const isDuplicate = holidays.some(h => h.date === item.date && h.name === item.name);
+                if (!isDuplicate) {
+                    await push(holidaysRef, {
+                        name: item.name,
+                        date: item.date,
+                        emoji: item.emoji || '✨'
+                    });
+                }
+            }
+            localStorage.removeItem('cute-calendar-holidays');
+            console.log("¡Migración completada!");
+        }
+ 
+        window.changeMonth = (delta) => {
+            let tempDate = new Date(currentDate);
+            tempDate.setMonth(tempDate.getMonth() + delta);
+            const year = tempDate.getFullYear();
+            const month = tempDate.getMonth();
+            const realToday = new Date();
+            let canAccess2027 = (realToday.getFullYear() > 2026 || (realToday.getFullYear() === 2026 && realToday.getMonth() === 11));
+ 
+            if (year === 2026 || (year === 2027 && month <= 5 && canAccess2027)) {
+                currentDate = tempDate;
+                renderHeader();
+                renderCalendar();
+            }
+        };
+ 
+        window.handleDayClick = (day) => {
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            const clickedDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
+ 
+            if (clickedDate < today) return; 
+ 
+            selectedDay = day;
+            activeEmoji = '✨';
+            document.querySelectorAll('.emoji-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('event-name').value = '';
+            document.getElementById('modal').classList.remove('hidden'); 
+        };
+ 
+        window.selectEmoji = (emoji) => {
+            activeEmoji = emoji;
+            document.querySelectorAll('.emoji-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.innerText === emoji);
+            });
+        };
+ 
+        window.closeModal = () => { 
+            document.getElementById('modal').classList.add('hidden');
+            document.getElementById('event-name').value = '';
+            // FIX #5: Limpiar estado del emoji al cerrar
+            activeEmoji = '✨';
+            document.querySelectorAll('.emoji-btn').forEach(btn => btn.classList.remove('active'));
+        };
+ 
+        window.saveEvent = async () => {
+            const name = document.getElementById('event-name').value.trim();
+            if (!name) return alert('¡Escribe algo amor!');
+            
+            const dateKey = `${currentDate.getFullYear()}-${currentDate.getMonth()}-${selectedDay}`;
+            const eventsToday = holidays.filter(h => h.date === dateKey);
+ 
+            if (eventsToday.length >= 3) return alert('¡Máximo 3 planes por día! ✨');
+            if (eventsToday.some(h => h.name.toLowerCase() === name.toLowerCase())) return alert('¡Ya anotaste este plan! 🌸');
+ 
+            try {
+                await push(holidaysRef, { name, date: dateKey, emoji: activeEmoji });
+                window.closeModal();
+            } catch (e) { alert("Error: " + e.message); }
+        };
+ 
+        window.deleteHoliday = async (id) => {
+            if (!confirm('¿Eliminar este evento para ambos?')) return;
+            try { await remove(ref(db, `holidays/${id}`)); } catch (e) { alert("Error al borrar"); }
+        };
+ 
+        function renderHeader() {
+            const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+            const year = currentDate.getFullYear();
+            const month = currentDate.getMonth();
+            const realToday = new Date();
+            
+            document.getElementById('current-month-name').textContent = months[month];
+            document.getElementById('current-year').textContent = year;
+            
+            const imgElement = document.getElementById('month-image');
+            let index = ((year - START_YEAR) * 12) + month + 1;
+            imgElement.src = `${IMAGE_PATH}Imag (${index}).jpg`;
+            imgElement.onerror = function() { this.src = 'imagenes/images.jpg'; };
+ 
+            document.getElementById('btn-prev').style.visibility = (year === 2026 && month === 0) ? 'hidden' : 'visible';
+            let isLocked2027 = (year === 2026 && month === 11 && (realToday.getFullYear() < 2026 || (realToday.getFullYear() === 2026 && realToday.getMonth() < 11)));
+            document.getElementById('btn-next').style.visibility = (isLocked2027 || (year === 2027 && month === 5)) ? 'hidden' : 'visible';
+        }
+ 
+        function renderCalendar() {
+            const year = currentDate.getFullYear();
+            const month = currentDate.getMonth();
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            const container = document.getElementById('days-container');
+            container.innerHTML = '';
+            
+            const today = new Date();
+            today.setHours(0,0,0,0);
+ 
+            for (let i = 0; i < firstDay; i++) container.innerHTML += `<div></div>`;
+ 
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dateKey = `${year}-${month}-${day}`;
+                const hasHoliday = holidays.some(h => h.date === dateKey);
+                const dateObj = new Date(year, month, day);
+                const isPast = dateObj < today;
+                const isToday = today.toDateString() === dateObj.toDateString();
+ 
+                // FIX #4: días pasados con eventos usan clase especial para no perder info
+                let classes = "aspect-square flex flex-col items-center justify-center rounded-2xl day-card text-sm font-bold relative ";
+                if (isToday) {
+                    classes += "bg-blue-400 text-white shadow-lg scale-110 z-10 cursor-pointer ";
+                } else if (isPast && hasHoliday) {
+                    classes += "past-day-with-event text-blue-500 ";
+                } else if (isPast) {
+                    classes += "past-day text-gray-400 ";
+                } else if (hasHoliday) {
+                    classes += "marked-day text-blue-600 cursor-pointer ";
+                } else {
+                    classes += "bg-white text-gray-500 shadow-sm cursor-pointer ";
+                }
+ 
+                // FIX #3: solo días no-pasados (o hoy) tienen onclick
+                const clickHandler = (!isPast || isToday) ? `onclick="handleDayClick(${day})"` : '';
+                container.innerHTML += `<div ${clickHandler} class="${classes}">${day}${hasHoliday ? '<span class="text-[8px] absolute bottom-1">✨</span>' : ''}</div>`;
+            }
+            renderHolidaysList();
+        }
+
+        function renderHolidaysList() {
+            const container = document.getElementById('holidays-container');
+            const list = document.getElementById('holidays-list');
+            const year = currentDate.getFullYear();
+            const month = currentDate.getMonth();
+ 
+            const currentMonthHolidays = holidays
+                .filter(h => {
+                    const parts = h.date.split('-');
+                    // Comparación exacta: año Y mes deben coincidir exactamente
+                    return parseInt(parts[0]) === year && parseInt(parts[1]) === month;
+                })
+                .sort((a, b) => parseInt(a.date.split('-')[2]) - parseInt(b.date.split('-')[2]));
+            
+            if (currentMonthHolidays.length === 0) { container.classList.add('hidden'); return; }
+            container.classList.remove('hidden');
+            list.innerHTML = currentMonthHolidays.map(h => `
+                <div class="flex items-center justify-between bg-white/60 backdrop-blur-sm rounded-2xl p-3 border border-white shadow-sm">
+                    <span class="text-xs font-bold text-gray-700">${h.emoji} Día ${h.date.split('-')[2]}: ${h.name}</span>
+                    <button onclick="deleteHoliday('${h.id}')" class="text-red-300"><i data-lucide="trash-2" width="16"></i></button>
+                </div>
+            `).join('');
+            lucide.createIcons();
+        }
+ 
+        function createBubbles() {
+            const container = document.getElementById('bubbles');
+            container.innerHTML = '';
+            for(let i=0; i<15; i++) {
+                const bubble = document.createElement('div');
+                bubble.className = 'bubble';
+                const size = Math.random() * 60 + 20 + 'px';
+                bubble.style.width = size; bubble.style.height = size;
+                bubble.style.left = Math.random() * 100 + '%';
+                bubble.style.animationDelay = Math.random() * 10 + 's';
+                container.appendChild(bubble);
+            }
+        }
+ 
+        let firstLoad = true;
+        onValue(holidaysRef, (snapshot) => {
+            const data = snapshot.val();
+            holidays = data ? Object.keys(data).map(key => ({ id: key, ...data[key] })) : [];
+            renderCalendar();
+ 
+            if (firstLoad) {
+                firstLoad = false;
+                migrateLocalData();
+            }
+        });
+ 
+        createBubbles();
+        renderHeader();
+        lucide.createIcons();
+    </script>
+</body>
+</html>

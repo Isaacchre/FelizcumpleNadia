@@ -1,0 +1,22 @@
+{
+  "name": "Calendario Cute",
+  "short_name": "CuteCal",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#fbcfe8",
+  "theme_color": "#fbcfe8",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/2693/2693507.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/2693/2693507.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
