@@ -3,34 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Reproductor Musical · Nadia</title>
+  <script>
+    (function() {
+      var meta = document.querySelector('meta[name=viewport]');
+      if (!meta) return;
+      var pw = Math.min(screen.width, screen.height);
+      pw = pw < 400 ? 375 : pw < 500 ? 430 : 390;
+      function fix() {
+        if (window.innerWidth > window.innerHeight && window.innerHeight < 500) {
+          meta.content = 'width=' + pw + ', initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
+        } else {
+          meta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
+        }
+      }
+      window.addEventListener('orientationchange', function() { setTimeout(fix, 200); });
+      window.addEventListener('resize', fix);
+      fix();
+    })();
+  </script>
+  <title>Nadia</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="recursos/Favicon.png">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div id="customBgFull"></div>
 
 <main class="player">
-
-  <!-- HEADER -->
   <header class="header">
     <div class="header-logo">Bts <span>Nadia</span></div>
     <div class="header-actions">
-      <button class="btn-icon" id="btnRepeat" aria-label="Repetir pista" title="Repetir">
-        <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16">
-          <path d="M11 5.466V4H5a4 4 0 0 0-3.584 5.777.5.5 0 1 1-.896.446A5 5 0 0 1 5 3h6V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm3.81.086a.5.5 0 0 1 .67.225A5 5 0 0 1 11 13H5v1.466a.25.25 0 0 1-.41.192l-2.36-1.966a.25.25 0 0 1 0-.384l2.36-1.966a.25.25 0 0 1 .41.192V12h6a4 4 0 0 0 3.585-5.777.5.5 0 0 1 .225-.67z"/>
-        </svg>
-      </button>
       <button class="btn-icon" id="btnOpenUpload" aria-label="Gestionar archivos" title="Subir / gestionar música">
-        <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16">
-          <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
-          <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
-        </svg>
+        <img src="recursos/icono-opciones.png" alt="" width="15" height="15">
       </button>
     </div>
   </header>
-
-  <!-- DISCO -->
   <section class="disc-area">
     <div class="disc-scene">
       <div class="disc-glow" id="discGlow"></div>
@@ -61,7 +70,7 @@
     </div>
   </section>
 
-  <!-- INFO PISTA -->
+  <div class="app-player-content">
   <section class="track-info">
     <div class="track-title" id="trackTitle">Cargando biblioteca...</div>
     <div class="track-meta">
@@ -71,7 +80,6 @@
     </div>
   </section>
 
-  <!-- PROGRESO -->
   <section class="progress-section">
     <div class="progress-bar" id="progressBar">
       <div class="progress-fill" id="progressFill"></div>
@@ -82,7 +90,6 @@
     </div>
   </section>
 
-  <!-- CONTROLES -->
   <nav class="controls">
     <div class="controls-row">
       <button class="ctrl" id="btnShuffle" aria-label="Modo Aleatorio" title="Aleatorio">
@@ -109,15 +116,14 @@
           <path d="M12.5 4a.5.5 0 0 0-1 0v3.248L5.233 3.592A.5.5 0 0 0 4.5 4v8a.5.5 0 0 0 .733.44L11.5 8.752V12a.5.5 0 0 0 1 0V4z"/>
         </svg>
       </button>
-      <button class="ctrl fav-btn" id="btnFavCurrent" aria-label="Marcar Favorito" title="Favorito">
+      <button class="ctrl" id="btnRepeat" aria-label="Repetir pista" title="Repetir">
         <svg width="17" height="17" fill="currentColor" viewBox="0 0 16 16">
-          <path d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+          <path d="M11 5.466V4H5a4 4 0 0 0-3.584 5.777.5.5 0 1 1-.896.446A5 5 0 0 1 5 3h6V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm3.81.086a.5.5 0 0 1 .67.225A5 5 0 0 1 11 13H5v1.466a.25.25 0 0 1-.41.192l-2.36-1.966a.25.25 0 0 1 0-.384l2.36-1.966a.25.25 0 0 1 .41.192V12h6a4 4 0 0 0 3.585-5.777.5.5 0 0 1 .225-.67z"/>
         </svg>
       </button>
     </div>
   </nav>
 
-  <!-- VOLUMEN -->
   <div class="volume-row">
     <span class="vol-icon">
       <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16">
@@ -127,7 +133,6 @@
     <input type="range" class="vol-slider" id="volSlider" min="0" max="100" value="75">
   </div>
 
-  <!-- SELECTOR DE ÁLBUM + BÚSQUEDA -->
   <section class="meta-controls">
     <div class="album-selector-row">
       <div class="album-selector-wrapper">
@@ -150,14 +155,17 @@
     </div>
   </section>
 
-  <!-- TRACKLIST -->
   <section class="tracklist" id="tracklist" role="list"></section>
+  </div>
 
+  <div class="idle-display" id="idleDisplay">
+    <div class="idle-track-name" id="idleTrackName"></div>
+    <div class="idle-track-artist" id="idleTrackArtist"></div>
+  </div>
 </main>
+<div class="screen-overlay"></div>
+<div class="bt21-overlay" id="bt21Overlay"></div>
 
-<!-- ═══════════════════════════════════════
-     MODAL: EDITAR ÁLBUM
-═══════════════════════════════════════ -->
 <div class="modal-overlay" id="modalEditAlbum">
   <div class="modal-sheet">
     <div class="modal-handle"></div>
@@ -218,70 +226,198 @@
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════
-     MODAL: GESTIÓN DE CONTENIDO
-═══════════════════════════════════════ -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-head">
+    <div class="sidebar-title">Menú</div>
+    <button class="btn-icon" id="btnSidebarClose" aria-label="Cerrar menú">
+      <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+      </svg>
+    </button>
+  </div>
+  <div class="sidebar-body">
+    <button class="sb-option" id="sbOptUpload">
+      <svg width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+        <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
+      </svg>
+      Subir música
+    </button>
+    <button class="sb-option" id="sbOptYt">
+      <svg width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"/>
+      </svg>
+      YouTube
+    </button>
+    <button class="sb-option" id="sbOptCustomize">
+      <svg width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+        <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"/>
+      </svg>
+      Personalizar
+    </button>
+    <button class="sb-option" id="sbOptEffects">
+      <svg width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M4.54.146A.5.5 0 0 1 4.893 0h6.214a.5.5 0 0 1 .353.146l4.394 4.394a.5.5 0 0 1 .146.353v6.214a.5.5 0 0 1-.146.353l-4.394 4.394a.5.5 0 0 1-.353.146H4.893a.5.5 0 0 1-.353-.146L.146 11.46A.5.5 0 0 1 0 11.107V4.893a.5.5 0 0 1 .146-.353L4.54.146zM5.1 1L1 5.1v5.8L5.1 15h5.8l4.1-4.1V5.1L10.9 1H5.1z"/>
+        <path d="M8 4a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 8 4zm0 8a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1z"/>
+      </svg>
+      Efectos
+    </button>
+  </div>
+  <div class="antonio-wrap" id="antonioWrap">
+    <div class="antonio-dialogue" id="antonioDialogue"></div>
+    <img class="antonio-img" id="antonioImg" src="recursos/Character%20siderbar/Antonio-normal.png" alt="Antonio">
+  </div>
+</div>
+
+
 <div class="modal-overlay" id="modalUpload">
   <div class="modal-sheet">
     <div class="modal-handle"></div>
-    <div class="modal-title">Gestión de contenido</div>
+    <div class="modal-title">Subir música</div>
 
-    <!-- ZONA DRAG & DROP -->
     <div class="upload-zone" id="uploadZone">
       <div class="upload-icon">
-        <svg width="36" height="36" fill="currentColor" viewBox="0 0 16 16">
+        <svg width="28" height="28" fill="currentColor" viewBox="0 0 16 16">
           <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
           <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
         </svg>
       </div>
-      <p>Arrastrá o hacé clic para agregar MP3</p>
-      <small>Solo archivos .mp3 locales</small>
+      <p>Tocá o arrastrá MP3</p>
       <input type="file" accept="audio/mpeg,audio/mp3,.mp3" multiple id="uploadFileInput" style="display:none;">
     </div>
 
-    <!-- ASIGNAR ÁLBUM -->
     <div class="upload-album-assign" id="uploadAlbumAssign" style="display:none;">
       <label>Agregar a álbum</label>
       <select id="uploadAlbumSelect"></select>
     </div>
 
-    <!-- LISTA ARCHIVOS PENDIENTES -->
     <div class="upload-list" id="uploadList"></div>
 
-    <hr class="edit-separator">
-
-    <!-- INTEGRACIÓN YOUTUBE -->
-    <div class="yt-integration-container">
-      <div class="yt-label-row">
-        <label class="edit-label" style="margin:0;">Metadatos desde YouTube</label>
-        <span class="yt-badge">oEmbed · sin auth</span>
-      </div>
-      <div class="notice" style="margin-bottom:10px;">
-        <strong>Info:</strong> Solo se obtienen título y miniatura. La descarga de audio requiere herramientas externas (yt-dlp, etc.).
-      </div>
-      <div class="api-search-row">
-        <input type="url" class="edit-input" id="ytUrlInput" placeholder="URL del video de YouTube">
-        <button class="btn-action" id="btnYtFetch">Obtener</button>
-      </div>
-      <div id="ytResultContainer" class="yt-result" style="display:none;">
-        <img id="ytThumbnail" src="" alt="Miniatura">
-        <div class="yt-details">
-          <div id="ytTitle" class="yt-title"></div>
-          <div id="ytChannel" class="yt-channel"></div>
-          <button class="btn-action btn-sm" id="btnYtCopyTitle" style="margin-top:4px;">Copiar título</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="edit-btns" style="margin-top:20px;">
-      <button class="btn-action-outline" id="btnUploadClose" style="width:100%;">Cerrar</button>
+    <div class="edit-btns" style="margin-top:14px;">
+      <button class="btn-action-outline" id="btnUploadClose">Cerrar</button>
     </div>
   </div>
 </div>
 
-<!-- TOAST -->
+<div class="modal-overlay" id="modalYt">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-title">YouTube</div>
+
+    <div class="sb-input-row">
+      <input type="url" class="edit-input" id="ytUrlInput" placeholder="Pegá una URL de YouTube">
+      <div class="yt-spinner" id="ytSpinner"></div>
+    </div>
+
+    <div id="ytResultContainer" class="sb-yt-result" style="display:none;">
+      <img id="ytThumbnail" src="" alt="Miniatura">
+      <div class="sb-yt-details">
+        <div id="ytTitle" class="sb-yt-title"></div>
+        <div id="ytChannel" class="sb-yt-channel"></div>
+        <button class="btn-action btn-sm" id="btnYtCopyTitle">Copiar título</button>
+      </div>
+    </div>
+
+    <div class="yt-options" id="ytOptions" style="display:none;">
+      <label class="edit-label">Calidad</label>
+      <div class="segmented-control">
+        <button class="seg-opt active" data-quality="media">Media</button>
+        <button class="seg-opt" data-quality="alta">Alta</button>
+      </div>
+
+      <button class="btn-action primary" id="btnYtUpload" style="width:100%;margin-top:14px;gap:8px;">
+        <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+          <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
+        </svg>
+        Descargar MP3
+      </button>
+    </div>
+
+    <div class="edit-btns" style="margin-top:14px;">
+      <button class="btn-action-outline" id="btnYtClose">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modalCustomize">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-title">Personalizar fondo</div>
+
+    <label class="edit-label">Fondo</label>
+    <div class="custom-bg-grid" id="customBgGrid">
+      <div class="custom-bg-opt" data-bg="" style="border-color:var(--a1);">
+        <div class="custom-bg-none">✕</div>
+        <span>Ninguno</span>
+      </div>
+      <div class="custom-bg-opt" data-bg="recursos/Fondo/fondo.jpg">
+        <img src="recursos/Fondo/fondo.jpg" alt="fondo" loading="lazy">
+      </div>
+      <div class="custom-bg-opt" data-bg="recursos/Fondo/fondo-1.jpg">
+        <img src="recursos/Fondo/fondo-1.jpg" alt="fondo 1" loading="lazy">
+      </div>
+      <div class="custom-bg-opt" data-bg="recursos/Fondo/fondo-2.jpg">
+        <img src="recursos/Fondo/fondo-2.jpg" alt="fondo 2" loading="lazy">
+      </div>
+      <div class="custom-bg-opt custom-bg-add" id="customBgAdd">
+        <svg width="22" height="22" fill="var(--muted)" viewBox="0 0 16 16">
+          <path d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2z"/>
+        </svg>
+      </div>
+    </div>
+    <input type="file" accept="image/*" id="customBgFileInput" style="display:none;">
+
+    <div class="edit-field">
+      <label class="edit-label">Opacidad <span id="customOpacityVal">0.25</span></label>
+      <input type="range" class="custom-opacity-slider" id="customOpacitySlider" min="0.05" max="0.80" step="0.01" value="0.25">
+    </div>
+
+    <div class="edit-btns" style="margin-top:14px;">
+      <button class="btn-action-outline" id="btnCustomClose">Cerrar</button>
+    </div>
+  </div>
+</div>
+<div class="modal-overlay" id="modalEffects">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-title">Efectos visuales</div>
+    <div class="effects-list">
+      <label class="effect-toggle">
+        <span>Mosaico BT21</span>
+        <div class="toggle-switch"><input type="checkbox" id="toggleBt21" checked><span class="toggle-slider"></span></div>
+      </label>
+      <label class="effect-toggle">
+        <span>Giro del disco</span>
+        <div class="toggle-switch"><input type="checkbox" id="toggleDiscSpin" checked><span class="toggle-slider"></span></div>
+      </label>
+      <label class="effect-toggle">
+        <span>Texto flotante</span>
+        <div class="toggle-switch"><input type="checkbox" id="toggleMarquee" checked><span class="toggle-slider"></span></div>
+      </label>
+      <label class="effect-toggle">
+        <span>Antonio</span>
+        <div class="toggle-switch"><input type="checkbox" id="toggleAntonio" checked><span class="toggle-slider"></span></div>
+      </label>
+    </div>
+    <div class="edit-btns" style="margin-top:14px;">
+      <button class="btn-action-outline" id="btnEffectsClose">Cerrar</button>
+    </div>
+  </div>
+</div>
 <div class="toast" id="toast"></div>
 
+<script>
+  // Previene zoom táctil (pellizco) en toda la web
+  document.addEventListener('gesturestart', e => e.preventDefault());
+  document.addEventListener('gesturechange', e => e.preventDefault());
+  document.addEventListener('gestureend', e => e.preventDefault());
+  document.addEventListener('touchmove', e => {
+    if (e.touches.length > 1) e.preventDefault();
+  }, { passive: false });
+</script>
 <script src="app.js"></script>
 </body>
 </html>

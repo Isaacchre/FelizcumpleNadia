@@ -24,7 +24,7 @@ for pkg in ("mutagen", "PIL"):
         print(f"📦 Instalando {real}...")
         subprocess.check_call([sys.executable, "-m", "pip", "install", real, "-q"])
 
-import os, re, json, time
+import os, re, json, time, difflib
 import urllib.parse, urllib.request
 from mutagen.mp3 import MP3
 from mutagen.id3 import ID3, TIT2, TPE1, TALB, APIC, ID3NoHeaderError
@@ -36,6 +36,11 @@ MUSIC_DIR   = "music"
 COVERS_DIR  = "covers"
 OUTPUT_FILE = "songs.json"
 COVER_SIZE  = (300, 300)
+TARGET_ARTIST = "BTS"
+
+# ── FILTRO AMPLIADO: Nombres del grupo, miembros y alias (incluye colaboraciones) ──
+# Usamos \b para asegurar que "V" sea una palabra sola y no coincida con "Avril", por ejemplo.
+_BTS_MEMBERS = re.compile(r'\b(bts|rm|jin|suga|agust d|j-hope|jhope|jimin|v|jung kook|jungkook)\b', re.IGNORECASE)
 
 GRADIENTS = [
     "linear-gradient(135deg,#1a0030,#003040)",
@@ -51,25 +56,22 @@ GRADIENTS = [
 _CLEAN = re.compile(r'[_\-]+')
 _FEAT  = re.compile(r'\(?feat\.?\s*', re.I)
 _EXTRA = re.compile(r'\s*[\(\[](official|mv|video|audio|lyrics?|hd|hq|color.coded)[\)\]]', re.I)
-_YTID  = re.compile(r'\s*\[[A-Za-z0-9_\-]{6,15}\]\s*$')
+_YTID  = re.compile(r'\s*\[[A-Za-z0-9_\-]{11}\]\s*$')
 
 def filename_to_query(filename: str) -> str:
     name = os.path.splitext(filename)[0]
     name = _YTID.sub('', name)
+    name = _EXTRA.sub('', name)
+    name = name.replace('-', ' ')
     name = _CLEAN.sub(' ', name)
     name = _FEAT.sub('feat ', name)
-    name = _EXTRA.sub('', name)
     return name.strip()
 
-# ── Buscar en iTunes ───────────────────────────────────────────────────────────
+# ── Buscar en iTunes con Validación de Similitud y Filtro de Miembros ──────────
 def search_itunes(query: str) -> dict:
-    """
-    Devuelve dict con: title, artist, album, artwork_url
-    o {} si no encontró nada.
-    """
     try:
         enc = urllib.parse.quote(query[:80])
-        url = f"https://itunes.apple.com/search?term={enc}&media=music&limit=5&entity=song"
+        url = f"https://itunes.apple.com/search?term={enc}&media=music&limit=10&entity=song"
         req = urllib.request.Request(url, headers={
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'
         })
@@ -80,14 +82,44 @@ def search_itunes(query: str) -> dict:
         if not results:
             return {}
 
-        best = results[0]
-        return {
-            'title'      : best.get('trackName', ''),
-            'artist'     : best.get('artistName', ''),
-            'album'      : best.get('collectionName', ''),
-            'artwork_url': best.get('artworkUrl100', '').replace('100x100bb', '600x600bb'),
-        }
+        best_match = None
+        highest_ratio = 0.0
+        query_lower = query.lower()
+
+        for item in results:
+            track = item.get('trackName', '')
+            artist = item.get('artistName', '')
+            
+            # ── FILTRO ESTRICTO PERO INCLUSIVO ──
+            # Si el artista no contiene "BTS" ni el nombre de ningún miembro, lo saltamos.
+            if not _BTS_MEMBERS.search(artist):
+                continue
+            
+            itunes_str_1 = f"{artist} {track}".lower()
+            itunes_str_2 = f"{track} {artist}".lower()
+            
+            ratio_1 = difflib.SequenceMatcher(None, query_lower, itunes_str_1).ratio()
+            ratio_2 = difflib.SequenceMatcher(None, query_lower, itunes_str_2).ratio()
+            
+            best_local_ratio = max(ratio_1, ratio_2)
+
+            if best_local_ratio > highest_ratio:
+                highest_ratio = best_local_ratio
+                best_match = item
+
+        # Requerimos un 35% de similitud para ser un poco más permisivos con nombres coreanos/ingleses
+        if best_match and highest_ratio > 0.35:
+            return {
+                'title'      : best_match.get('trackName', ''),
+                'artist'     : best_match.get('artistName', ''),
+                'album'      : best_match.get('collectionName', ''),
+                'artwork_url': best_match.get('artworkUrl100', '').replace('100x100bb', '600x600bb'),
+            }
+        
+        return {}
+        
     except Exception as e:
+        print(f"    ⚠️  Error en API: {e}")
         return {}
 
 # ── Descargar imagen desde URL ─────────────────────────────────────────────────
@@ -198,18 +230,19 @@ def run():
 
         prefix = f"[{idx+1}/{total}]"
 
-        # ── Si le faltan datos, buscar en iTunes ──
         itunes     = {}
         cover_raw  = None
 
         if needs_info or needs_cover:
-            query = filename_to_query(filename)
-            print(f"  🔍 {prefix} Buscando: {query[:50]}...")
-            itunes = search_itunes(query)
-            time.sleep(0.4)  # respetar rate limit
+            # Añadimos sutilmente la etiqueta BTS a la búsqueda para priorizar el K-Pop en los resultados
+            base_query = filename_to_query(filename)
+            search_query = f"{TARGET_ARTIST} {base_query}"
+            
+            print(f"  🔍 {prefix} Buscando: {search_query[:50]}...")
+            itunes = search_itunes(search_query)
+            time.sleep(0.4)
 
             if itunes:
-                # Descargar portada de iTunes si el MP3 no la tiene
                 if needs_cover and itunes.get('artwork_url'):
                     try:
                         raw      = download_image(itunes['artwork_url'])
@@ -217,29 +250,26 @@ def run():
                     except:
                         cover_raw = None
             else:
-                print(f"       ⬜ No encontrado en iTunes")
+                print(f"       ⬜ No se encontró coincidencia (o no es de BTS/Miembros)")
 
         # ── Decidir valores finales ──
         title  = tags.get('title')  or itunes.get('title')  or filename_to_query(filename)
-        artist = tags.get('artist') or itunes.get('artist') or "Desconocido"
-        album  = tags.get('album')  or itunes.get('album')  or artist
+        artist = tags.get('artist') or itunes.get('artist') or TARGET_ARTIST
+        album  = tags.get('album')  or itunes.get('album')  or "Unknown Album"
 
-        # Portada: preferir la ya incrustada, luego la de iTunes
         cover_bytes = tags.get('apic') or cover_raw
 
-        # ── Escribir tags al MP3 si hacía falta ──
         if needs_info or (needs_cover and cover_raw):
             ok = write_tags(filepath, title, artist, album, cover_raw if needs_cover else None)
             if ok:
                 status = "✅" if itunes else "📝"
-                src = "iTunes" if itunes else "nombre archivo"
+                src = "iTunes" if itunes else "fallback"
                 print(f"       {status} Tags escritos ({src}): {artist} — {album}")
                 tagged += 1
         else:
             print(f"  ✅ {prefix} {title[:45]} → tags OK")
             skipped += 1
 
-        # ── Portada para el reproductor (1 por álbum) ──
         if album not in album_cover:
             safe = re.sub(r'[^a-z0-9]', '_', album.lower())[:40] + ".jpg"
 
@@ -254,7 +284,6 @@ def run():
 
         cover_url = album_cover[album]
 
-        # ── Track para JSON ──
         track = {
             "src"    : f"music/{urllib.parse.quote(filename)}",
             "title"  : title,
@@ -267,7 +296,6 @@ def run():
             database[album] = []
         database[album].append(track)
 
-    # ── Guardar JSON ──
     with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
         json.dump(database, f, indent=2, ensure_ascii=False)
 
@@ -275,7 +303,7 @@ def run():
     total_covers = sum(1 for v in album_cover.values() if v)
 
     print(f"\n{'─'*55}")
-    print(f"✅  {total_songs} canciones  •  {len(database)} álbumes  •  {total_covers} portadas")
+    print(f"✅  {total_songs} canciones  •  {len(database)} álbumes  •  {total_covers} portadas válidas")
     print(f"✏️   {tagged} MP3 con tags nuevos  •  {skipped} ya tenían tags")
     print(f"📄  {OUTPUT_FILE}  +  {COVERS_DIR}/")
     print(f"{'─'*55}")
