@@ -11,7 +11,7 @@
   --a2: #ff3d88;   /* pink accent */
   --a3: #ffd03d;   /* gold accent */
   --txt:   #dde0f5;
-  --muted: #52527a;
+  --muted: #7a7aa8;
   --muted2:#353560;
   --fav:   #ff3d88;
   --err:   #ff3d88;
@@ -287,46 +287,39 @@ body::before {
   display: flex; flex-direction: column; gap: 6px;
   margin-bottom: 8px; flex-shrink: 0;
 }
-.album-selector-row { display: flex; align-items: center; gap: 6px; }
-.album-selector-wrapper {
-  flex: 1; background: var(--s1);
-  border: 1px solid var(--border); border-radius: var(--radius); padding: 0 10px;
-}
-.album-select {
-  width: 100%; background: transparent; border: none;
-  color: var(--txt); font-family: 'Chakra Petch', monospace;
-  font-size: 12px; padding: 10px 0; min-height: 40px; outline: none; cursor: pointer;
-}
-.album-select option { background: #0c0c1d; color: var(--txt); }
-
 .btn-action {
   background: var(--s2); border: 1px solid var(--border); border-radius: 8px;
   padding: 0 13px; min-height: 40px; color: var(--txt);
   cursor: pointer; display: inline-flex; align-items: center; justify-content: center;
-  gap: 6px; font-family: 'Chakra Petch', monospace; font-size: 12px;
+  gap: 6px; font-family: 'Chakra Petch', monospace; font-size: 12px; font-weight: 600;
   transition: border-color var(--tr), background var(--tr); white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
 }
 .btn-action:hover { border-color: rgba(63,255,200,.3); background: var(--s3); }
-.btn-action.primary { background: var(--a1); color: #000; border: none; font-weight: 700; }
-.btn-action.primary:hover { background: #5fffda; }
 .btn-action:disabled { opacity: .5; pointer-events: none; }
 
 .btn-action-outline {
   background: transparent; border: 1px solid var(--muted2); border-radius: 8px;
   min-height: 40px; padding: 0 13px; color: var(--muted);
   cursor: pointer; display: inline-flex; justify-content: center; align-items: center;
-  font-family: inherit; font-size: 12px; transition: color var(--tr), border-color var(--tr);
+  font-family: 'Chakra Petch', monospace; font-size: 12px; font-weight: 600;
+  transition: color var(--tr), border-color var(--tr), background var(--tr);
+  -webkit-tap-highlight-color: transparent;
 }
-.btn-action-outline:hover { color: var(--txt); border-color: var(--border2); }
+.btn-action-outline:hover { color: var(--txt); border-color: var(--border2); background: rgba(255,255,255,.03); }
+.btn-action-outline:active { background: var(--s2); border-color: var(--border2); }
 
 .btn-action-danger {
   background: transparent; border: 1px solid rgba(255,61,136,0.25);
-  border-radius: 8px; padding: 12px; color: var(--a2); width: 100%;
-  font-family: inherit; font-size: 12px; cursor: pointer; transition: background var(--tr);
+  border-radius: 8px; padding: 0 13px; min-height: 40px; color: var(--a2); width: 100%;
+  font-family: 'Chakra Petch', monospace; font-size: 12px; font-weight: 600;
+  cursor: pointer; transition: background var(--tr);
+  display: inline-flex; align-items: center; justify-content: center;
+  -webkit-tap-highlight-color: transparent;
 }
 .btn-action-danger:hover { background: rgba(255,61,136,0.08); }
 
-.btn-sm { min-height: 32px; padding: 0 10px; font-size: 11px; }
+.btn-sm { min-height: 32px; padding: 0 12px; font-size: 11px; }
 
 /* ══════════════════════════════════════════════
    SEARCH
@@ -355,11 +348,16 @@ body::before {
 
 .track-row {
   display: flex; align-items: center; gap: 9px;
-  padding: 9px 6px; border-radius: 8px;
+  padding: 9px 6px; border-radius: 9px;
   cursor: pointer; transition: background .15s;
+  -webkit-tap-highlight-color: transparent;
 }
-.track-row:hover { background: rgba(255,255,255,0.03); }
-.track-row.current { background: rgba(63,255,200,0.06); }
+.track-row:hover { background: rgba(255,255,255,0.035); }
+.track-row.current {
+  background: rgba(63,255,200,0.07);
+  border-left: 2px solid var(--a1);
+  padding-left: 4px;
+}
 
 .t-num {
   font-size: 10px; color: var(--muted); width: 16px; text-align: center;
@@ -395,12 +393,6 @@ body::before {
 .t-fav-btn.active { color: var(--fav); }
 .t-fav-btn:hover { color: var(--fav); }
 
-.t-del-btn {
-  background: none; border: none; color: var(--muted2);
-  cursor: pointer; padding: 7px; display: flex; align-items: center; justify-content: center;
-  transition: color .15s; flex-shrink: 0;
-}
-.t-del-btn:hover { color: var(--a2); }
 
 .empty-state {
   padding: 30px 10px; text-align: center;
@@ -463,7 +455,7 @@ body::before {
 .edit-btns { display: flex; gap: 9px; margin-top: 20px; }
 .edit-btns button { flex: 1; }
 .edit-separator { border: none; border-top: 1px solid var(--border); margin: 18px 0; }
-.edit-danger-title { font-size: 9px; letter-spacing: .18em; color: var(--muted); text-transform: uppercase; margin-bottom: 9px; }
+/* .edit-danger-title unified below */
 
 /* API Results */
 .api-search-container { margin-bottom: 14px; }
@@ -489,15 +481,15 @@ body::before {
 .upload-zone p { font-size: 12px; color: var(--muted); line-height: 1.6; }
 .upload-zone small { font-size: 10px; color: var(--muted2); display: block; margin-top: 4px; }
 
-.upload-list { display: flex; flex-direction: column; gap: 6px; max-height: 160px; overflow-y: auto; }
+.upload-list { display: flex; flex-direction: column; gap: 6px; overflow-y: auto; }
 .upload-item {
   display: flex; align-items: center; gap: 8px;
   background: var(--s2); border: 1px solid var(--border); border-radius: 8px;
   padding: 8px 10px; font-size: 11px;
 }
 .upload-item .u-name { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.upload-item .u-status { font-size: 10px; color: var(--a1); flex-shrink: 0; }
-.upload-item .u-status.error { color: var(--a2); }
+.upload-item .u-status { width: 16px; height: 16px; border-radius: 50%; flex-shrink: 0; background: var(--a1); }
+.upload-item .u-status.error { background: var(--a2); }
 .upload-item .u-remove {
   background: none; border: none; color: var(--muted); cursor: pointer;
   padding: 2px; display: flex; align-items: center; flex-shrink: 0;
@@ -515,7 +507,7 @@ body::before {
   width: 100%; background: transparent; border: none; color: var(--txt);
   font-family: 'Chakra Petch', monospace; font-size: 12px; outline: none; cursor: pointer;
 }
-.upload-album-assign select option { background: #0c0c1d; }
+.upload-album-assign select option { background: var(--s1); }
 
 /* YouTube integration */
 .yt-integration-container { margin-top: 16px; }
@@ -555,6 +547,16 @@ body::before {
 .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 .toast.success { border-color: rgba(63,255,200,.3); }
 .toast.error { border-color: rgba(255,61,136,.3); }
+
+/* ════════════════════════════
+   DOWNLOAD PROGRESS MODAL
+════════════════════════════ */
+.dl-body { padding: 4px 6px 16px; }
+.dl-status { font-size: 12px; color: var(--muted); margin-bottom: 14px; }
+.dl-bar-bg { height: 4px; background: var(--s3); border-radius: 4px; overflow: hidden; margin-bottom: 8px; }
+.dl-bar-fill { height: 100%; background: var(--a1); border-radius: 4px; transition: width .2s; width: 0; }
+.dl-counter { font-size: 13px; color: var(--txt); font-weight: 600; margin-bottom: 4px; }
+.dl-current { font-size: 11px; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
 /* ========= Sidebar ========= */
 .sidebar-overlay {
@@ -603,6 +605,9 @@ body::before {
 }
 .sb-option:hover { background: var(--s3); }
 .sb-option svg { flex-shrink: 0; }
+.sb-option-danger { color: var(--err) !important; border-top: 1px solid rgba(255,255,255,.06); margin-top: 6px; padding-top: 14px; }
+.sb-option-danger:hover { background: rgba(255,61,136,.08) !important; }
+.sb-option-danger svg { color: var(--err); }
 
 .antonio-wrap {
   flex-shrink: 0;
@@ -680,40 +685,21 @@ body::before {
 }
 
 /* ========= Edit modal (danger zone + extra fields) ========= */
-.edit-separator { border: none; border-top: 1px solid var(--border); margin: 18px 0 12px; }
 .edit-danger-title { font-size: 12px; color: var(--err); font-weight: 600; margin-bottom: 10px; letter-spacing: .5px; }
 
 /* ========= Modal upload ========= */
-.upload-zone {
-  border: 2px dashed var(--border); border-radius: 12px; padding: 32px 16px;
-  text-align: center; cursor: pointer; transition: border-color .2s, background .2s;
-  margin: 12px 0;
-}
-.upload-zone:hover { border-color: var(--a1); background: var(--s3); }
-.upload-icon { margin-bottom: 6px; color: var(--muted); }
-.upload-zone p { margin: 0; font-size: 13px; color: var(--muted); }
+/* .upload-zone unified below */
 
-.upload-album-assign { margin: 10px 0; }
-.upload-album-assign label { display: block; font-size: 12px; color: var(--muted); margin-bottom: 4px; }
-.upload-album-assign select {
-  width: 100%; padding: 8px 10px; border-radius: 8px; border: 1px solid var(--border);
-  background: var(--bg); color: var(--txt); font-size: 13px;
-}
+/* .upload-album-assign unified below */
 
-.upload-list { max-height: 200px; overflow-y: auto; margin-top: 8px; }
-.upload-item {
-  display: flex; align-items: center; gap: 8px; padding: 6px 0;
-  font-size: 13px; color: var(--txt); border-bottom: 1px solid var(--border);
-}
-.upload-item .u-status { width: 16px; height: 16px; border-radius: 50%; flex-shrink:0; }
+.upload-list { max-height: 200px; margin-top: 8px; }
 .upload-item .u-status.done { background: #3fc8a0; }
 .upload-item .u-status.fail { background: var(--err); }
-.upload-item .u-name { flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 
 /* ========= Modal YT ========= */
 .sb-input-row { display: flex; gap: 8px; margin: 12px 0; }
 .sb-input-row .edit-input { flex:1; }
-.btn-sm { padding: 8px 14px; font-size: 12px; }
+/* .btn-sm unified above */
 .sb-yt-result { display: flex; gap: 12px; align-items: flex-start; margin-top: 8px; }
 .sb-yt-result img { width: 100px; border-radius: 6px; flex-shrink:0; }
 .sb-yt-details { flex:1; min-width:0; }
@@ -986,5 +972,498 @@ body::before {
   position: relative; z-index: 1; font-size: 0.85em; font-weight: 600;
 }
 
+
+/* ═══════════════════════════════════════════════════
+   ALBUM BROWSER — Apple Music Style
+═══════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════════════
+   ALBUM BROWSER — Responsivo, Apple Music Style
+═══════════════════════════════════════════════════ */
+
+/* Contenedor principal — ocupa toda la pantalla */
+.album-browser {
+  position: fixed;
+  top: 0; left: 50%;
+  transform: translateX(-50%) translateY(100%);
+  width: 100%;
+  max-width: min(94vw, 720px);
+  height: 100vh; height: 100dvh;
+  z-index: 85;
+  background: #111115;
+  display: flex; flex-direction: column;
+  transition: transform .42s cubic-bezier(.22,1,.36,1);
+  overflow: hidden;
+  contain: strict;
+}
+.album-browser.open {
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ── Header ── */
+.ab-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 16px 8px;
+  padding-top: max(env(safe-area-inset-top, 0px), 14px);
+  flex-shrink: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+.ab-title {
+  font-size: 17px; font-weight: 800; color: #fff; letter-spacing: .01em;
+}
+.ab-back {
+  display: flex; align-items: center; gap: 4px;
+  background: none; border: none; color: var(--a1);
+  font-family: 'Chakra Petch', monospace; font-size: 13px; font-weight: 600;
+  cursor: pointer; padding: 6px 0; min-width: 60px;
+  transition: opacity .15s;
+}
+.ab-back:active { opacity: .5; }
+.ab-back svg { flex-shrink: 0; }
+.ab-spacer { min-width: 60px; }
+
+/* ── Barra de búsqueda ── */
+.ab-search-bar {
+  flex-shrink: 0;
+  padding: 0 12px 8px;
+  box-sizing: border-box; width: 100%;
+}
+.ab-search-inner {
+  display: flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,.1);
+  border-radius: 10px; padding: 9px 12px;
+}
+.ab-search-icon { color: rgba(255,255,255,.45); flex-shrink: 0; }
+.ab-search-input {
+  flex: 1; background: transparent; border: none; outline: none;
+  color: #fff; font-family: 'Chakra Petch', monospace;
+  font-size: 14px; font-weight: 500; caret-color: var(--a1);
+}
+.ab-search-input::placeholder { color: rgba(255,255,255,.35); }
+
+/* ── Cuerpo scrolleable ── */
+.ab-body {
+  flex: 1;
+  overflow-y: auto; overflow-x: hidden;
+  padding: 0 10px 80px;
+  box-sizing: border-box;
+  width: 100%;
+  scrollbar-width: none;
+  min-height: 0;
+}
+@media (min-width: 450px) { .ab-body { padding: 0 14px 90px; } }
+@media (min-width: 580px) { .ab-body { padding: 0 18px 100px; } }
+@media (min-width: 720px) { .ab-body { padding: 0 22px 100px; } }
+.ab-body::-webkit-scrollbar { display: none; }
+
+.ab-section-title {
+  font-size: 11px; font-weight: 700; color: rgba(255,255,255,.38);
+  letter-spacing: .1em; text-transform: uppercase;
+  padding: 6px 0 10px;
+}
+
+/* ── Gradientes especiales ── */
+.ab-cover-placeholder.ab-cover-local {
+  background: linear-gradient(145deg,#071e3d,#0d3566 60%,#081830);
+  color: #4ab3ff;
+}
+.ab-cover-placeholder.ab-cover-fav {
+  background: linear-gradient(145deg,#2d0014,#680030 60%,#200010);
+  color: #ff4d8f;
+}
+.ab-cover-placeholder.ab-cover-all {
+  background: linear-gradient(145deg,#041b10,#0d3d22 60%,#021208);
+  color: #3fffc8;
+}
+
+/* ── Grid adaptativo ── */
+.ab-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px 8px;
+  width: 100%;
+  box-sizing: border-box;
+}
+@media (min-width: 450px) { .ab-grid { grid-template-columns: repeat(3, 1fr); gap: 12px 10px; } }
+@media (min-width: 580px) { .ab-grid { grid-template-columns: repeat(4, 1fr); gap: 14px 12px; } }
+@media (min-width: 720px) { .ab-grid { grid-template-columns: repeat(5, 1fr); gap: 14px 12px; } }
+
+/* ── Card de álbum ── */
+.ab-album-card {
+  display: flex; flex-direction: column;
+  cursor: pointer; transition: opacity .15s;
+  background: none; border: none; text-align: left; padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  /* La card se adapta al ancho de columna del grid responsive */
+  width: 100%;
+  min-width: 0; /* evita overflow */
+  overflow: hidden;
+}
+.ab-album-card:active { opacity: .55; }
+.ab-album-card.active .ab-cover-wrap {
+  box-shadow: 0 0 0 2px var(--a1), 0 4px 16px rgba(0,0,0,.5);
+}
+.ab-album-card.active .ab-album-name { color: var(--a1); }
+
+/* ── Portada: cuadrada, se adapta al ancho de columna ── */
+.ab-cover-wrap {
+  position: relative;
+  /* width 100% de su celda del grid, height = width via aspect-ratio */
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 8px; overflow: hidden;
+  background: #1e1e28;
+  box-shadow: 0 3px 12px rgba(0,0,0,.6);
+  margin-bottom: 7px;
+  flex-shrink: 0;
+}
+.ab-cover-wrap img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+}
+.ab-cover-placeholder {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+}
+.ab-cover-placeholder svg { width: 28px; height: 28px; opacity: .8; }
+
+/* ── Barras EQ en la portada ── */
+.ab-cover-eq {
+  position: absolute; bottom: 6px; right: 6px;
+  display: none; align-items: flex-end; gap: 2px; height: 11px;
+  background: rgba(0,0,0,.65); border-radius: 4px; padding: 2px 4px;
+}
+.ab-album-card.playing .ab-cover-eq { display: flex; }
+.ab-cover-eq-bar {
+  width: 2px; background: var(--a1); border-radius: 1px;
+  animation: eqRise .4s ease-in-out infinite alternate;
+}
+.ab-cover-eq-bar:nth-child(1) { animation-duration: .5s; }
+.ab-cover-eq-bar:nth-child(2) { animation-duration: .3s; animation-delay: .1s; }
+.ab-cover-eq-bar:nth-child(3) { animation-duration: .6s; animation-delay: .2s; }
+.ab-cover-eq-bar.paused { animation-play-state: paused; height: 3px; }
+
+/* ── Textos de la card ── */
+.ab-album-name {
+  font-size: clamp(11px, 1.5vw + 6px, 13px); font-weight: 700; color: #e8e8f0;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  line-height: 1.3; transition: color .15s;
+  max-width: 100%;
+}
+.ab-album-artist {
+  font-size: 11px; color: rgba(255,255,255,.42); margin-top: 2px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  max-width: 100%;
+}
+.ab-album-count {
+  font-size: 10px; color: rgba(255,255,255,.28);
+  font-family: 'Share Tech Mono', monospace;
+}
+
+/* ── Mini reproductor — píldora flotante ── */
+.ab-now-playing {
+  position: absolute;
+  bottom: max(env(safe-area-inset-bottom, 8px), 8px);
+  left: 8px; right: 8px;
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 6px 8px 10px;
+  background: rgba(44,44,58,.97);
+  backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px);
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.09);
+  box-shadow: 0 6px 32px rgba(0,0,0,.7);
+  opacity: 0; transform: translateY(24px);
+  transition: opacity .3s, transform .38s cubic-bezier(.22,1,.36,1);
+  pointer-events: none;
+  box-sizing: border-box;
+  /* no interfiere con el scroll */
+  z-index: 2;
+}
+.ab-now-playing.visible {
+  opacity: 1; transform: translateY(0); pointer-events: auto;
+}
+
+.ab-np-cover {
+  width: 40px; height: 40px; border-radius: 8px; flex-shrink: 0;
+  background: #2a2a3a center/cover no-repeat;
+  box-shadow: 0 2px 10px rgba(0,0,0,.55);
+}
+.ab-np-info { flex: 1; min-width: 0; }
+.ab-np-title {
+  font-size: 13px; font-weight: 700; color: #fff;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.ab-np-artist {
+  font-size: 11px; color: rgba(255,255,255,.48); margin-top: 1px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 500;
+}
+.ab-np-controls {
+  display: flex; align-items: center; gap: 0; flex-shrink: 0;
+}
+.ab-np-btn {
+  background: none; border: none; color: rgba(255,255,255,.72);
+  cursor: pointer; width: 36px; height: 36px;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  transition: color .1s, transform .1s; -webkit-tap-highlight-color: transparent;
+}
+.ab-np-btn:active { color: #fff; transform: scale(.78); }
+.ab-np-play {
+  width: 36px; height: 36px; border-radius: 50%; border: none;
+  background: var(--a1); color: #000; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: transform .1s, background .15s; -webkit-tap-highlight-color: transparent;
+  flex-shrink: 0;
+}
+.ab-np-play:active { transform: scale(.8); }
+
+/* ── Barra de álbum actual en el player principal ── */
+.current-album-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 6px; min-height: 44px;
+}
+
 /* ========= No text selection ========= */
 * { user-select: none; -webkit-user-select: none; }
+/* ═══════════════════════════════════════════════════
+   SEEK BUTTONS INLINE (al lado del botón play)
+═══════════════════════════════════════════════════ */
+.seek-btn-inline {
+  color: var(--muted);
+}
+.seek-btn-inline:hover { color: var(--txt); }
+.seek-btn-inline:active { color: var(--a1); }
+.seek-btn-inline svg { transform-origin: center; }
+#btnSeekBack svg.spin-active { animation: spin-back .45s cubic-bezier(.4,0,.2,1); }
+#btnSeekFwd svg.spin-active  { animation: spin-fwd  .45s cubic-bezier(.4,0,.2,1); }
+@keyframes spin-back { 0% { transform: rotate(0deg); } 100% { transform: rotate(-360deg); } }
+@keyframes spin-fwd  { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+/* ═══════════════════════════════════════════════════
+   MODAL PERSONALIZAR BOTONES
+═══════════════════════════════════════════════════ */
+.btn-cfg-section {
+  padding: 10px 0 6px;
+  border-top: 1px solid var(--border);
+  margin-top: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.btn-cfg-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2px;
+}
+.btn-cfg-label {
+  font-size: 13px;
+  color: var(--txt);
+  font-weight: 600;
+}
+.btn-cfg-stepper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.cfg-step-btn {
+  width: 30px; height: 30px;
+  border-radius: 8px;
+  border: 1px solid var(--border2);
+  background: var(--s3);
+  color: var(--a1);
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background var(--tr), border-color var(--tr);
+  -webkit-tap-highlight-color: transparent;
+}
+.cfg-step-btn:active { background: var(--s2); border-color: var(--a1); }
+.cfg-step-val {
+  min-width: 26px;
+  text-align: center;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 15px;
+  color: var(--txt);
+  font-weight: 700;
+}
+.cfg-step-unit {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+/* ─── Botón para abrir el explorador de álbumes ─── */
+.album-browse-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--s2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  min-height: 44px;
+  width: 100%;
+  cursor: pointer;
+  color: var(--txt);
+  font-family: 'Chakra Petch', monospace;
+  font-size: 13px;
+  font-weight: 700;
+  outline: none;
+  transition: border-color var(--tr), background var(--tr);
+  -webkit-tap-highlight-color: transparent;
+}
+.album-browse-btn:active {
+  border-color: var(--a1);
+  background: var(--s3);
+}
+.album-browse-btn svg {
+  flex-shrink: 0;
+  transition: transform .2s;
+}
+.album-browse-btn:active svg {
+  transform: translateY(2px);
+}
+
+/* ─── Barra de álbum actual ─── */
+.current-album-info {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+}
+.current-album-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--txt);
+  letter-spacing: .03em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ═══════════════════════════════════════════════════
+   SISTEMA DE BOTONES UNIFICADO — overrides finales
+   Garantiza consistencia visual en toda la app
+═══════════════════════════════════════════════════ */
+
+/* Botón primario (teal) */
+.btn-action.primary {
+  background: var(--a1);
+  color: #000;
+  border: none;
+  font-weight: 700;
+  letter-spacing: .03em;
+}
+.btn-action.primary:hover { background: #5fffda; }
+.btn-action.primary:active { background: #30e6b0; transform: scale(.98); }
+
+/* Botón peligro */
+.btn-action-danger:hover { background: rgba(255,61,136,0.1); border-color: rgba(255,61,136,0.5); }
+.btn-action-danger:active { background: rgba(255,61,136,0.15); }
+
+/* Normaliza todos los botones de acción en modals */
+.edit-btns .btn-action,
+.edit-btns .btn-action-outline {
+  flex: 1;
+  min-height: 44px;
+  font-size: 13px;
+}
+
+/* Asegura que el botón "Cerrar" en modals use el ancho completo */
+.modal-sheet .edit-btns:has(button:only-child) button {
+  width: 100%;
+}
+
+/* Estandariza .btn-action label dentro de edit-cover-btns */
+.edit-cover-btns .btn-action,
+.edit-cover-btns .btn-action-outline {
+  width: 100%;
+  min-height: 38px;
+  font-size: 11px;
+  justify-content: center;
+}
+
+/* Sidebar options: activo visual para opciones seleccionadas */
+.sb-option:active { background: rgba(63,255,200,0.06); color: var(--a1); }
+
+/* Botón de íconos del header: active state */
+.btn-icon:active { background: var(--s3); border-color: var(--border2); }
+
+/* ═══════════════════════════════════════════════
+   OFFLINE OVERLAY
+═══════════════════════════════════════════════ */
+.offline-overlay {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  z-index: 90;
+  display: flex; align-items: center; justify-content: center;
+  pointer-events: none; opacity: 0;
+  transition: opacity .5s ease;
+}
+.offline-overlay.visible {
+  pointer-events: auto; opacity: 1;
+}
+.offline-overlay::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: rgba(5,5,14,.88);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+}
+.offline-content {
+  position: relative; z-index: 1;
+  text-align: center; padding: 30px;
+  transform: translateY(12px);
+  transition: transform .5s cubic-bezier(.22,1,.36,1);
+}
+.offline-overlay.visible .offline-content {
+  transform: translateY(0);
+}
+.offline-icon {
+  color: var(--muted); margin-bottom: 16px;
+  display: flex; align-items: center; justify-content: center;
+}
+.offline-title {
+  font-size: 22px; font-weight: 800; color: #fff;
+  letter-spacing: .04em; margin-bottom: 6px;
+}
+.offline-subtitle {
+  font-size: 11px; font-weight: 600; color: var(--a1);
+  text-transform: uppercase; letter-spacing: .2em; margin-bottom: 12px;
+}
+.offline-desc {
+  font-size: 13px; color: var(--muted); line-height: 1.5;
+  max-width: 240px; margin: 0 auto;
+}
+.offline-close {
+  position: absolute; top: -4px; right: -4px;
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--s2); border: 1px solid var(--border);
+  color: var(--muted); cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: color var(--tr), border-color var(--tr), background var(--tr);
+}
+.offline-close:hover { color: var(--txt); border-color: var(--border2); background: var(--s3); }
+
+/* Badge flotante cuando está desconectado */
+.offline-badge {
+  position: fixed; top: 8px; left: 50%; transform: translateX(-50%);
+  z-index: 91;
+  display: none; align-items: center; gap: 5px;
+  padding: 5px 12px; border-radius: 20px;
+  background: rgba(255,61,136,.15);
+  border: 1px solid rgba(255,61,136,.25);
+  color: var(--a2);
+  font-size: 10px; font-weight: 600; letter-spacing: .06em;
+  pointer-events: none;
+  animation: offlineBadgePulse 2.5s ease-in-out infinite;
+}
+.offline-badge.show { display: flex; }
+@keyframes offlineBadgePulse {
+  0%, 100% { opacity: .7; }
+  50% { opacity: 1; }
+}
+
+/* Offline Availability */
+.track-row.offline-unavailable { opacity: .4; filter: grayscale(1); cursor: not-allowed; }
+.offline-marker { display: inline-flex; align-items: center; justify-content: center; width: 16px; height: 16px; border-radius: 50%; background: var(--err); color: #fff; font-size: 10px; font-weight: 800; margin-left: 6px; }
+
+

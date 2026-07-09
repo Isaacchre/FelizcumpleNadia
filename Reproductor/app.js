@@ -25,6 +25,8 @@ const saveBlob = async (blob) => {
     const r = tx.objectStore(DB_STORE).add({ blob, created: Date.now() });
     r.onsuccess = () => res(r.result);
     r.onerror = () => rej(r.error);
+    tx.onerror = () => rej(tx.error || new Error('Transaction failed'));
+    tx.onabort = () => rej(new Error('Transaction aborted'));
   });
 };
 
@@ -35,6 +37,8 @@ const loadBlob = async (id) => {
     const r = tx.objectStore(DB_STORE).get(id);
     r.onsuccess = () => res(r.result ? r.result.blob : null);
     r.onerror = () => rej(r.error);
+    tx.onerror = () => rej(tx.error || new Error('Transaction failed'));
+    tx.onabort = () => rej(new Error('Transaction aborted'));
   });
 };
 
@@ -45,6 +49,8 @@ const deleteBlob = async (id) => {
     const r = tx.objectStore(DB_STORE).delete(id);
     r.onsuccess = () => res();
     r.onerror = () => rej(r.error);
+    tx.onerror = () => rej(tx.error || new Error('Transaction failed'));
+    tx.onabort = () => rej(new Error('Transaction aborted'));
   });
 };
 
@@ -59,7 +65,14 @@ const LS_KEYS = {
   customBg:    'nadia_custom_bg',
   customBgList:'nadia_custom_bg_list',
   effects:     'nadia_effects',
+  btnConfig:   'nadia_btn_config',
+  customAlbums:'nadia_custom_albums',
+  shuffle:     'nadia_shuffle',
+  repeat:      'nadia_repeat',
 };
+
+const YT_API_KEY   = 'dc0265c45bmsh066240b5cdd1110p1779afjsncd6830a92a10';
+const YT_API_HOST  = 'yt-api.p.rapidapi.com';
 
 const getLS = (key, fallback = null) => {
   try {
@@ -68,9 +81,27 @@ const getLS = (key, fallback = null) => {
   } catch { return fallback; }
 };
 const setLS = (key, value) => {
-  try { localStorage.setItem(key, JSON.stringify(value)); }
-  catch(e) { console.warn('LS lleno:', e); }
+  try { localStorage.setItem(key, JSON.stringify(value)); return true; }
+  catch(e) { console.warn('LS lleno:', e); return false; }
 };
+
+const compressImage = (dataUrl, maxDim = 400, quality = 0.8) => new Promise(res => {
+  const img = new Image();
+  img.onload = () => {
+    let { width, height } = img;
+    if (width > maxDim || height > maxDim) {
+      const ratio = Math.min(maxDim / width, maxDim / height);
+      width = Math.round(width * ratio);
+      height = Math.round(height * ratio);
+    }
+    const c = document.createElement('canvas');
+    c.width = width; c.height = height;
+    c.getContext('2d').drawImage(img, 0, 0, width, height);
+    res(c.toDataURL('image/jpeg', quality));
+  };
+  img.onerror = () => res(dataUrl);
+  img.src = dataUrl;
+});
 
 let state = {
   albums:          {},
@@ -90,16 +121,54 @@ let state = {
   customBg:        { bg: '', opacity: 0.25 },
   customBgUrls:    [],
   effects:         { bt21: true, discSpin: true, marquee: true, antonio: true },
+  btnConfig: { seekBtns: false, seekBack: 10, seekFwd: 10, favBtn: true, duration: true, trackCover: true, volume: true, editBtn: true, trackNav: false },
+  customAlbums: [],
+  ytTrack: false,
 };
 
 const audio = new Audio();
 audio.volume = getLS(LS_KEYS.volume, 0.75);
 audio.preload = 'metadata';
 
+// Android: keep audio context alive for background playback
+let audioCtx = null;
+const ensureAudioCtx = () => {
+  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  if (audioCtx.state === 'suspended' && state.isPlaying) audioCtx.resume();
+};
+const suspendAudioCtx = () => {
+  if (audioCtx && audioCtx.state === 'running' && !state.isPlaying) audioCtx.suspend();
+};
+document.addEventListener('click', ensureAudioCtx, { once: true });
+
+// Wake Lock: prevent Android from killing audio when screen off
+let wakeLockSentinel = null;
+const acquireWakeLock = async () => {
+  if (!navigator.wakeLock || state.ytTrack) return;
+  try {
+    if (wakeLockSentinel) wakeLockSentinel.release();
+    wakeLockSentinel = await navigator.wakeLock.request('screen');
+  } catch {}
+};
+const releaseWakeLock = () => {
+  if (wakeLockSentinel) { wakeLockSentinel.release(); wakeLockSentinel = null; }
+};
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden && !wakeLockSentinel && state.isPlaying && !state.ytTrack) acquireWakeLock();
+});
+
 const createdBlobUrls = new Set();
 window.addEventListener('beforeunload', () => {
+  if (ytPollInterval) { clearInterval(ytPollInterval); ytPollInterval = null; }
   createdBlobUrls.forEach(url => URL.revokeObjectURL(url));
   createdBlobUrls.clear();
+});
+
+// Android: resume YT playback when coming back from lock screen / another app
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden && state.isPlaying && state.ytTrack && ytPlayer && ytPlayer.getPlayerState) {
+    if (ytPlayer.getPlayerState() === ytStatePaused) ytPlay();
+  }
 });
 
 // ─── Acceso seguro al DOM ──────────────────────────────────
@@ -136,8 +205,6 @@ const DOM = {
   iconPause:          $id('iconPause'),
   btnShuffle:         $id('btnShuffle'),
   btnRepeat:          $id('btnRepeat'),
-  btnPrev:            $id('btnPrev'),
-  btnNext:            $id('btnNext'),
   volSlider:          $id('volSlider'),
   tracklist:          $id('tracklist'),
   albumSelect:        $id('albumSelect'),
@@ -159,6 +226,21 @@ const DOM = {
   uploadAlbumAssign:  $id('uploadAlbumAssign'),
   uploadAlbumSelect:  $id('uploadAlbumSelect'),
   btnOpenUpload:      $id('btnOpenUpload'),
+  albumBrowser:       $id('albumBrowser'),
+  btnAlbumBrowserBack:$id('btnAlbumBrowserBack'),
+  abGrid:             $id('abGrid'),
+  abBody:             $id('abBody'),
+  abSearchInput:      $id('abSearchInput'),
+  abNowPlaying:       $id('abNowPlaying'),
+  abNpCover:          $id('abNpCover'),
+  abNpTitle:          $id('abNpTitle'),
+  abNpArtist:         $id('abNpArtist'),
+  abNpPlay:           $id('abNpPlay'),
+  abNpPrev:           $id('abNpPrev'),
+  abNpNext:           $id('abNpNext'),
+  abIconPlay:         $id('abIconPlay'),
+  abIconPause:        $id('abIconPause'),
+  currentAlbumLabel:  $id('currentAlbumLabel'),
   btnUploadClose:     $id('btnUploadClose'),
   ytUrlInput:         $id('ytUrlInput'),
   ytSpinner:          $id('ytSpinner'),
@@ -185,6 +267,7 @@ const DOM = {
 
   // -- Elementos agregados para Efectos --
   sbOptEffects:       $id('sbOptEffects'),
+  sbOptClearCache:    $id('sbOptClearCache'),
   modalEffects:       $id('modalEffects'),
   btnEffectsClose:    $id('btnEffectsClose'),
   toggleBt21:         $id('toggleBt21'),
@@ -195,7 +278,44 @@ const DOM = {
   idleTrackArtist:    $id('idleTrackArtist'),
   antonioImg:         $id('antonioImg'),
   antonioDialogue:    $id('antonioDialogue'),
-  antonioWrap:        $id('antonioWrap')
+  antonioWrap:        $id('antonioWrap'),
+
+  // -- Elementos: Personalizar botones --
+  sbOptButtons:       $id('sbOptButtons'),
+  modalButtons:       $id('modalButtons'),
+  btnButtonsClose:    $id('btnButtonsClose'),
+  toggleSeekBtns:     $id('toggleSeekBtns'),
+  toggleTrackNav:     $id('toggleTrackNav'),
+  seekCfgSection:     $id('seekCfgSection'),
+  seekBackVal:        $id('seekBackVal'),
+  seekFwdVal:         $id('seekFwdVal'),
+  btnBackMinus:       $id('btnBackMinus'),
+  btnBackPlus:        $id('btnBackPlus'),
+  btnFwdMinus:        $id('btnFwdMinus'),
+  btnFwdPlus:         $id('btnFwdPlus'),
+  toggleFavBtn:       $id('toggleFavBtn'),
+  toggleDuration:     $id('toggleDuration'),
+  toggleTrackCover:   $id('toggleTrackCover'),
+  toggleVolume:       $id('toggleVolume'),
+  toggleEditBtn:      $id('toggleEditBtn'),
+  volumeRow:          $id('volumeRow'),
+  controlsNav:        $id('controlsNav'),
+  btnOpenAlbumsBar:   $id('btnOpenAlbumsBar'),
+  modalAddAlbum:      $id('modalAddAlbum'),
+  addAlbumName:       $id('addAlbumName'),
+  addCoverInput:      $id('addCoverInput'),
+  addCoverImg:        $id('addCoverImg'),
+  addCoverPlaceholder:$id('addCoverPlaceholder'),
+  addCoverPreview:    $id('addCoverPreview'),
+  addPlaylistUrl:     $id('addPlaylistUrl'),
+  btnAddAlbumCancel:  $id('btnAddAlbumCancel'),
+  btnAddAlbumSave:    $id('btnAddAlbumSave'),
+  // — Download progress modal —
+  modalDownload:      $id('modalDownload'),
+  dlStatus:           $id('dlStatus'),
+  dlBarFill:          $id('dlBarFill'),
+  dlCounter:          $id('dlCounter'),
+  dlCurrent:          $id('dlCurrent'),
 };
 
 let toastTimer;
@@ -209,12 +329,17 @@ const showToast = (msg, type = '', ms = 2500) => {
 };
 
 const formatTime = (s) => {
-  if (!s || isNaN(s)) return '0:00';
+  if (!s || !isFinite(s) || s < 0) return '0:00';
   const m = Math.floor(s / 60), sec = Math.floor(s % 60);
   return `${m}:${sec < 10 ? '0' : ''}${sec}`;
 };
 
-const getTrackId = (t) => t.fileId || t.src;
+const getTrackId = (t) => t?.fileId || t?.src || '';
+
+const isLocalSong = (t) => {
+  if (!t) return false;
+  return t.albumOrigin === '__UPLOADED__' || (t.src && (t.src.startsWith('music/') || !t.src.startsWith('http')));
+};
 const isFav = (t) => state.favorites.has(getTrackId(t));
 
 const toggleFav = (track) => {
@@ -226,7 +351,7 @@ const toggleFav = (track) => {
     ANTONIO.onFavToggle(false);
   } else {
     state.favorites.add(id);
-    showToast('Agregado a favoritos ♥', 'success');
+    showToast('Agregado a favoritos', 'success');
     ANTONIO.onFavToggle(true);
   }
   setLS(LS_KEYS.favorites, [...state.favorites]);
@@ -236,21 +361,37 @@ const toggleFav = (track) => {
 const getFilteredTracks = () => {
   let pool = [];
   const q = state.searchQuery.trim().toLowerCase();
+  const qNorm = q.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 
   if (q) {
-    Object.entries(state.albums).forEach(([key, tracks]) => {
+    Object.entries(state.albums).forEach(([key, tracks]) =>
       tracks.forEach(t => {
         if (
           t.title.toLowerCase().includes(q) ||
+          t.title.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().includes(qNorm) ||
           t.artist.toLowerCase().includes(q) ||
+          t.artist.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().includes(qNorm) ||
           key.toLowerCase().includes(q)
         ) pool.push({ ...t, albumOrigin: key });
-      });
-    });
+      })
+    );
     state.uploadedSongs.forEach(t => {
-      if (t.title.toLowerCase().includes(q) || t.artist.toLowerCase().includes(q))
+      if (t.title.toLowerCase().includes(q) || t.artist.toLowerCase().includes(q) ||
+          t.title.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().includes(qNorm) ||
+          t.artist.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().includes(qNorm))
         pool.push({ ...t, albumOrigin: '__UPLOADED__' });
     });
+    state.customAlbums.forEach(a => (a.tracks || []).forEach(t => {
+      const tt = (t.title || '').toLowerCase();
+      const ta = (t.artist || '').toLowerCase();
+      const an = (a.name || '').toLowerCase();
+      const ttN = tt.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      const taN = ta.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      const anN = an.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      if (tt.includes(q) || ta.includes(q) || an.includes(q) ||
+          ttN.includes(qNorm) || taN.includes(qNorm) || anN.includes(qNorm))
+        pool.push({ ...t, albumOrigin: a.key });
+    }));
     return pool;
   }
 
@@ -260,21 +401,155 @@ const getFilteredTracks = () => {
         tracks.forEach(t => pool.push({ ...t, albumOrigin: key }))
       );
       state.uploadedSongs.forEach(t => pool.push({ ...t, albumOrigin: '__UPLOADED__' }));
+      state.customAlbums.forEach(a => (a.tracks || []).forEach(t => pool.push({ ...t, albumOrigin: a.key })));
       break;
     case '__FAV__':
       Object.entries(state.albums).forEach(([key, tracks]) =>
         tracks.forEach(t => { if (isFav(t)) pool.push({ ...t, albumOrigin: key }); })
       );
       state.uploadedSongs.forEach(t => { if (isFav(t)) pool.push({ ...t, albumOrigin: '__UPLOADED__' }); });
+      state.customAlbums.forEach(a => (a.tracks || []).forEach(t => {
+        if (isFav(t)) pool.push({ ...t, albumOrigin: a.key });
+      }));
       break;
     case '__UPLOADED__':
       pool = state.uploadedSongs.map(t => ({ ...t, albumOrigin: '__UPLOADED__' }));
       break;
     default:
-      pool = (state.albums[state.currentView] || []).map(t => ({ ...t, albumOrigin: state.currentView }));
+      const customAlbum = state.customAlbums.find(a => a.key === state.currentView);
+      if (customAlbum && customAlbum.tracks) {
+        pool = customAlbum.tracks.map(t => ({ ...t, albumOrigin: state.currentView }));
+      } else {
+        pool = (state.albums[state.currentView] || []).map(t => ({ ...t, albumOrigin: state.currentView }));
+      }
   }
   return pool;
 };
+
+// ─── YouTube IFrame Player ───────────────────────────
+let ytPlayer = null;
+let ytApiReady = false;
+let ytScriptLoaded = false;
+let ytPendingVideo = null;
+let ytLastLoadedVid = null;
+let ytPollInterval = null;
+let fromUserGesture = false;
+const ytStateEnded = 0;
+const ytStatePlaying = 1;
+const ytStatePaused = 2;
+
+const ytPlay = () => {
+  const vid = state.activeTrackData?.videoId;
+  if (!vid) return;
+  if (ytPlayer && ytPlayer.playVideo) {
+    if (vid !== ytLastLoadedVid) {
+      if (!ytPlayer.isMuted()) ytPlayer.mute();
+      ytLoadVideo(vid);
+    } else {
+      ytPlayer.playVideo();
+    }
+    ytStartKeepAlive();
+    return;
+  }
+  loadYtApi();
+  if (!ytLoadVideo(vid)) ytPendingVideo = vid;
+};
+
+const ytPause = () => {
+  ytStopKeepAlive();
+  if (ytPlayer && ytPlayer.pauseVideo) ytPlayer.pauseVideo();
+};
+
+// Keep YT player alive when screen locks on Android
+let ytKeepAlive = null;
+const ytStartKeepAlive = () => {
+  if (!/android/i.test(navigator.userAgent)) return;
+  clearInterval(ytKeepAlive);
+  ytKeepAlive = setInterval(() => {
+    if (!state.isPlaying || !state.ytTrack || !ytPlayer) { clearInterval(ytKeepAlive); ytKeepAlive = null; return; }
+    if (document.hidden && ytPlayer.getPlayerState && ytPlayer.getPlayerState() === ytStatePlaying) {
+      ytPlayer.getCurrentTime();
+    }
+  }, 10000);
+};
+const ytStopKeepAlive = () => { clearInterval(ytKeepAlive); ytKeepAlive = null; };
+
+const ytSeekTo = (time) => {
+  if (ytPlayer && ytPlayer.seekTo) ytPlayer.seekTo(time, true);
+};
+
+const ytLoadVideo = (videoId) => {
+  if (ytPlayer && ytPlayer.loadVideoById) {
+    ytPlayer.loadVideoById(videoId);
+    ytLastLoadedVid = videoId;
+    return true;
+  }
+  return false;
+};
+
+const onYtApiReady = () => {
+  if (ytApiReady) return;
+  ytApiReady = true;
+  const isAndroid = /android/i.test(navigator.userAgent);
+  ytPlayer = new YT.Player('ytPlayer', {
+    height: 200, width: 200,
+    playerVars: { autoplay: 1, controls: 0, disablekb: 1, fs: 0, modestbranding: 1, rel: 0, playsinline: 1 },
+    events: {
+      onReady: () => {
+        ytPlayer.mute();
+        if (ytPendingVideo) {
+          ytLoadVideo(ytPendingVideo);
+          ytPendingVideo = false;
+        }
+      },
+      onError: () => {},
+      onStateChange: (e) => {
+        if (e.data === ytStateEnded) {
+          if (state.repeat) { ytSeekTo(0); ytPlay(); }
+          else nextTrack();
+        } else if (e.data === ytStatePlaying) {
+          ytPlayer.unMute();
+          if (isAndroid && state.isPlaying && !fromUserGesture) {
+            ytPlayer.mute();
+            setTimeout(() => { if (state.isPlaying && !ytPlayer.isMuted()) ytPlayer.unMute(); }, 500);
+          }
+          fromUserGesture = false;
+          if (!state.isPlaying) togglePlayback(true);
+        } else if (e.data === ytStatePaused && state.isPlaying) {
+          togglePlayback(false);
+        }
+      },
+    },
+  });
+  if (!ytPollInterval) {
+    ytPollInterval = setInterval(() => {
+      if (!state.ytTrack || !ytPlayer || !ytPlayer.getCurrentTime) return;
+      if (!state.isPlaying) return;
+      const ct = ytPlayer.getCurrentTime();
+      const dur = ytPlayer.getDuration();
+      if (dur) {
+        DOM.timeNow.textContent = formatTime(ct);
+        DOM.timeTotal.textContent = formatTime(dur);
+        const ratio = ct / dur;
+        DOM.progressFill.style.width = `${ratio * 100}%`;
+        DOM.progressBar.style.setProperty('--thumb-x', `${ratio * 100}%`);
+        updateMediaPositionState();
+      }
+    }, 250);
+  }
+};
+
+const loadYtApi = () => {
+  if (ytScriptLoaded) return;
+  ytScriptLoaded = true;
+  if (window.YT && YT.loaded) { onYtApiReady(); return; }
+  window.onYouTubeIframeAPIReady = onYtApiReady;
+  const tag = document.createElement('script');
+  tag.src = 'https://www.youtube.com/iframe_api';
+  document.head.appendChild(tag);
+};
+
+const isYtTrack = (t) => t && t.videoId;
 
 const loadTrack = (idx) => {
   const filtered = getFilteredTracks();
@@ -293,7 +568,31 @@ const loadTrack = (idx) => {
   state.activeTrackData    = filtered[idx];
   state.activeTrackAlbum   = filtered[idx].albumOrigin;
 
-  audio.src = state.activeTrackData.src || '';
+  // Stop previous YouTube playback
+  state.ytTrack = false;
+  if (ytPlayer && ytPlayer.stopVideo) ytPlayer.stopVideo();
+  if (ytPollInterval) { clearInterval(ytPollInterval); ytPollInterval = null; }
+
+  if (isYtTrack(state.activeTrackData)) {
+    state.ytTrack = true;
+    loadYtApi();
+    const vid = state.activeTrackData.videoId;
+    if (!ytLoadVideo(vid)) ytPendingVideo = vid;
+  } else {
+    if (!navigator.onLine && !isLocalSong(state.activeTrackData)) {
+      showToast('Sin conexión 🎵 esta pista no está disponible localmente', 'error');
+      state.isPlaying = false;
+      updateTrackList();
+      updateMediaPositionState();
+      return;
+    }
+    if (state.activeTrackData.src) {
+      audio.src = state.activeTrackData.src;
+    } else {
+      showToast('Pista sin fuente de audio', 'error');
+      return;
+    }
+  }
 
   const meta        = state.albumMeta[state.activeTrackAlbum] || {};
   const displayAlbum = meta.name || state.activeTrackAlbum;
@@ -330,18 +629,34 @@ const loadTrack = (idx) => {
 
   updateTrackList();
   updateMediaSession();
+  updateCurrentAlbumLabel();
+  updateAbNowPlaying();
 
   if (state.isPlaying) {
-    audio.play().catch(err => {
-      if (err && err.name === 'AbortError') return; // interrumpido por un cambio de pista rápido, no es un error real
+    if (state.ytTrack) ytPlay();
+    else audio.play().catch(err => {
+      if (err && err.name === 'AbortError') return;
       showToast('Error al reproducir', 'error');
     });
   }
 };
 
-const togglePlayback = (forceState) => {
+const togglePlayback = (forceState, fromEvent) => {
   const wasPlaying = state.isPlaying;
-  state.isPlaying = typeof forceState === 'boolean' ? forceState : !state.isPlaying;
+  const newState = typeof forceState === 'boolean' ? forceState : !state.isPlaying;
+  if (newState === wasPlaying && fromEvent) return;
+
+  state.isPlaying = newState;
+
+  // Validate BEFORE touching UI to avoid flicker
+  if (state.isPlaying && wasPlaying !== true) {
+    if (!state.activeTrackData.src && !state.ytTrack && !state.activeTrackData.videoId) {
+      state.isPlaying = false;
+      showToast('No hay pista seleccionada', 'error');
+      return;
+    }
+  }
+
   DOM.disc.classList.toggle('playing', state.isPlaying && state.effects.discSpin);
   DOM.discGlow.classList.toggle('active', state.isPlaying && state.effects.discSpin);
   DOM.tonearm.classList.toggle('on-disc', state.isPlaying);
@@ -356,6 +671,9 @@ const togglePlayback = (forceState) => {
     navigator.mediaSession.playbackState = state.isPlaying ? 'playing' : 'paused';
   }
 
+  // Sync album browser mini player (solo si está abierto)
+  if (DOM.albumBrowser.classList.contains('open')) updateAbNowPlaying();
+
   // Idle timer: solo cuando hay reproducción activa
   if (state.isPlaying) {
     clearTimeout(idleTimer);
@@ -365,19 +683,27 @@ const togglePlayback = (forceState) => {
     clearTimeout(idleTimer);
   }
 
-  if (state.isPlaying) {
-    if (!state.activeTrackData || !state.activeTrackData.src) {
-      showToast('No hay pista seleccionada', 'error');
-      togglePlayback(false);
-      return;
+  if (state.isPlaying && !fromEvent) {
+    fromUserGesture = true;
+    ensureAudioCtx();
+    if (state.ytTrack) { ytPlay(); } else { acquireWakeLock();
+      if (state.activeTrackData.src) {
+        if (!audio.src || audio.src === window.location.href) audio.src = state.activeTrackData.src;
+        audio.play().catch(err => {
+          if (err && err.name === 'AbortError') return;
+          showToast('Error al reproducir', 'error');
+        });
+      } else {
+        state.isPlaying = false;
+        DOM.iconPlay.style.display = 'block';
+        DOM.iconPause.style.display = 'none';
+        showToast('No hay fuente de audio disponible', 'error');
+      }
     }
-    if (!audio.src || audio.src === window.location.href) audio.src = state.activeTrackData.src;
-    audio.play().catch(err => {
-      if (err && err.name === 'AbortError') return;
-      showToast('Error al reproducir', 'error');
-    });
-  } else {
-    audio.pause();
+  } else if (!state.isPlaying && !fromEvent) {
+    suspendAudioCtx();
+    releaseWakeLock();
+    if (state.ytTrack) ytPause(); else audio.pause();
   }
 };
 
@@ -392,7 +718,14 @@ const nextTrack = () => {
 };
 
 const prevTrack = () => {
-  if (audio.currentTime > 3) { audio.currentTime = 0; return; }
+  const filtered = getFilteredTracks();
+  if (!filtered.length) return;
+  const ct = state.ytTrack && ytPlayer && ytPlayer.getCurrentTime ? ytPlayer.getCurrentTime() : (state.ytTrack ? 0 : audio.currentTime);
+  if (ct > 3) {
+    if (state.ytTrack && ytPlayer && ytPlayer.seekTo) ytPlayer.seekTo(0);
+    else audio.currentTime = 0;
+    return;
+  }
   loadTrack(state.currentTrackIdx - 1);
 };
 
@@ -414,16 +747,426 @@ const refreshAlbumSelector = () => {
     DOM.albumSelect.add(new Option(`${meta.name || key} (${state.albums[key].length})`, key));
   });
 
+  if (state.customAlbums.length) {
+    const sep2 = new Option('──────────────', '');
+    sep2.disabled = true;
+    DOM.albumSelect.add(sep2);
+    state.customAlbums.forEach(album => {
+      DOM.albumSelect.add(new Option(album.name, album.key));
+    });
+  }
+
   const exists = Array.from(DOM.albumSelect.options).some(o => o.value === prev);
   DOM.albumSelect.value = exists ? prev : '__ALL__';
   state.currentView = DOM.albumSelect.value;
 
   populateUploadAlbumSelect();
+  updateCurrentAlbumLabel();
+};
+
+// ═══════════════════════════════════════════════════
+// ALBUM BROWSER
+// ═══════════════════════════════════════════════════
+
+const openAlbumBrowser = () => {
+  renderAlbumBrowser();
+  DOM.albumBrowser.classList.add('open');
+  lockBody();
+  updateAbNowPlaying();
+};
+
+const closeAlbumBrowser = () => {
+  DOM.albumBrowser.classList.remove('open');
+  unlockBody();
+  if (DOM.abSearchInput) { DOM.abSearchInput.value = ''; renderAlbumBrowser(''); }
+};
+
+let addAlbumCoverDataUrl = '';
+
+const openAddAlbumModal = () => {
+  addAlbumCoverDataUrl = '';
+  DOM.addAlbumName.value = '';
+  DOM.addPlaylistUrl.value = '';
+  DOM.addCoverImg.style.display = 'none';
+  DOM.addCoverPlaceholder.style.display = 'flex';
+  DOM.modalAddAlbum.classList.add('open');
+  lockBody();
+};
+
+const closeAddAlbumModal = () => {
+  DOM.modalAddAlbum.classList.remove('open');
+  unlockBody();
+  DOM.addAlbumName.value = '';
+  DOM.addPlaylistUrl.value = '';
+  DOM.addCoverInput.value = '';
+  addAlbumCoverDataUrl = '';
+  DOM.addCoverImg.style.display = 'none';
+  DOM.addCoverPlaceholder.style.display = 'flex';
+};
+
+const extractPlaylistId = (url) => {
+  const m = url.match(/[&?]list=([^&]+)/);
+  return m ? m[1] : null;
+};
+
+const dlOpen = () => { DOM.modalDownload.classList.add('open'); lockBody(); };
+const dlClose = () => { DOM.modalDownload.classList.remove('open'); unlockBody(); };
+const dlUpdate = (status, current, count, total) => {
+  DOM.dlStatus.textContent = status;
+  DOM.dlCurrent.textContent = current || '—';
+  DOM.dlCounter.textContent = `${count} / ${total}`;
+  DOM.dlBarFill.style.width = total > 0 ? `${Math.min(100, (count / total) * 100)}%` : '0%';
+};
+
+const fetchPage = async (id, continuation) => {
+  const params = new URLSearchParams({ id });
+  if (continuation) params.set('continuation', continuation);
+  const res = await fetch(`https://${YT_API_HOST}/playlist?${params}`, {
+    headers: {
+      'Content-Type': 'application/json',
+      'x-rapidapi-host': YT_API_HOST,
+      'x-rapidapi-key': YT_API_KEY,
+    },
+  });
+  if (!res.ok) throw new Error(`API error ${res.status}`);
+  return res.json();
+};
+
+const fetchPlaylist = async (playlistId, onProgress) => {
+  let allData = [];
+  let continuation = null;
+  let totalEstimate = 0;
+  let page = 0;
+
+  do {
+    const json = await fetchPage(playlistId, continuation);
+    const items = json.data || [];
+    continuation = json.continuation || null;
+
+    // First page: get total estimate
+    if (page === 0) {
+      totalEstimate = json.videoCount || items.length || 0;
+    }
+
+    for (const item of items) {
+      if (!item.videoId) continue;
+      allData.push({
+        videoId: item.videoId,
+        title: item.title || 'Sin título',
+        artist: json.owner?.title || item.channelTitle || 'YouTube',
+        duration: parseInt(item.lengthSeconds, 10) || 0,
+        thumbnail: item.thumbnail?.at(-1)?.url || item.thumbnail?.[0]?.url || '',
+      });
+      if (onProgress) onProgress(allData.length, Math.max(totalEstimate, allData.length));
+    }
+    page++;
+  } while (continuation);
+
+  return { items: allData, playlistTitle: '' };
+};
+
+const saveCustomAlbum = async () => {
+  const name = DOM.addAlbumName.value.trim();
+  const url = DOM.addPlaylistUrl.value.trim();
+  if (!name) { showToast('Ingresá un nombre para el álbum', 'error'); return; }
+  if (!url) { showToast('Ingresá una URL de playlist de YouTube', 'error'); return; }
+  if (!/youtube\.com|youtu\.be/.test(url)) { showToast('La URL no es de YouTube', 'error'); return; }
+  if (state.customAlbums.some(a => a.name.toLowerCase() === name.toLowerCase())) {
+    showToast('Ya existe un álbum con ese nombre', 'error');
+    return;
+  }
+
+  const playlistId = extractPlaylistId(url);
+  if (!playlistId) { showToast('No se pudo extraer el ID de la playlist', 'error'); return; }
+
+  closeAddAlbumModal();
+  dlOpen();
+  dlUpdate('Obteniendo lista de videos...', '', 0, 0);
+
+  try {
+    const result = await fetchPlaylist(playlistId, (count, total) => {
+      dlUpdate(`Obteniendo lista...`, '', count, total);
+    });
+
+    if (!result.items.length) {
+      dlClose();
+      showToast('La playlist está vacía o no se encontraron videos', 'error');
+      return;
+    }
+
+    const albumKey = '__CUSTOM__' + Date.now();
+    const tracks = result.items.map(t => ({
+      title: t.title,
+      artist: t.artist,
+      videoId: t.videoId,
+      duration: t.duration,
+      cover: t.thumbnail || addAlbumCoverDataUrl || '',
+      src: `https://www.youtube.com/watch?v=${t.videoId}`,
+      fileId: null,
+      bg: 'var(--s3)',
+    }));
+
+    state.customAlbums.push({
+      key: albumKey,
+      name,
+      playlistUrl: url,
+      cover: addAlbumCoverDataUrl || '',
+      tracks,
+    });
+    state.albumMeta[albumKey] = { name, cover: addAlbumCoverDataUrl || '' };
+
+    dlClose();
+    if (setLS(LS_KEYS.customAlbums, state.customAlbums) && setLS(LS_KEYS.albumMeta, state.albumMeta)) {
+      showToast(`Álbum "${name}" guardado (${tracks.length} canciones) — Solo streaming, sin conexión`, 'success');
+    } else {
+      showToast('Error al guardar: espacio en localStorage agotado', 'error');
+    }
+    refreshAlbumSelector();
+    if (DOM.albumBrowser.classList.contains('open')) renderAlbumBrowser('');
+  } catch (e) {
+    dlClose();
+    showToast(`Error: ${e.message}`, 'error');
+  }
+};
+
+const deleteCustomAlbum = (key) => {
+  state.customAlbums = state.customAlbums.filter(a => a.key !== key);
+  delete state.albumMeta[key];
+  setLS(LS_KEYS.customAlbums, state.customAlbums);
+  setLS(LS_KEYS.albumMeta, state.albumMeta);
+};
+
+const selectViewFromBrowser = (view) => {
+  if (view === '__ADD_ALBUM__') {
+    closeAlbumBrowser();
+    openAddAlbumModal();
+    return;
+  }
+  const prevTrackSrc = state.activeTrackData?.src || '';
+
+  state.currentView = view;
+  DOM.albumSelect.value = view;
+  setLS(LS_KEYS.currentView, state.currentView);
+  state.searchQuery = '';
+  DOM.searchInput.value = '';
+
+  if (isSpecialView(view) && state.shuffle) {
+    state.shuffle = false;
+    DOM.btnShuffle.classList.remove('active');
+  }
+  DOM.btnEditAlbum.style.display = (!isSpecialView(view) && state.btnConfig.editBtn) ? 'flex' : 'none';
+  updateCurrentAlbumLabel();
+  if (view === '__FAV__') ANTONIO.onFavView();
+
+  // Buscar si la canción activa aparece en la nueva vista para marcarla como "current"
+  const newFiltered = getFilteredTracks();
+  const activeInNewView = prevTrackSrc
+    ? newFiltered.findIndex(t => t.src === prevTrackSrc)
+    : -1;
+
+  // Siempre actualizar el índice sin tocar el audio:
+  // · Si la canción está en la lista → marcarla como seleccionada
+  // · Si no está → apuntar al índice 0 para que la próxima vez que el
+  //   usuario presione "siguiente" arranque desde el principio de esta vista,
+  //   pero SIN cambiar lo que está sonando ahora mismo.
+  state.currentTrackIdx = activeInNewView !== -1 ? activeInNewView : 0;
+
+  // Solo actualizar la lista visual, nunca interrumpir el audio
+  updateTrackList();
+  updateCurrentAlbumLabel();
+
+  closeAlbumBrowser();
+};
+
+const isSpecialView = (v) => ['__ALL__','__FAV__','__UPLOADED__'].includes(v);
+
+const updateCurrentAlbumLabel = () => {
+  const v = state.currentView;
+  let label = 'Coleccion completa';
+  if (v === '__FAV__') label = 'Favoritos';
+  else if (v === '__UPLOADED__') label = 'Archivos locales';
+  else if (v && v.startsWith('__CUSTOM__')) {
+    const found = state.customAlbums.find(a => a.key === v);
+    label = found ? found.name : 'Álbum personalizado';
+  }
+  else if (v && state.albumMeta[v] && state.albumMeta[v].name) label = state.albumMeta[v].name;
+  else if (v && v !== '__ALL__') label = v;
+  if (DOM.currentAlbumLabel) DOM.currentAlbumLabel.textContent = label;
+};
+
+const renderAlbumBrowser = (filterQuery) => {
+  const qRaw = (filterQuery || (DOM.abSearchInput ? DOM.abSearchInput.value : '') || '').trim();
+  const q = qRaw.toLowerCase();
+  const qNorm = q.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  const nfc = (s) => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+  const totalSongs = Object.values(state.albums).reduce((a,c)=>a+c.length,0) + state.uploadedSongs.length;
+
+  if (!DOM.abGrid) return;
+  DOM.abGrid.innerHTML = '';
+
+  const fragment = document.createDocumentFragment();
+
+  // Helper to build a grid card
+  const addCard = (coverContent, name, subtitle, view) => {
+    const card = document.createElement('button');
+    card.className = 'ab-album-card';
+    card.dataset.view = view;
+
+    const wrap = document.createElement('div');
+    wrap.className = 'ab-cover-wrap';
+    wrap.appendChild(coverContent);
+    card.appendChild(wrap);
+
+    const nameEl = document.createElement('div');
+    nameEl.className = 'ab-album-name';
+    nameEl.textContent = name;
+    card.appendChild(nameEl);
+
+    if (subtitle) {
+      const subEl = document.createElement('div');
+      subEl.className = 'ab-album-artist';
+      subEl.textContent = subtitle;
+      card.appendChild(subEl);
+    }
+
+    return card;
+  };
+
+  // Only show special cards when not filtering
+  if (!q) {
+    // Special: Archivos locales
+    if (state.uploadedSongs.length) {
+      const cover = document.createElement('div');
+      cover.className = 'ab-cover-placeholder ab-cover-local';
+      cover.innerHTML = '<svg width="30" height="30" fill="currentColor" viewBox="0 0 16 16"><path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/><path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/></svg>';
+      fragment.appendChild(addCard(cover, 'Archivos locales', `${state.uploadedSongs.length} canciones`, '__UPLOADED__'));
+    }
+
+    // Special: Favoritos
+    if (state.favorites.size) {
+      const cover = document.createElement('div');
+      cover.className = 'ab-cover-placeholder ab-cover-fav';
+      cover.innerHTML = '<svg width="30" height="30" fill="currentColor" viewBox="0 0 16 16"><path d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/></svg>';
+      fragment.appendChild(addCard(cover, 'Favoritos', `${state.favorites.size} canciones`, '__FAV__'));
+    }
+
+    // Special: Toda la colección
+    {
+      const cover = document.createElement('div');
+      cover.className = 'ab-cover-placeholder ab-cover-all';
+      cover.innerHTML = '<svg width="30" height="30" fill="currentColor" viewBox="0 0 16 16"><path d="M9 13c0 1.105-1.12 2-2.5 2S4 14.105 4 13s1.12-2 2.5-2 2.5.895 2.5 2z"/><path fill-rule="evenodd" d="M9 3v10H8V3h1z"/><path d="M8 2.82a1 1 0 0 1 .804-.98l3-.6A1 1 0 0 1 13 2.22V4L8 5V2.82z"/></svg>';
+      fragment.appendChild(addCard(cover, 'Toda la colección', `${totalSongs} canciones`, '__ALL__'));
+    }
+  }
+
+  // Add album button (only when not filtering)
+  if (!q) {
+    const cover = document.createElement('div');
+    cover.className = 'ab-cover-placeholder';
+    cover.style.cssText = 'background:rgba(255,255,255,.04);border:1px dashed rgba(255,255,255,.12);border-radius:8px;color:rgba(255,255,255,.3);';
+    cover.innerHTML = '<svg width="28" height="28" fill="currentColor" viewBox="0 0 16 16"><path d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2z"/></svg>';
+    fragment.appendChild(addCard(cover, 'Agregar álbum', 'Playlist de YouTube', '__ADD_ALBUM__'));
+  }
+
+  // Custom albums (from YouTube playlists)
+  state.customAlbums.forEach(album => {
+    if (q && !album.name.toLowerCase().includes(q) && !nfc(album.name).includes(qNorm)) return;
+    const cover = document.createElement('div');
+    if (album.cover) {
+      cover.innerHTML = `<img src="${album.cover}" alt="" style="width:100%;height:100%;object-fit:cover;">`;
+    } else {
+      cover.className = 'ab-cover-placeholder';
+      cover.style.cssText = 'background:linear-gradient(145deg,#1a1a2e,#16213e 60%,#0f3460);color:rgba(255,255,255,.4);';
+      cover.innerHTML = '<svg width="24" height="24" fill="currentColor" viewBox="0 0 16 16"><path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558l.008-.104.002-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"/></svg>';
+    }
+    fragment.appendChild(addCard(cover, album.name, 'Playlist de YouTube', album.key));
+  });
+
+  // Albums (filtered if q)
+  const albumKeys = Object.keys(state.albums);
+  for (let ai = 0; ai < albumKeys.length; ai++) {
+    const key = albumKeys[ai];
+    const meta = state.albumMeta[key] || {};
+    const tracks = state.albums[key] || [];
+    const cover = meta.cover || (tracks[0] && tracks[0].cover) || '';
+    const name = meta.name || key;
+    const artist = meta.artist || (tracks[0] && tracks[0].artist) || '';
+    const isActive = state.currentView === key;
+    const isPlaying = isActive && state.isPlaying;
+    const count = tracks.length;
+
+    if (q && !name.toLowerCase().includes(q) && !artist.toLowerCase().includes(q) && !nfc(name).includes(qNorm) && !nfc(artist).includes(qNorm)) continue;
+
+    const card = document.createElement('button');
+    card.className = `ab-album-card${isActive ? ' active' : ''}${isPlaying ? ' playing' : ''}`;
+    card.dataset.view = key;
+
+    const wrap = document.createElement('div');
+    wrap.className = 'ab-cover-wrap';
+
+    if (cover) {
+      const img = document.createElement('img');
+      img.src = cover; img.alt = '';
+      img.loading = 'lazy'; img.decoding = 'async';
+      img.style.cssText = 'width:100%;height:100%;object-fit:cover;';
+      wrap.appendChild(img);
+    } else {
+      wrap.innerHTML = '<div class="ab-cover-placeholder"><svg width="28" height="28" fill="currentColor" viewBox="0 0 16 16"><path d="M9 13c0 1.105-1.12 2-2.5 2S4 14.105 4 13s1.12-2 2.5-2 2.5.895 2.5 2z"/><path fill-rule="evenodd" d="M9 3v10H8V3h1z"/><path d="M8 2.82a1 1 0 0 1 .804-.98l3-.6A1 1 0 0 1 13 2.22V4L8 5V2.82z"/></svg></div>';
+    }
+
+    const eq = document.createElement('div');
+    eq.className = 'ab-cover-eq';
+    const pClass = !state.isPlaying ? ' paused' : '';
+    eq.innerHTML = `<div class="ab-cover-eq-bar${pClass}"></div><div class="ab-cover-eq-bar${pClass}"></div><div class="ab-cover-eq-bar${pClass}"></div>`;
+    wrap.appendChild(eq);
+
+    card.appendChild(wrap);
+
+    const nameEl = document.createElement('div');
+    nameEl.className = 'ab-album-name';
+    nameEl.textContent = name;
+    card.appendChild(nameEl);
+
+    const artistEl = document.createElement('div');
+    artistEl.className = 'ab-album-artist';
+    artistEl.textContent = artist;
+    card.appendChild(artistEl);
+
+    const countEl = document.createElement('div');
+    countEl.className = 'ab-album-count';
+    countEl.textContent = `${count} cancion${count !== 1 ? 'es' : ''}`;
+    card.appendChild(countEl);
+
+    fragment.appendChild(card);
+  }
+
+  DOM.abGrid.appendChild(fragment);
+  if (DOM.abBody) DOM.abBody.scrollTop = 0;
+};
+
+
+const updateAbNowPlaying = () => {
+  if (!DOM.abNowPlaying) return;
+  const track = state.activeTrackData;
+
+  if (!track || !track.src) {
+    DOM.abNowPlaying.classList.remove('visible');
+    return;
+  }
+  DOM.abNowPlaying.classList.add('visible');
+
+  const meta = state.albumMeta[state.activeTrackAlbum] || {};
+  const cover = meta.cover || track.cover || '';
+  DOM.abNpCover.style.backgroundImage = cover ? `url('${cover}')` : '';
+  if (DOM.abNpTitle) DOM.abNpTitle.textContent = track.title || 'Sin titulo';
+  if (DOM.abNpArtist) DOM.abNpArtist.textContent = track.artist || meta.artist || '---';
+  if (DOM.abIconPlay) DOM.abIconPlay.style.display  = state.isPlaying ? 'none' : 'block';
+  if (DOM.abIconPause) DOM.abIconPause.style.display = state.isPlaying ? 'block' : 'none';
 };
 
 const populateUploadAlbumSelect = () => {
   if (!DOM.uploadAlbumSelect) return;
-  DOM.uploadAlbumSelect.innerHTML = '<option value="">-- Seleccionar álbum --</option>';
+  DOM.uploadAlbumSelect.innerHTML = '<option value="">-- Seleccionar album --</option>';
   Object.keys(state.albums).forEach(key => {
     const meta = state.albumMeta[key] || {};
     DOM.uploadAlbumSelect.add(new Option(meta.name || key, key));
@@ -444,52 +1187,62 @@ const updateTrackList = () => {
     return;
   }
 
+  const cfg = state.btnConfig;
+  const activeId = state.activeTrackData.src;
+  const activeOrigin = state.activeTrackAlbum;
+  const online = navigator.onLine;
+  const favHtml = '<svg width="13" height="13" fill="currentColor" viewBox="0 0 16 16"><path d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/></svg>';
+  const coverFallback = '<svg width="14" height="14" fill="var(--muted)" viewBox="0 0 16 16"><path d="M9 13c0 1.105-1.12 2-2.5 2S4 14.105 4 13s1.12-2 2.5-2 2.5.895 2.5 2z"/><path fill-rule="evenodd" d="M9 3v10H8V3h1z"/><path d="M8 2.82a1 1 0 0 1 .804-.98l3-.6A1 1 0 0 1 13 2.22V4L8 5V2.82z"/></svg>';
+
   const fragment = document.createDocumentFragment();
 
   filtered.forEach((t, idx) => {
-    const isCurrent = t.src === state.activeTrackData.src && t.albumOrigin === state.activeTrackAlbum;
-    const dur       = state.durations[getTrackId(t)] ? formatTime(state.durations[getTrackId(t)]) : '–:––';
-    const coverUrl  = (state.albumMeta[t.albumOrigin] || {}).cover || t.cover || '';
+    const isCurrent = t.src === activeId && t.albumOrigin === activeOrigin;
+    const dur = state.durations[getTrackId(t)];
+    const durText = dur ? formatTime(dur) : '–:––';
+    const coverUrl = (state.albumMeta[t.albumOrigin] || {}).cover || t.cover || '';
+    const isOff = !online && !isLocalSong(t);
 
     const row = document.createElement('div');
-    row.className = `track-row${isCurrent ? ' current' : ''}`;
+    row.className = `track-row${isCurrent ? ' current' : ''}${isOff ? ' offline-unavailable' : ''}`;
     row.setAttribute('role', 'listitem');
 
+    // Num
     const numDiv = document.createElement('div');
     numDiv.className = 't-num';
     numDiv.textContent = String(idx + 1);
     row.appendChild(numDiv);
 
+    // EQ bars
     const eqDiv = document.createElement('div');
     eqDiv.className = 't-eq';
     if (isCurrent) {
       const pClass = state.isPlaying ? '' : ' paused';
-      for (let b = 0; b < 3; b++) {
-        const bar = document.createElement('div');
-        bar.className = 't-eq-bar' + pClass;
-        eqDiv.appendChild(bar);
-      }
+      eqDiv.innerHTML = `<div class="t-eq-bar${pClass}"></div><div class="t-eq-bar${pClass}"></div><div class="t-eq-bar${pClass}"></div>`;
     }
     row.appendChild(eqDiv);
 
+    // Cover
     const coverDiv = document.createElement('div');
     coverDiv.className = 't-cover';
-    if (coverUrl) {
-      const img = document.createElement('img');
-      img.src = coverUrl;
-      img.alt = '';
-      img.loading = 'lazy';
-      coverDiv.appendChild(img);
-    } else {
-      coverDiv.innerHTML = '<svg width="14" height="14" fill="var(--muted)" viewBox="0 0 16 16"><path d="M9 13c0 1.105-1.12 2-2.5 2S4 14.105 4 13s1.12-2 2.5-2 2.5.895 2.5 2z"/><path fill-rule="evenodd" d="M9 3v10H8V3h1z"/><path d="M8 2.82a1 1 0 0 1 .804-.98l3-.6A1 1 0 0 1 13 2.22V4L8 5V2.82z"/></svg>';
-    }
+    coverDiv.style.display = cfg.trackCover ? '' : 'none';
+    coverDiv.innerHTML = coverUrl
+      ? `<img src="${coverUrl}" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;">`
+      : coverFallback;
     row.appendChild(coverDiv);
 
+    // Info
     const infoDiv = document.createElement('div');
     infoDiv.className = 't-info';
     const nameDiv = document.createElement('div');
     nameDiv.className = 't-name';
     nameDiv.textContent = t.title;
+    if (isOff) {
+      const mark = document.createElement('span');
+      mark.className = 'offline-marker';
+      mark.textContent = '!';
+      nameDiv.appendChild(mark);
+    }
     nameDiv.title = t.title;
     infoDiv.appendChild(nameDiv);
     const artDiv = document.createElement('div');
@@ -498,69 +1251,30 @@ const updateTrackList = () => {
     infoDiv.appendChild(artDiv);
     row.appendChild(infoDiv);
 
+    // Duration
     const durDiv = document.createElement('div');
     durDiv.className = 't-dur';
-    durDiv.textContent = dur;
+    durDiv.textContent = durText;
+    durDiv.style.display = cfg.duration ? '' : 'none';
     row.appendChild(durDiv);
 
+    // Fav
     const favBtn = document.createElement('button');
-    favBtn.className = 't-fav-btn' + (isFav(t) ? ' active' : '');
+    favBtn.className = `t-fav-btn${isFav(t) ? ' active' : ''}`;
     favBtn.setAttribute('aria-label', 'Favorito');
-    favBtn.innerHTML = '<svg width="13" height="13" fill="currentColor" viewBox="0 0 16 16"><path d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/></svg>';
+    favBtn.innerHTML = favHtml;
+    favBtn.style.display = cfg.favBtn ? '' : 'none';
     row.appendChild(favBtn);
-
-    const isUploaded = t.albumOrigin === '__UPLOADED__';
-    const isAlbumExtra = !!t._extra;
-    if (isUploaded || isAlbumExtra) {
-      const delBtn = document.createElement('button');
-      delBtn.className = 't-del-btn';
-      delBtn.setAttribute('aria-label', 'Eliminar');
-      delBtn.innerHTML = '<svg width="13" height="13" fill="currentColor" viewBox="0 0 16 16"><path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/><path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1z"/></svg>';
-      row.appendChild(delBtn);
-    }
 
     row.addEventListener('click', (e) => {
       if (e.target.closest('.t-fav-btn')) return;
-      if (e.target.closest('.t-del-btn')) return;
       if (isCurrent) togglePlayback();
       else { loadTrack(idx); togglePlayback(true); }
     });
-
     favBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       toggleFav(t);
     });
-
-    if (isUploaded) {
-      const delBtn = row.querySelector('.t-del-btn');
-      delBtn.addEventListener('click', async (e) => {
-        e.stopPropagation();
-        if (t.fileId) { try { await deleteBlob(t.fileId); } catch (_) {} }
-        state.uploadedSongs = state.uploadedSongs.filter(s => s.fileId ? s.fileId !== t.fileId : s.src !== t.src);
-        setLS(LS_KEYS.uploaded, state.uploadedSongs.filter(t => t.src && (t.fileId || !t.src.startsWith('blob:'))));
-        refreshAlbumSelector();
-        updateTrackList();
-        showToast('Archivo eliminado de la biblioteca');
-      });
-    } else if (isAlbumExtra) {
-      const delBtn = row.querySelector('.t-del-btn');
-      delBtn.addEventListener('click', async (e) => {
-        e.stopPropagation();
-        if (t.fileId) { try { await deleteBlob(t.fileId); } catch (_) {} }
-        const key = t._albumKey;
-        if (state.albums[key]) {
-          state.albums[key] = state.albums[key].filter(s => s.fileId ? s.fileId !== t.fileId : s.src !== t.src);
-        }
-        if (state.albumExtras[key]) {
-          state.albumExtras[key] = state.albumExtras[key].filter(s => s.fileId ? s.fileId !== t.fileId : s.src !== t.src);
-          if (!state.albumExtras[key].length) delete state.albumExtras[key];
-        }
-        saveAlbumExtras();
-        refreshAlbumSelector();
-        updateTrackList();
-        showToast('Archivo eliminado del álbum');
-      });
-    }
 
     fragment.appendChild(row);
   });
@@ -591,10 +1305,21 @@ const mergeAlbumExtras = () => {
   });
 };
 
+const cleanFavorites = () => {
+  const valid = new Set();
+  Object.values(state.albums).forEach(tracks => tracks.forEach(t => valid.add(getTrackId(t))));
+  state.uploadedSongs.forEach(t => valid.add(getTrackId(t)));
+  state.customAlbums.forEach(a => (a.tracks || []).forEach(t => valid.add(getTrackId(t))));
+  let changed = false;
+  state.favorites.forEach(id => { if (!valid.has(id)) { state.favorites.delete(id); changed = true; } });
+  if (changed) setLS(LS_KEYS.favorites, [...state.favorites]);
+};
+
 const initPlayer = async () => {
   state.favorites    = new Set(getLS(LS_KEYS.favorites, []));
   state.albumMeta    = getLS(LS_KEYS.albumMeta, {});
   state.uploadedSongs = getLS(LS_KEYS.uploaded, []).filter(t => t.src && (t.fileId || !t.src.startsWith('blob:')));
+  state.customAlbums = getLS(LS_KEYS.customAlbums, []);
 
   // rehydrate blob URLs from IndexedDB
   for (const song of state.uploadedSongs) {
@@ -643,6 +1368,19 @@ const initPlayer = async () => {
   state.customBgUrls = getLS(LS_KEYS.customBgList, []);
   state.effects     = getLS(LS_KEYS.effects, { bt21: true, discSpin: true, marquee: true, antonio: true });
   if (!('antonio' in state.effects)) state.effects.antonio = true;
+  state.btnConfig   = getLS(LS_KEYS.btnConfig, { seekBtns: false, seekBack: 10, seekFwd: 10, favBtn: true, duration: true, trackCover: true, volume: true, editBtn: true, trackNav: false });
+  // Garantizar campos que podrían faltar en saves anteriores
+  if (!('favBtn'    in state.btnConfig)) state.btnConfig.favBtn    = true;
+  if (!('duration'  in state.btnConfig)) state.btnConfig.duration  = true;
+  if (!('trackCover'in state.btnConfig)) state.btnConfig.trackCover= true;
+  if (!('seekBack'   in state.btnConfig)) state.btnConfig.seekBack   = 10;
+  if (!('seekFwd'    in state.btnConfig)) state.btnConfig.seekFwd    = 10;
+  state.shuffle = getLS(LS_KEYS.shuffle, false);
+  state.repeat  = getLS(LS_KEYS.repeat, false);
+  if (!('seekPosition'in state.btnConfig)) state.btnConfig.seekPosition = 'row';
+  if (!('volume'     in state.btnConfig)) state.btnConfig.volume     = true;
+  if (!('editBtn'    in state.btnConfig)) state.btnConfig.editBtn    = true;
+
   DOM.volSlider.value = Math.round(audio.volume * 100);
   applyCustomBg(state.customBg);
   renderCustomBgUrls();
@@ -651,6 +1389,7 @@ const initPlayer = async () => {
   DOM.toggleMarquee.checked = state.effects.marquee;
   DOM.toggleAntonio.checked = state.effects.antonio;
   if (!state.effects.antonio) ANTONIO.disable();
+  applyBtnConfig();
 
   const savedView = getLS(LS_KEYS.currentView, '__ALL__');
 
@@ -659,12 +1398,14 @@ const initPlayer = async () => {
     if (!res.ok) throw new Error('HTTP ' + res.status);
     state.albums = await res.json();
     mergeAlbumExtras();
+    cleanFavorites();
     refreshAlbumSelector();
     restoreView(savedView);
     loadTrack(0);
   } catch (err) {
     console.error('Error cargando songs.json:', err);
     mergeAlbumExtras();
+    cleanFavorites();
     refreshAlbumSelector();
     restoreView(savedView);
     if (state.uploadedSongs.length) loadTrack(0);
@@ -685,7 +1426,7 @@ audio.addEventListener('loadedmetadata', () => {
 });
 
 audio.addEventListener('timeupdate', () => {
-  if (!audio.duration) return;
+  if (state.ytTrack || !audio.duration) return;
   DOM.timeNow.textContent = formatTime(audio.currentTime);
   const ratio = audio.currentTime / audio.duration;
   DOM.progressFill.style.width = `${ratio * 100}%`;
@@ -698,41 +1439,12 @@ audio.addEventListener('ended', () => {
   if (state.repeat) { audio.currentTime = 0; audio.play(); }
   else nextTrack();
 });
-audio.addEventListener('play',  () => togglePlayback(true));
-audio.addEventListener('pause', () => togglePlayback(false));
+audio.addEventListener('play',  () => togglePlayback(true, true));
+audio.addEventListener('pause', () => togglePlayback(false, true));
 audio.addEventListener('error', () => {
+  if (!state.activeTrackData.src && !state.ytTrack) return;
   showToast('Error al cargar el audio', 'error');
   setTimeout(nextTrack, 1500);
-});
-
-DOM.btnPlay.addEventListener('click', () => togglePlayback());
-DOM.btnPrev.addEventListener('click', () => { prevTrack(); ANTONIO.onPrev(); });
-DOM.btnNext.addEventListener('click', () => { nextTrack(); ANTONIO.onNext(); });
-
-DOM.btnShuffle.addEventListener('click', () => {
-  if (['__ALL__','__FAV__','__UPLOADED__'].includes(state.currentView)) {
-    showToast('Aleatorio solo disponible en un álbum', 'error');
-    return;
-  }
-  state.shuffle = !state.shuffle;
-  if (state.shuffle && state.repeat) {
-    state.repeat = false;
-    DOM.btnRepeat.classList.remove('active');
-  }
-  DOM.btnShuffle.classList.toggle('active', state.shuffle);
-  showToast(state.shuffle ? 'Aleatorio activado' : 'Aleatorio desactivado');
-  ANTONIO.onShuffleToggle(state.shuffle);
-});
-
-DOM.btnRepeat.addEventListener('click', () => {
-  state.repeat = !state.repeat;
-  if (state.repeat && state.shuffle) {
-    state.shuffle = false;
-    DOM.btnShuffle.classList.remove('active');
-  }
-  DOM.btnRepeat.classList.toggle('active', state.repeat);
-  showToast(state.repeat ? 'Repetición activada' : 'Repetición desactivada');
-  ANTONIO.onRepeatToggle(state.repeat);
 });
 
 DOM.volSlider.addEventListener('input', (e) => {
@@ -742,18 +1454,26 @@ DOM.volSlider.addEventListener('input', (e) => {
 });
 
 DOM.albumSelect.addEventListener('change', (e) => {
+  const prevTrackSrc = state.activeTrackData?.src || '';
   state.currentView  = e.target.value;
   setLS(LS_KEYS.currentView, state.currentView);
   state.searchQuery  = '';
   DOM.searchInput.value = '';
-  const isSpecial = ['__ALL__','__FAV__','__UPLOADED__'].includes(state.currentView);
-  if (isSpecial && state.shuffle) {
+  if (isSpecialView(state.currentView) && state.shuffle) {
     state.shuffle = false;
     DOM.btnShuffle.classList.remove('active');
   }
-  DOM.btnEditAlbum.style.display = isSpecial ? 'none' : 'flex';
+  DOM.btnEditAlbum.style.display = (!isSpecialView(state.currentView) && state.btnConfig.editBtn) ? 'flex' : 'none';
+  updateCurrentAlbumLabel();
   if (state.currentView === '__FAV__') ANTONIO.onFavView();
-  loadTrack(0);
+
+  // Igual que en selectViewFromBrowser: solo actualizar la lista, nunca el audio
+  const newFiltered = getFilteredTracks();
+  const activeInNewView = prevTrackSrc
+    ? newFiltered.findIndex(t => t.src === prevTrackSrc)
+    : -1;
+  state.currentTrackIdx = activeInNewView !== -1 ? activeInNewView : 0;
+  updateTrackList();
 });
 
 let searchDebounceTimer = null;
@@ -765,10 +1485,15 @@ DOM.searchInput.addEventListener('input', (e) => {
 });
 
 const seekTo = (clientX) => {
-  if (!audio.duration) return;
   const rect  = DOM.progressBar.getBoundingClientRect();
   const ratio = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
-  audio.currentTime = ratio * audio.duration;
+  if (state.ytTrack && ytPlayer && ytPlayer.getDuration && ytPlayer.seekTo) {
+    const dur = ytPlayer.getDuration();
+    if (dur) ytPlayer.seekTo(ratio * dur);
+  } else {
+    if (!audio.duration) return;
+    audio.currentTime = ratio * audio.duration;
+  }
 };
 
 DOM.progressBar.addEventListener('mousedown', e => {
@@ -818,21 +1543,49 @@ const guessImageType = (url) => {
 // (lock screen / notificación) de Android e iOS.
 const updateMediaPositionState = () => {
   if (!('mediaSession' in navigator) || !('setPositionState' in navigator.mediaSession)) return;
-  if (!isFinite(audio.duration) || audio.duration <= 0) return;
+  const dur = state.ytTrack && ytPlayer && ytPlayer.getDuration ? ytPlayer.getDuration() : audio.duration;
+  const pos = state.ytTrack && ytPlayer && ytPlayer.getCurrentTime ? ytPlayer.getCurrentTime() : audio.currentTime;
+  if (!isFinite(dur) || dur <= 0) return;
+  const safePos = isFinite(pos) ? Math.min(Math.max(pos, 0), dur) : 0;
   try {
     navigator.mediaSession.setPositionState({
-      duration:     audio.duration,
-      playbackRate: audio.playbackRate || 1,
-      position:     Math.min(audio.currentTime, audio.duration),
+      duration:     dur,
+      playbackRate: 1,
+      position:     safePos,
     });
-  } catch { /* algunos navegadores pueden lanzar si el estado es inválido */ }
+  } catch { }
+};
+
+const toAbsUrl = (url) => {
+  if (!url || url.startsWith('blob:') || url.startsWith('http://') || url.startsWith('https://')) return url;
+  try { return new URL(url, window.location.href).href; } catch { return url; }
+};
+
+let lastArtworkUrl = '';
+let lastArtworkBlob = null;
+const dataUrlToBlob = (dataUrl) => {
+  if (!dataUrl || !dataUrl.startsWith('data:')) return dataUrl;
+  if (lastArtworkUrl === dataUrl && lastArtworkBlob) return lastArtworkBlob;
+  try {
+    const res = fetch(dataUrl).then(r => r.blob()).then(blob => {
+      lastArtworkUrl = dataUrl;
+      lastArtworkBlob = URL.createObjectURL(blob);
+      return lastArtworkBlob;
+    }).catch(() => dataUrl);
+    return res;
+  } catch { return dataUrl; }
 };
 
 const updateMediaSession = () => {
   if (!('mediaSession' in navigator)) return;
   const meta     = state.albumMeta[state.activeTrackAlbum] || {};
-  const coverUrl = meta.cover || state.activeTrackData.cover || '';
+  let coverUrl = toAbsUrl(meta.cover || state.activeTrackData.cover || '');
   const artType  = guessImageType(coverUrl);
+
+  // Android lock screen can't use data: URIs; convert to blob URL
+  if (coverUrl && coverUrl.startsWith('data:')) {
+    coverUrl = dataUrlToBlob(coverUrl) || coverUrl;
+  }
 
   navigator.mediaSession.metadata = new MediaMetadata({
     title:   state.activeTrackData.title  || '',
@@ -872,17 +1625,21 @@ const updateMediaSession = () => {
   // Saltos +/-10s desde la pantalla de bloqueo / widget (Android e iOS)
   setOptionalHandler('seekbackward', (details) => {
     const skip = details?.seekOffset || 10;
-    audio.currentTime = Math.max(0, audio.currentTime - skip);
+    if (state.ytTrack && ytPlayer && ytPlayer.getCurrentTime && ytPlayer.seekTo) ytPlayer.seekTo(Math.max(0, ytPlayer.getCurrentTime() - skip));
+    else audio.currentTime = Math.max(0, audio.currentTime - skip);
     updateMediaPositionState();
   });
   setOptionalHandler('seekforward', (details) => {
     const skip = details?.seekOffset || 10;
-    audio.currentTime = Math.min(audio.duration || Infinity, audio.currentTime + skip);
+    if (state.ytTrack && ytPlayer && ytPlayer.getCurrentTime && ytPlayer.seekTo) ytPlayer.seekTo(ytPlayer.getCurrentTime() + skip);
+    else audio.currentTime = Math.min(audio.duration || Infinity, audio.currentTime + skip);
     updateMediaPositionState();
   });
   // Arrastrar la barra de progreso desde los controles nativos
   setOptionalHandler('seekto', (details) => {
-    if (details?.fastSeek && 'fastSeek' in audio) {
+    if (state.ytTrack && ytPlayer && typeof details?.seekTime === 'number' && ytPlayer.seekTo) {
+      ytPlayer.seekTo(details.seekTime);
+    } else if (details?.fastSeek && 'fastSeek' in audio) {
       audio.fastSeek(details.seekTime);
     } else if (typeof details?.seekTime === 'number') {
       audio.currentTime = details.seekTime;
@@ -907,7 +1664,7 @@ const unlockBody = () => {
   }
 };
 const preventTouchMove = (e) => {
-  if (!e.target.closest('.modal-sheet, .sidebar-body, .sidebar, .tracklist, .upload-list, .effects-list')) {
+  if (!e.target.closest('.modal-sheet, .sidebar-body, .sidebar, .tracklist, .upload-list, .effects-list, .ab-body')) {
     e.preventDefault();
   }
 };
@@ -941,6 +1698,83 @@ if (window.visualViewport) {
   });
 }
 
+const clearCache = async () => {
+  if (!confirm('¿Borrar toda la caché?\n\nSe eliminarán:\n• Canciones descargadas\n• Fondos personalizados\n• Archivos subidos a álbumes')) return;
+  try {
+    // Limpiar IndexedDB
+    const db = await openFileDB();
+    const tx = db.transaction(DB_STORE, 'readwrite');
+    await new Promise((res, rej) => {
+      const req = tx.objectStore(DB_STORE).clear();
+      req.onsuccess = () => res();
+      req.onerror = () => rej(req.error);
+    });
+  } catch (_) {}
+
+  // Revocar todos los blob URLs
+  for (const url of createdBlobUrls) {
+    try { URL.revokeObjectURL(url); } catch (_) {}
+  }
+  createdBlobUrls.clear();
+
+  // Limpiar estado
+  audio.pause();
+  audio.src = '';
+  if (ytPlayer && ytPlayer.stopVideo) ytPlayer.stopVideo();
+  if (ytPollInterval) { clearInterval(ytPollInterval); ytPollInterval = null; }
+  ytPendingVideo = null;
+  ytLastLoadedVid = null;
+  state.isPlaying = false;
+  state.activeTrackData = {};
+  state.activeTrackAlbum = '';
+  state.currentTrackIdx = 0;
+  state.currentView = '__ALL__';
+  state.ytTrack = false;
+  state.favorites = new Set();
+  state.durations = {};
+  state.shuffle = false;
+  state.repeat = false;
+  state.searchQuery = '';
+  state.uploadedSongs = [];
+  state.albumExtras = {};
+  state.customBg = { bg: '', opacity: 0.25 };
+  state.customBgUrls = [];
+  state.customAlbums = [];
+
+  // Limpiar localStorage
+  setLS(LS_KEYS.uploaded, []);
+  setLS(LS_KEYS.albumExtras, {});
+  setLS(LS_KEYS.customBg, state.customBg);
+  setLS(LS_KEYS.customBgList, []);
+  setLS(LS_KEYS.customAlbums, []);
+
+  // Limpiar albumMeta de los custom albums
+  for (const key of Object.keys(state.albumMeta)) {
+    if (key.startsWith('__CUSTOM__')) delete state.albumMeta[key];
+  }
+  setLS(LS_KEYS.albumMeta, state.albumMeta);
+
+  // Resetear UI
+  DOM.timeNow.textContent = '0:00';
+  DOM.timeTotal.textContent = '--:--';
+  DOM.progressFill.style.width = '0%';
+  DOM.trackTitle.textContent = '';
+  DOM.trackArtist.textContent = '';
+  DOM.trackAlbum.textContent = '';
+  DOM.disc.style.backgroundImage = '';
+  DOM.discCoverBg.style.backgroundImage = '';
+  DOM.labelImg.style.display = 'none';
+  DOM.labelEmoji.style.display = '';
+  DOM.labelEmoji.textContent = '🎵';
+  DOM.albumSelect.value = '__ALL__';
+  applyCustomBg();
+  refreshAlbumSelector();
+  updateTrackList();
+  if (DOM.customBgGrid) renderCustomBgUrls();
+
+  showToast('Caché limpiada correctamente', 'success');
+};
+
 const openSidebar = () => {
   DOM.sidebar.classList.add('open');
   DOM.sidebarOverlay.classList.add('open');
@@ -956,6 +1790,40 @@ const closeSidebar = () => {
 DOM.btnOpenUpload.addEventListener('click', openSidebar);
 DOM.btnSidebarClose.addEventListener('click', closeSidebar);
 DOM.sidebarOverlay.addEventListener('click', closeSidebar);
+
+// Album browser
+if (DOM.btnOpenAlbumsBar) DOM.btnOpenAlbumsBar.addEventListener('click', openAlbumBrowser);
+if (DOM.btnAlbumBrowserBack) DOM.btnAlbumBrowserBack.addEventListener('click', closeAlbumBrowser);
+if (DOM.abGrid) DOM.abGrid.addEventListener('click', (e) => {
+  const card = e.target.closest('.ab-album-card');
+  if (card && card.dataset.view) selectViewFromBrowser(card.dataset.view);
+});
+
+// Album browser search (debounced)
+let abSearchTimer = null;
+if (DOM.abSearchInput) {
+  DOM.abSearchInput.addEventListener('input', () => {
+    clearTimeout(abSearchTimer);
+    abSearchTimer = setTimeout(() => renderAlbumBrowser(DOM.abSearchInput.value), 180);
+  });
+}
+
+// Mini now-playing controls in album browser
+if (DOM.abNpPlay) {
+  DOM.abNpPlay.addEventListener('click', () => {
+    togglePlayback();
+  });
+}
+if (DOM.abNpPrev) {
+  DOM.abNpPrev.addEventListener('click', () => {
+    prevTrack(); ANTONIO.onPrev(); updateAbNowPlaying();
+  });
+}
+if (DOM.abNpNext) {
+  DOM.abNpNext.addEventListener('click', () => {
+    nextTrack(); ANTONIO.onNext(); updateAbNowPlaying();
+  });
+}
 
 DOM.sbOptUpload.addEventListener('click', () => {
   closeSidebar();
@@ -974,6 +1842,11 @@ DOM.sbOptCustomize.addEventListener('click', () => {
 DOM.sbOptEffects.addEventListener('click', () => {
   closeSidebar();
   DOM.modalEffects.classList.add('open'); lockBody();
+});
+
+DOM.sbOptClearCache.addEventListener('click', () => {
+  closeSidebar();
+  clearCache();
 });
 
 // -- NUEVO: Eventos para cerrar Efectos --
@@ -1057,7 +1930,7 @@ const renderCustomBgUrls = () => {
   });
 };
 
-DOM.customBgFileInput.addEventListener('change', (e) => {
+DOM.customBgFileInput.addEventListener('change', async (e) => {
   const file = e.target.files[0];
   if (!file) return;
   if (file.size > 2 * 1024 * 1024) {
@@ -1066,11 +1939,12 @@ DOM.customBgFileInput.addEventListener('change', (e) => {
     return;
   }
   const reader = new FileReader();
-  reader.onload = (ev) => {
-    state.customBgUrls.push(ev.target.result);
+  reader.onload = async (ev) => {
+    const compressed = await compressImage(ev.target.result);
+    state.customBgUrls.push(compressed);
     setLS(LS_KEYS.customBgList, state.customBgUrls);
     renderCustomBgUrls();
-    state.customBg.bg = ev.target.result;
+    state.customBg.bg = compressed;
     applyCustomBg();
     selectBgOption(state.customBg.bg);
     setLS(LS_KEYS.customBg, state.customBg);
@@ -1124,6 +1998,7 @@ const customOpenObserver = new MutationObserver(() => {
 customOpenObserver.observe(DOM.modalCustomize, { attributes: true, attributeFilter: ['class'] });
 
 let idleTimer = null;
+let idleEnterTimer = null;
 const IDLE_MS = 12000;
 
 const enterIdle = () => {
@@ -1132,6 +2007,7 @@ const enterIdle = () => {
     .some(m => m.classList.contains('open'));
   if (anyModalOpen) return;
   const p = document.querySelector('.player');
+  if (!p) return;
   p.classList.add('idle-fading');
 
   if (state.effects.marquee) {
@@ -1175,10 +2051,14 @@ const enterIdle = () => {
     overlay.classList.add('visible');
   }
 
-  setTimeout(() => p.classList.add('idle'), 420);
+  idleEnterTimer = setTimeout(() => {
+    p.classList.add('idle');
+    idleEnterTimer = null;
+  }, 420);
 };
 const leaveIdle = () => {
   const p = document.querySelector('.player');
+  if (!p) return;
   if (!p.classList.contains('idle') && !p.classList.contains('idle-fading')) return;
   p.classList.remove('idle');
   requestAnimationFrame(() => p.classList.remove('idle-fading'));
@@ -1190,6 +2070,8 @@ let resetIdleThrottle = false;
 const resetIdle = () => {
   leaveIdle();
   clearTimeout(idleTimer);
+  clearTimeout(idleEnterTimer);
+  idleEnterTimer = null;
   if (state.isPlaying) idleTimer = setTimeout(enterIdle, IDLE_MS);
 };
 // Para eventos de alta frecuencia (mousemove/wheel) limitamos a 1 llamada cada 300ms
@@ -1647,13 +2529,15 @@ const ANTONIO = {
     this._msgToken++;
     this.bubble.classList.remove('show');
     this.wrap.style.display = 'none';
-    document.querySelector('.sidebar').classList.add('no-antonio');
+    const sb = document.querySelector('.sidebar');
+    if (sb) sb.classList.add('no-antonio');
   },
 
   enable() {
     this.enabled = true;
     this.wrap.style.display = '';
-    document.querySelector('.sidebar').classList.remove('no-antonio');
+    const sb = document.querySelector('.sidebar');
+    if (sb) sb.classList.remove('no-antonio');
     if (this.sidebarOpen) {
       this.onOpen();
     }
@@ -1752,7 +2636,10 @@ const confirmUpload = async () => {
   ANTONIO.onUpload();
 };
 
-DOM.uploadZone.addEventListener('click', () => DOM.uploadFileInput.click());
+DOM.uploadZone.addEventListener('click', (e) => {
+  if (e.target.closest('.upload-list') || e.target.closest('#btnConfirmUpload')) return;
+  DOM.uploadFileInput.click();
+});
 DOM.uploadFileInput.addEventListener('change', (e) => {
   const files = Array.from(e.target.files);
   pendingFiles = [...pendingFiles, ...files];
@@ -1781,7 +2668,7 @@ const fetchYtMetadata = async (url) => {
   const seq = ++ytFetchSeq;
   DOM.ytSpinner.classList.add('active');
   const vid = url.match(/(?:v=|youtu\.be\/)([\w-]+)/)?.[1];
-  if (!vid) { DOM.ytSpinner.classList.remove('active'); return; }
+  if (!vid) { DOM.ytSpinner.classList.remove('active'); showToast('No se pudo extraer el ID del video', 'error'); return; }
 
   DOM.ytThumbnail.src = `https://img.youtube.com/vi/${vid}/hqdefault.jpg`;
 
@@ -1966,10 +2853,10 @@ DOM.btnApiSearch.addEventListener('click', async () => {
 
         // Para guardar usamos la versión en alta resolución
         editingCoverDataUrl = imgUrl.replace('300x300bb', '600x600bb');
-        const editImg = document.getElementById('editCoverImg');
+        const editImg = $id('editCoverImg');
         editImg.src = editingCoverDataUrl;
         editImg.style.display = 'block';
-        document.getElementById('editCoverPlaceholder').style.display = 'none';
+        $id('editCoverPlaceholder').style.display = 'none';
         showToast('Portada seleccionada — guardá para aplicar', 'success');
       });
       DOM.apiResultsGrid.appendChild(img);
@@ -1992,15 +2879,15 @@ DOM.btnEditAlbum.addEventListener('click', () => {
   const meta      = state.albumMeta[editingAlbumKey] || {};
   const firstTrack = (state.albums[editingAlbumKey] || [])[0] || {};
 
-  document.getElementById('editAlbumNameDisplay').textContent = meta.name || editingAlbumKey;
-  document.getElementById('editAlbumName').value   = meta.name || editingAlbumKey;
-  document.getElementById('editAlbumArtist').value = meta.artist || firstTrack.artist || '';
-  document.getElementById('editAlbumDate').value   = meta.date || '';
-  document.getElementById('editAlbumDesc').value   = meta.desc || '';
+  $id('editAlbumNameDisplay').textContent = meta.name || editingAlbumKey;
+  $id('editAlbumName').value   = meta.name || editingAlbumKey;
+  $id('editAlbumArtist').value = meta.artist || firstTrack.artist || '';
+  $id('editAlbumDate').value   = meta.date || '';
+  $id('editAlbumDesc').value   = meta.desc || '';
 
   const coverUrl = meta.cover || firstTrack.cover || '';
-  const editImg  = document.getElementById('editCoverImg');
-  const editPh   = document.getElementById('editCoverPlaceholder');
+  const editImg  = $id('editCoverImg');
+  const editPh   = $id('editCoverPlaceholder');
 
   if (coverUrl) {
     editImg.src = coverUrl;
@@ -2017,7 +2904,7 @@ DOM.btnEditAlbum.addEventListener('click', () => {
   DOM.modalEditAlbum.classList.add('open'); lockBody();
 });
 
-document.getElementById('btnEditCancel').addEventListener('click', () => {
+$id('btnEditCancel').addEventListener('click', () => {
   DOM.modalEditAlbum.classList.remove('open'); unlockBody();
 });
 
@@ -2025,62 +2912,92 @@ DOM.modalEditAlbum.addEventListener('click', (e) => {
   if (e.target === DOM.modalEditAlbum) { DOM.modalEditAlbum.classList.remove('open'); unlockBody(); }
 });
 
-document.getElementById('btnCoverClear').addEventListener('click', () => {
+$id('btnCoverClear').addEventListener('click', () => {
   editingCoverDataUrl = '__CLEAR__';
-  document.getElementById('editCoverImg').style.display = 'none';
-  document.getElementById('editCoverPlaceholder').style.display = 'block';
+  $id('editCoverImg').style.display = 'none';
+  $id('editCoverPlaceholder').style.display = 'block';
   toggleApiSearchUI(true);
   showToast('Portada eliminada (guardá para confirmar)');
 });
 
-document.getElementById('editCoverInput').addEventListener('change', (e) => {
+$id('editCoverInput').addEventListener('change', async (e) => {
   const file = e.target.files[0];
   if (!file) return;
   const reader = new FileReader();
-  reader.onload = ev => {
-    editingCoverDataUrl = ev.target.result;
-    const editImg = document.getElementById('editCoverImg');
+  reader.onload = async ev => {
+    editingCoverDataUrl = await compressImage(ev.target.result);
+    const editImg = $id('editCoverImg');
     editImg.src = editingCoverDataUrl;
     editImg.style.display = 'block';
-    document.getElementById('editCoverPlaceholder').style.display = 'none';
+    $id('editCoverPlaceholder').style.display = 'none';
     toggleApiSearchUI(false);
     showToast('Imagen cargada — guardá para aplicar');
   };
   reader.readAsDataURL(file);
 });
 
-document.getElementById('btnEditSave').addEventListener('click', () => {
+$id('btnEditSave').addEventListener('click', () => {
   const meta      = state.albumMeta[editingAlbumKey] || {};
-  meta.name   = document.getElementById('editAlbumName').value.trim()   || editingAlbumKey;
-  meta.artist = document.getElementById('editAlbumArtist').value.trim();
-  meta.date   = document.getElementById('editAlbumDate').value;
-  meta.desc   = document.getElementById('editAlbumDesc').value.trim();
+  meta.name   = $id('editAlbumName').value.trim()   || editingAlbumKey;
+  meta.artist = $id('editAlbumArtist').value.trim();
+  meta.date   = $id('editAlbumDate').value;
+  meta.desc   = $id('editAlbumDesc').value.trim();
 
   if (editingCoverDataUrl === '__CLEAR__') delete meta.cover;
   else if (editingCoverDataUrl)            meta.cover = editingCoverDataUrl;
 
   state.albumMeta[editingAlbumKey] = meta;
-  setLS(LS_KEYS.albumMeta, state.albumMeta);
 
   DOM.modalEditAlbum.classList.remove('open'); unlockBody();
-  refreshAlbumSelector();
-  updateTrackList();
-
-  if (state.activeTrackAlbum === editingAlbumKey) loadTrack(state.currentTrackIdx);
-
-  showToast('Álbum actualizado correctamente', 'success');
+  if (setLS(LS_KEYS.albumMeta, state.albumMeta)) {
+    refreshAlbumSelector();
+    updateTrackList();
+    if (state.activeTrackAlbum === editingAlbumKey) loadTrack(state.currentTrackIdx);
+    showToast('Álbum actualizado correctamente', 'success');
+  } else {
+    showToast('Error al guardar: espacio en localStorage agotado', 'error');
+  }
 });
 
-document.getElementById('btnDeleteAlbum').addEventListener('click', () => {
+$id('btnDeleteAlbum').addEventListener('click', () => {
   if (!confirm(`¿Eliminar el registro de "${editingAlbumKey}" de la biblioteca?\nEsto no borra los archivos de audio.`)) return;
   delete state.albumMeta[editingAlbumKey];
-  setLS(LS_KEYS.albumMeta, state.albumMeta);
+  if (editingAlbumKey && editingAlbumKey.startsWith && editingAlbumKey.startsWith('__CUSTOM__')) {
+    state.customAlbums = state.customAlbums.filter(a => a.key !== editingAlbumKey);
+    setLS(LS_KEYS.customAlbums, state.customAlbums);
+    if (state.currentView === editingAlbumKey) {
+      state.currentView = '__ALL__';
+      DOM.albumSelect.value = '__ALL__';
+      setLS(LS_KEYS.currentView, '__ALL__');
+    }
+    if (state.activeTrackAlbum === editingAlbumKey) {
+      loadTrack(0);
+    }
+  }
   DOM.modalEditAlbum.classList.remove('open'); unlockBody();
-  refreshAlbumSelector();
-  loadTrack(0);
-  showToast('Registro eliminado de la biblioteca');
+  if (setLS(LS_KEYS.albumMeta, state.albumMeta)) {
+    refreshAlbumSelector();
+    updateTrackList();
+    if (DOM.albumBrowser.classList.contains('open')) renderAlbumBrowser('');
+    showToast('Registro eliminado de la biblioteca');
+  } else {
+    showToast('Error al guardar: espacio en localStorage agotado', 'error');
+  }
 });
 
+const MODAL_SELECTORS = ['modalEditAlbum','modalUpload','modalYt','modalCustomize','modalEffects','modalButtons','modalAddAlbum'];
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    for (const id of MODAL_SELECTORS) {
+      const el = DOM[id];
+      if (el && el.classList.contains('open')) {
+        el.classList.remove('open');
+        unlockBody();
+        break;
+      }
+    }
+  }
+});
 document.addEventListener('keydown', (e) => {
   if (['INPUT','TEXTAREA','SELECT'].includes(document.activeElement.tagName)) return;
   switch (e.code) {
@@ -2150,4 +3067,387 @@ const showBt21Mosaic = (duration = 3500) => {
     setTimeout(() => { container.innerHTML = ''; }, 1800);
   }, duration);
 };
+// ═══════════════════════════════════════════════════
+// PERSONALIZAR BOTONES
+// ═══════════════════════════════════════════════════
+
+// ═══════════════════════════════════════════════════
+// PERSONALIZAR BOTONES — buildControlsRow + applyBtnConfig
+// ═══════════════════════════════════════════════════
+
+// SVGs reutilizables
+const SVG = {
+  shuffle: `<svg width="17" height="17" fill="currentColor" viewBox="0 0 16 16"><path d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.318 1.918C9.827 10.99 11.202 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.318-1.918C4.173 5.01 2.798 4 1 4H.5a.5.5 0 0 1-.5-.5z"/><path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/></svg>`,
+  prev:    `<svg width="24" height="24" fill="currentColor" viewBox="0 0 16 16"><path d="M4 4a.5.5 0 0 1 1 0v3.248l6.267-3.656A.5.5 0 0 1 12 4v8a.5.5 0 0 1-.733.44L5 8.752V12a.5.5 0 0 1-1 0V4z"/></svg>`,
+  next:    `<svg width="24" height="24" fill="currentColor" viewBox="0 0 16 16"><path d="M12.5 4a.5.5 0 0 0-1 0v3.248L5.233 3.592A.5.5 0 0 0 4.5 4v8a.5.5 0 0 0 .733.44L11.5 8.752V12a.5.5 0 0 0 1 0V4z"/></svg>`,
+  repeat:  `<svg width="17" height="17" fill="currentColor" viewBox="0 0 16 16"><path d="M11 5.466V4H5a4 4 0 0 0-3.584 5.777.5.5 0 1 1-.896.446A5 5 0 0 1 5 3h6V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm3.81.086a.5.5 0 0 1 .67.225A5 5 0 0 1 11 13H5v1.466a.25.25 0 0 1-.41.192l-2.36-1.966a.25.25 0 0 1 0-.384l2.36-1.966a.25.25 0 0 1 .41.192V12h6a4 4 0 0 0 3.585-5.777.5.5 0 0 1 .225-.67z"/></svg>`,
+  play:    `<svg id="iconPlay" width="22" height="22" fill="currentColor" viewBox="0 0 16 16" style="margin-left:2px;"><path d="M11.596 8.697l-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/></svg><svg id="iconPause" width="22" height="22" fill="currentColor" viewBox="0 0 16 16" style="display:none;"><path d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5zm5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5z"/></svg>`,
+  seekBack: (s) => `<svg width="18" height="18" fill="currentColor" viewBox="0 0 16 16"><path d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 1 .908-.417A4 4 0 1 0 8 3v2.5a.5.5 0 0 1-.5.5H4a.5.5 0 0 1-.5-.5V1.5a.5.5 0 0 1 .5-.5h3.5a.5.5 0 0 1 0 1H5.236A5 5 0 0 1 8 3z"/></svg><span class="seek-label">${s}s</span>`,
+  seekFwd:  (s) => `<span class="seek-label">+${s}s</span><svg width="18" height="18" fill="currentColor" viewBox="0 0 16 16"><path d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 0-.908-.417A4 4 0 1 1 8 3v2.5a.5.5 0 0 0 .5.5H12a.5.5 0 0 0 .5-.5V1.5a.5.5 0 0 0-.5-.5H8.5a.5.5 0 0 0 0 1h2.264A5 5 0 0 0 8 3z"/></svg>`,
+  seekBackIcon: `<svg width="20" height="20" fill="none" viewBox="0 0 24 24"><path d="M7,17.29A8,8,0,1,0,5.06,11" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/><polyline points="3 6 5 11 10 9" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>`,
+  seekFwdIcon: `<svg width="20" height="20" fill="none" viewBox="0 0 24 24"><path d="M17,17.29A8,8,0,1,1,18.94,11" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/><polyline points="21 6 19 11 14 9" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>`,
+};
+
+// Crea y adjunta los listeners en un botón de la fila de controles
+const attachCtrlListeners = (el) => {
+  const id = el.id;
+  if (id === 'btnPlay')    el.addEventListener('click', () => togglePlayback());
+  if (id === 'btnPrev')    el.addEventListener('click', () => { prevTrack(); ANTONIO.onPrev(); });
+  if (id === 'btnNext')    el.addEventListener('click', () => { nextTrack(); ANTONIO.onNext(); });
+  if (id === 'btnShuffle') el.addEventListener('click', () => {
+    if (['__ALL__','__FAV__','__UPLOADED__'].includes(state.currentView)) { showToast('Aleatorio solo disponible en un álbum', 'error'); return; }
+    state.shuffle = !state.shuffle;
+    if (state.shuffle && state.repeat) { state.repeat = false; document.getElementById('btnRepeat')?.classList.remove('active'); setLS(LS_KEYS.repeat, false); }
+    el.classList.toggle('active', state.shuffle);
+    setLS(LS_KEYS.shuffle, state.shuffle);
+    showToast(state.shuffle ? 'Aleatorio activado' : 'Aleatorio desactivado');
+    ANTONIO.onShuffleToggle(state.shuffle);
+  });
+  if (id === 'btnRepeat') el.addEventListener('click', () => {
+    state.repeat = !state.repeat;
+    if (state.repeat && state.shuffle) { state.shuffle = false; document.getElementById('btnShuffle')?.classList.remove('active'); setLS(LS_KEYS.shuffle, false); }
+    el.classList.toggle('active', state.repeat);
+    setLS(LS_KEYS.repeat, state.repeat);
+    showToast(state.repeat ? 'Repetición activada' : 'Repetición desactivada');
+    ANTONIO.onRepeatToggle(state.repeat);
+  });
+  if (id === 'btnSeekBack') el.addEventListener('click', () => {
+    if (state.ytTrack && ytPlayer && ytPlayer.getCurrentTime && ytPlayer.seekTo) {
+      ytPlayer.seekTo(Math.max(0, ytPlayer.getCurrentTime() - state.btnConfig.seekBack));
+    } else {
+      if (!audio.duration) return;
+      audio.currentTime = Math.max(0, audio.currentTime - state.btnConfig.seekBack);
+    }
+    updateMediaPositionState();
+    showToast(`-${state.btnConfig.seekBack}s`);
+    const svg = el.querySelector('svg');
+    if (svg) {
+      svg.classList.remove('spin-active');
+      void svg.offsetWidth;
+      svg.classList.add('spin-active');
+      setTimeout(() => svg.classList.remove('spin-active'), 500);
+    }
+  });
+  if (id === 'btnSeekFwd') el.addEventListener('click', () => {
+    if (state.ytTrack && ytPlayer && ytPlayer.getCurrentTime && ytPlayer.getDuration && ytPlayer.seekTo) {
+      const dur = ytPlayer.getDuration();
+      const skip = state.btnConfig.seekFwd;
+      ytPlayer.seekTo(dur ? Math.min(dur, ytPlayer.getCurrentTime() + skip) : ytPlayer.getCurrentTime() + skip);
+    } else {
+      if (!audio.duration) return;
+      audio.currentTime = Math.min(audio.duration, audio.currentTime + state.btnConfig.seekFwd);
+    }
+    updateMediaPositionState();
+    showToast(`+${state.btnConfig.seekFwd}s`);
+    const svg = el.querySelector('svg');
+    if (svg) {
+      svg.classList.remove('spin-active');
+      void svg.offsetWidth;
+      svg.classList.add('spin-active');
+      setTimeout(() => svg.classList.remove('spin-active'), 500);
+    }
+  });
+};
+
+// Reconstruye toda la nav de controles según la config actual
+const buildControlsRow = () => {
+  const nav = DOM.controlsNav;
+  if (!nav) return;
+  nav.innerHTML = '';
+  const cfg = state.btnConfig;
+  const sb = cfg.seekBack, sf = cfg.seekFwd;
+
+  // ── Fila principal (Sencilla y limpia) ──────────────────────
+  const row = document.createElement('div');
+  row.className = 'controls-row';
+
+  const makeCtrl = (id, cls, label, html) => {
+    const b = document.createElement('button');
+    b.id = id; b.className = cls; b.setAttribute('aria-label', label);
+    b.innerHTML = html;
+    attachCtrlListeners(b);
+    if (id === 'btnShuffle' && state.shuffle) b.classList.add('active');
+    if (id === 'btnRepeat'  && state.repeat)  b.classList.add('active');
+    if (id === 'btnPlay') {
+      b.querySelector('#iconPlay').style.display  = state.isPlaying ? 'none'  : 'block';
+      b.querySelector('#iconPause').style.display = state.isPlaying ? 'block' : 'none';
+    }
+    return b;
+  };
+
+  row.appendChild(makeCtrl('btnShuffle', 'ctrl', 'Modo Aleatorio', SVG.shuffle));
+  if (cfg.trackNav) row.appendChild(makeCtrl('btnPrev', 'ctrl', 'Anterior', SVG.prev));
+  if (cfg.seekBtns) {
+    row.appendChild(makeCtrl('btnSeekBack', 'ctrl seek-btn-inline', `Retroceder ${sb}s`, SVG.seekBackIcon));
+  }
+  row.appendChild(makeCtrl('btnPlay', 'play-btn', 'Reproducir/Pausar', SVG.play));
+  if (cfg.seekBtns) {
+    row.appendChild(makeCtrl('btnSeekFwd', 'ctrl seek-btn-inline', `Adelantar ${sf}s`, SVG.seekFwdIcon));
+  }
+  if (cfg.trackNav) row.appendChild(makeCtrl('btnNext', 'ctrl', 'Siguiente', SVG.next));
+  row.appendChild(makeCtrl('btnRepeat', 'ctrl', 'Repetir pista', SVG.repeat));
+  nav.appendChild(row);
+
+  // Re-exponer DOM.btnPlay etc. para compatibilidad
+  DOM.btnPlay    = document.getElementById('btnPlay')    || document.createElement('button');
+  DOM.iconPlay   = document.getElementById('iconPlay')   || document.createElement('span');
+  DOM.iconPause  = document.getElementById('iconPause')  || document.createElement('span');
+  if (cfg.trackNav) {
+    DOM.btnPrev = document.getElementById('btnPrev') || document.createElement('button');
+    DOM.btnNext = document.getElementById('btnNext') || document.createElement('button');
+  }
+  DOM.btnShuffle = document.getElementById('btnShuffle') || document.createElement('button');
+  DOM.btnRepeat  = document.getElementById('btnRepeat')  || document.createElement('button');
+};
+
+const applyBtnConfig = () => {
+  const cfg = state.btnConfig;
+
+  // Reconstruir fila de controles
+  buildControlsRow();
+
+  // Labels internos del modal
+  if (DOM.seekBackVal)    DOM.seekBackVal.textContent    = cfg.seekBack;
+  if (DOM.seekFwdVal)     DOM.seekFwdVal.textContent     = cfg.seekFwd;
+  if (DOM.toggleSeekBtns) DOM.toggleSeekBtns.checked    = cfg.seekBtns;
+  if (DOM.seekCfgSection)  DOM.seekCfgSection.style.display = cfg.seekBtns ? 'block' : 'none';
+  if (DOM.toggleTrackNav) DOM.toggleTrackNav.checked     = cfg.trackNav;
+
+  // Volumen
+  if (DOM.volumeRow)    DOM.volumeRow.style.display    = cfg.volume   ? '' : 'none';
+  if (DOM.toggleVolume) DOM.toggleVolume.checked        = cfg.volume;
+
+  // Botón editar álbum: respeta la regla de solo mostrarlo cuando hay álbum seleccionado
+  const isSpecial = ['__ALL__','__FAV__','__UPLOADED__'].includes(state.currentView);
+  if (DOM.btnEditAlbum) {
+    DOM.btnEditAlbum.style.display = (!isSpecial && cfg.editBtn) ? 'flex' : 'none';
+  }
+  if (DOM.toggleEditBtn) DOM.toggleEditBtn.checked = cfg.editBtn;
+
+  // Toggles tracklist
+  if (DOM.toggleFavBtn)     DOM.toggleFavBtn.checked     = cfg.favBtn;
+  if (DOM.toggleDuration)   DOM.toggleDuration.checked   = cfg.duration;
+  if (DOM.toggleTrackCover) DOM.toggleTrackCover.checked = cfg.trackCover;
+};
+
+const saveBtnConfig = () => setLS(LS_KEYS.btnConfig, state.btnConfig);
+
+// ─── Abrir/cerrar modal de botones ───────────────────────
+if (DOM.sbOptButtons) {
+  DOM.sbOptButtons.addEventListener('click', () => {
+    closeSidebar();
+    applyBtnConfig();
+    DOM.modalButtons.classList.add('open');
+    lockBody();
+  });
+}
+if (DOM.btnButtonsClose) {
+  DOM.btnButtonsClose.addEventListener('click', () => {
+    DOM.modalButtons.classList.remove('open');
+    unlockBody();
+  });
+}
+if (DOM.modalButtons) {
+  DOM.modalButtons.addEventListener('click', (e) => {
+    if (e.target === DOM.modalButtons) { DOM.modalButtons.classList.remove('open'); unlockBody(); }
+  });
+}
+
+// ─── Add album modal ─────────────────────────────────
+DOM.btnAddAlbumCancel.addEventListener('click', closeAddAlbumModal);
+DOM.btnAddAlbumSave.addEventListener('click', saveCustomAlbum);
+DOM.modalAddAlbum.addEventListener('click', (e) => {
+  if (e.target === DOM.modalAddAlbum) closeAddAlbumModal();
+});
+DOM.addCoverInput.addEventListener('change', async (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = async (ev) => {
+    addAlbumCoverDataUrl = await compressImage(ev.target.result);
+    DOM.addCoverImg.src = addAlbumCoverDataUrl;
+    DOM.addCoverImg.style.display = 'block';
+    DOM.addCoverPlaceholder.style.display = 'none';
+  };
+  reader.readAsDataURL(file);
+  e.target.value = '';
+});
+
+// ─── Toggle seek buttons ─────────────────────────────────
+if (DOM.toggleSeekBtns) {
+  DOM.toggleSeekBtns.addEventListener('change', () => {
+    state.btnConfig.seekBtns = DOM.toggleSeekBtns.checked;
+    if (DOM.seekCfgSection) DOM.seekCfgSection.style.display = state.btnConfig.seekBtns ? 'block' : 'none';
+    buildControlsRow(); saveBtnConfig();
+  });
+}
+
+// ─── Toggle track nav ─────────────────────────────────────
+if (DOM.toggleTrackNav) {
+  DOM.toggleTrackNav.addEventListener('change', () => {
+    state.btnConfig.trackNav = DOM.toggleTrackNav.checked;
+    buildControlsRow(); saveBtnConfig();
+  });
+}
+
+// ─── Steppers de segundos ─────────────────────────────────
+const clampSeek = (v) => Math.min(60, Math.max(5, Math.round(v / 5) * 5));
+if (DOM.btnBackMinus) DOM.btnBackMinus.addEventListener('click', () => { state.btnConfig.seekBack = clampSeek(state.btnConfig.seekBack - 5); if (DOM.seekBackVal) DOM.seekBackVal.textContent = state.btnConfig.seekBack; buildControlsRow(); saveBtnConfig(); });
+if (DOM.btnBackPlus)  DOM.btnBackPlus.addEventListener('click',  () => { state.btnConfig.seekBack = clampSeek(state.btnConfig.seekBack + 5); if (DOM.seekBackVal) DOM.seekBackVal.textContent = state.btnConfig.seekBack; buildControlsRow(); saveBtnConfig(); });
+if (DOM.btnFwdMinus)  DOM.btnFwdMinus.addEventListener('click',  () => { state.btnConfig.seekFwd  = clampSeek(state.btnConfig.seekFwd  - 5); if (DOM.seekFwdVal)  DOM.seekFwdVal.textContent  = state.btnConfig.seekFwd;  buildControlsRow(); saveBtnConfig(); });
+if (DOM.btnFwdPlus)   DOM.btnFwdPlus.addEventListener('click',   () => { state.btnConfig.seekFwd  = clampSeek(state.btnConfig.seekFwd  + 5); if (DOM.seekFwdVal)  DOM.seekFwdVal.textContent  = state.btnConfig.seekFwd;  buildControlsRow(); saveBtnConfig(); });
+
+// ─── Toggle volumen ───────────────────────────────────────
+if (DOM.toggleVolume) {
+  DOM.toggleVolume.addEventListener('change', () => {
+    state.btnConfig.volume = DOM.toggleVolume.checked;
+    if (DOM.volumeRow) DOM.volumeRow.style.display = state.btnConfig.volume ? '' : 'none';
+    saveBtnConfig();
+  });
+}
+
+// ─── Toggle botón editar ──────────────────────────────────
+if (DOM.toggleEditBtn) {
+  DOM.toggleEditBtn.addEventListener('change', () => {
+    state.btnConfig.editBtn = DOM.toggleEditBtn.checked;
+    const isSpecial = ['__ALL__','__FAV__','__UPLOADED__'].includes(state.currentView);
+    if (DOM.btnEditAlbum) DOM.btnEditAlbum.style.display = (!isSpecial && state.btnConfig.editBtn) ? 'flex' : 'none';
+    saveBtnConfig();
+  });
+}
+
+// ─── Toggle favorito en tracklist ────────────────────────
+if (DOM.toggleFavBtn) {
+  DOM.toggleFavBtn.addEventListener('change', () => {
+    state.btnConfig.favBtn = DOM.toggleFavBtn.checked;
+    saveBtnConfig(); updateTrackList();
+  });
+}
+
+// ─── Toggle duración ─────────────────────────────────────
+if (DOM.toggleDuration) {
+  DOM.toggleDuration.addEventListener('change', () => {
+    state.btnConfig.duration = DOM.toggleDuration.checked;
+    saveBtnConfig();
+    DOM.tracklist.querySelectorAll('.t-dur').forEach(el => { el.style.display = state.btnConfig.duration ? '' : 'none'; });
+  });
+}
+
+// ─── Toggle portada en tracklist ─────────────────────────
+if (DOM.toggleTrackCover) {
+  DOM.toggleTrackCover.addEventListener('change', () => {
+    state.btnConfig.trackCover = DOM.toggleTrackCover.checked;
+    saveBtnConfig();
+    DOM.tracklist.querySelectorAll('.t-cover').forEach(el => { el.style.display = state.btnConfig.trackCover ? '' : 'none'; });
+  });
+}
+
+// ─── Gestos de deslizamiento en el área del disco (Swipe left/right) ───
+const discArea = document.querySelector('.disc-area');
+if (discArea) {
+  let startX = 0;
+  let startY = 0;
+  let isSwiping = false;
+
+  discArea.addEventListener('touchstart', (e) => {
+    if (e.touches.length !== 1) return;
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+    isSwiping = true;
+  }, { passive: true });
+
+  discArea.addEventListener('touchmove', (e) => {
+    if (!isSwiping || e.touches.length !== 1) return;
+    const currentX = e.touches[0].clientX;
+    const currentY = e.touches[0].clientY;
+    const diffX = currentX - startX;
+    const diffY = currentY - startY;
+
+    if (Math.abs(diffX) > Math.abs(diffY)) {
+      if (e.cancelable) e.preventDefault();
+    }
+  }, { passive: false });
+
+  discArea.addEventListener('touchend', (e) => {
+    if (!isSwiping) return;
+    isSwiping = false;
+    if (e.changedTouches.length !== 1) return;
+    const endX = e.changedTouches[0].clientX;
+    const endY = e.changedTouches[0].clientY;
+    const diffX = endX - startX;
+    const diffY = endY - startY;
+
+    const threshold = 50;
+    const restraint = 100;
+
+    if (Math.abs(diffX) >= threshold && Math.abs(diffY) <= restraint) {
+      if (diffX < 0) {
+        nextTrack();
+        ANTONIO.onNext();
+        showToast('Siguiente canción ⏭️');
+      } else {
+        prevTrack();
+        ANTONIO.onPrev();
+        showToast('Canción anterior ⏮️');
+      }
+    }
+  }, { passive: true });
+}
+
+// ═══════════════════════════════════════════════════
+// ONLINE / OFFLINE DETECTION
+// ═══════════════════════════════════════════════════
+const offlineOverlay = document.getElementById('offlineOverlay');
+const offlineBadge   = document.getElementById('offlineBadge');
+const offlineClose   = document.getElementById('offlineClose');
+let isOffline = false;
+
+const enterOffline = () => {
+  if (isOffline) return;
+  isOffline = true;
+  if (offlineOverlay) offlineOverlay.classList.add('visible');
+  if (offlineBadge) offlineBadge.classList.add('show');
+  showToast('Sin conexión — modo offline activado', 'error', 3000);
+};
+
+const leaveOffline = () => {
+  if (!isOffline) return;
+  isOffline = false;
+  if (offlineOverlay) offlineOverlay.classList.remove('visible');
+  if (offlineBadge) offlineBadge.classList.remove('show');
+  showToast('Conexión restablecida', 'success');
+};
+
+if (offlineClose) {
+  offlineClose.addEventListener('click', () => {
+    if (offlineOverlay) offlineOverlay.classList.remove('visible');
+  });
+}
+
+if (offlineOverlay) {
+  offlineOverlay.addEventListener('click', (e) => {
+    if (e.target === offlineOverlay) offlineOverlay.classList.remove('visible');
+  });
+}
+
+const updateOnlineStatus = () => {
+  if (navigator.onLine) {
+    leaveOffline();
+  } else {
+    enterOffline();
+  }
+};
+
+window.addEventListener('online', updateOnlineStatus);
+window.addEventListener('offline', updateOnlineStatus);
+
+// Estado inicial
+if (!navigator.onLine) {
+  // Esperar a que el player se inicialice antes de mostrar
+  setTimeout(enterOffline, 1000);
+}
+
 initPlayer().catch(e => console.error('init error:', e));
+
+
+

@@ -241,13 +241,6 @@
   ],
   "MAP OF THE SOUL : 7": [
     {
-      "src": "music/00_00%20%28Zero%20O%E2%80%99Clock%29.mp3",
-      "title": "00:00 (Zero O’Clock)",
-      "artist": "BANGTANTV",
-      "cover": "covers/map_of_the_soul___7.jpg",
-      "bg": "linear-gradient(135deg,#001a30,#002a1a)"
-    },
-    {
       "src": "music/Black%20Swan.mp3",
       "title": "Black Swan",
       "artist": "BANGTANTV",

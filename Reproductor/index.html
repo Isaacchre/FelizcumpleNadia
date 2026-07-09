@@ -26,6 +26,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="recursos/Favicon.png">
+  <link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -90,41 +93,9 @@
     </div>
   </section>
 
-  <nav class="controls">
-    <div class="controls-row">
-      <button class="ctrl" id="btnShuffle" aria-label="Modo Aleatorio" title="Aleatorio">
-        <svg width="17" height="17" fill="currentColor" viewBox="0 0 16 16">
-          <path d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.318 1.918C9.827 10.99 11.202 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.318-1.918C4.173 5.01 2.798 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
-          <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
-        </svg>
-      </button>
-      <button class="ctrl" id="btnPrev" aria-label="Pista Anterior">
-        <svg width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
-          <path d="M4 4a.5.5 0 0 1 1 0v3.248l6.267-3.656A.5.5 0 0 1 12 4v8a.5.5 0 0 1-.733.44L5 8.752V12a.5.5 0 0 1-1 0V4z"/>
-        </svg>
-      </button>
-      <button class="play-btn" id="btnPlay" aria-label="Reproducir/Pausar">
-        <svg id="iconPlay" width="22" height="22" fill="currentColor" viewBox="0 0 16 16" style="margin-left:2px;">
-          <path d="M11.596 8.697l-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
-        </svg>
-        <svg id="iconPause" width="22" height="22" fill="currentColor" viewBox="0 0 16 16" style="display:none;">
-          <path d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5zm5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5z"/>
-        </svg>
-      </button>
-      <button class="ctrl" id="btnNext" aria-label="Pista Siguiente">
-        <svg width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
-          <path d="M12.5 4a.5.5 0 0 0-1 0v3.248L5.233 3.592A.5.5 0 0 0 4.5 4v8a.5.5 0 0 0 .733.44L11.5 8.752V12a.5.5 0 0 0 1 0V4z"/>
-        </svg>
-      </button>
-      <button class="ctrl" id="btnRepeat" aria-label="Repetir pista" title="Repetir">
-        <svg width="17" height="17" fill="currentColor" viewBox="0 0 16 16">
-          <path d="M11 5.466V4H5a4 4 0 0 0-3.584 5.777.5.5 0 1 1-.896.446A5 5 0 0 1 5 3h6V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm3.81.086a.5.5 0 0 1 .67.225A5 5 0 0 1 11 13H5v1.466a.25.25 0 0 1-.41.192l-2.36-1.966a.25.25 0 0 1 0-.384l2.36-1.966a.25.25 0 0 1 .41.192V12h6a4 4 0 0 0 3.585-5.777.5.5 0 0 1 .225-.67z"/>
-        </svg>
-      </button>
-    </div>
-  </nav>
+  <nav class="controls" id="controlsNav"></nav>
 
-  <div class="volume-row">
+  <div class="volume-row" id="volumeRow">
     <span class="vol-icon">
       <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16">
         <path d="M11.536 14.01A8.473 8.473 0 0 0 14 8c0-2.26-.882-4.316-2.324-5.842a.5.5 0 0 0-.746.666A7.473 7.473 0 0 1 13 8a7.473 7.473 0 0 1-2.21 5.344.5.5 0 0 0 .746.666zM6 4 3.25 6H1.5A1.5 1.5 0 0 0 0 7.5v1A1.5 1.5 0 0 0 1.5 10h1.75L6 12V4z"/>
@@ -134,17 +105,26 @@
   </div>
 
   <section class="meta-controls">
-    <div class="album-selector-row">
-      <div class="album-selector-wrapper">
-        <select class="album-select" id="albumSelect"></select>
+    <div class="current-album-bar" id="currentAlbumBar">
+      <div class="current-album-info">
+        <button class="album-browse-btn" id="btnOpenAlbumsBar" aria-label="Explorar álbumes">
+          <span class="current-album-label" id="currentAlbumLabel">Colección completa</span>
+          <svg width="12" height="12" fill="var(--muted)" viewBox="0 0 16 16">
+            <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+          </svg>
+        </button>
       </div>
-      <button class="btn-action" id="btnEditAlbum" aria-label="Editar álbum" style="display:none;">
-        <svg width="13" height="13" fill="currentColor" viewBox="0 0 16 16">
-          <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10z"/>
-        </svg>
-        <span>Editar</span>
-      </button>
+      <div class="current-album-actions">
+        <button class="btn-action btn-sm" id="btnEditAlbum" aria-label="Editar álbum" style="display:none;">
+          <svg width="11" height="11" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10z"/>
+          </svg>
+          <span>Editar</span>
+        </button>
+      </div>
     </div>
+    <!-- Hidden select for JS compatibility (refreshAlbumSelector / change handler) -->
+    <select id="albumSelect" style="display:none;"></select>
     <div class="search-wrapper">
       <span class="search-icon">
         <svg width="13" height="13" fill="currentColor" viewBox="0 0 16 16">
@@ -158,9 +138,70 @@
   <section class="tracklist" id="tracklist" role="list"></section>
   </div>
 
+  <div id="ytPlayer" style="position:fixed;top:0;left:0;width:1px;height:1px;opacity:0;pointer-events:none;overflow:hidden;"></div>
+
   <div class="idle-display" id="idleDisplay">
     <div class="idle-track-name" id="idleTrackName"></div>
     <div class="idle-track-artist" id="idleTrackArtist"></div>
+  </div>
+
+  <!-- Album Browser Overlay -->
+  <div class="album-browser" id="albumBrowser">
+    <div class="ab-header">
+      <button class="ab-back" id="btnAlbumBrowserBack" aria-label="Cerrar explorador">
+        <svg width="13" height="13" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+        </svg>
+        Volver
+      </button>
+      <div class="ab-title">Biblioteca</div>
+      <div class="ab-spacer"></div>
+    </div>
+
+    <!-- Search bar — Apple Music style -->
+    <div class="ab-search-bar">
+      <div class="ab-search-inner">
+        <svg class="ab-search-icon" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+        </svg>
+        <input type="text" class="ab-search-input" id="abSearchInput" placeholder="Buscar">
+      </div>
+    </div>
+
+    <!-- Album grid -->
+    <div class="ab-body" id="abBody">
+      <div class="ab-section-title">Biblioteca</div>
+      <div class="ab-grid" id="abGrid"></div>
+    </div>
+
+    <!-- Mini now-playing bar -->
+    <div class="ab-now-playing" id="abNowPlaying">
+      <div class="ab-np-cover" id="abNpCover"></div>
+      <div class="ab-np-info">
+        <div class="ab-np-title" id="abNpTitle">—</div>
+        <div class="ab-np-artist" id="abNpArtist">—</div>
+      </div>
+      <div class="ab-np-controls">
+        <button class="ab-np-btn" id="abNpPrev" aria-label="Anterior">
+          <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M4 4a.5.5 0 0 1 1 0v3.248l6.267-3.656A.5.5 0 0 1 12 4v8a.5.5 0 0 1-.733.44L5 8.752V12a.5.5 0 0 1-1 0V4z"/>
+          </svg>
+        </button>
+        <button class="ab-np-play" id="abNpPlay" aria-label="Reproducir/Pausar">
+          <svg id="abIconPlay" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M11.596 8.697l-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
+          </svg>
+          <svg id="abIconPause" width="18" height="18" fill="currentColor" viewBox="0 0 16 16" style="display:none;">
+            <path d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5zm5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5z"/>
+          </svg>
+        </button>
+        <button class="ab-np-btn" id="abNpNext" aria-label="Siguiente">
+          <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M12.5 4a.5.5 0 0 0-1 0v3.248L5.233 3.592A.5.5 0 0 0 4.5 4v8a.5.5 0 0 0 .733.44L11.5 8.752V12a.5.5 0 0 0 1 0V4z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
   </div>
 </main>
 <div class="screen-overlay"></div>
@@ -255,7 +296,14 @@
         <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
         <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"/>
       </svg>
-      Personalizar
+      Personalizar fondo
+    </button>
+    <button class="sb-option" id="sbOptButtons">
+      <svg width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
+        <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.892 3.433-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.892-1.64-.901-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.474l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/>
+      </svg>
+      Personalizar botones
     </button>
     <button class="sb-option" id="sbOptEffects">
       <svg width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
@@ -263,6 +311,13 @@
         <path d="M8 4a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 8 4zm0 8a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1z"/>
       </svg>
       Efectos
+    </button>
+    <button class="sb-option sb-option-danger" id="sbOptClearCache">
+      <svg width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM3.118 4L3 4.059V13a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.059L12.882 4H3.118zM2.5 3V2h11v1h-11z"/>
+      </svg>
+      Limpiar caché
     </button>
   </div>
   <div class="antonio-wrap" id="antonioWrap">
@@ -408,6 +463,179 @@
   </div>
 </div>
 <div class="toast" id="toast"></div>
+
+<!-- Offline overlay -->
+<div class="offline-overlay" id="offlineOverlay">
+  <div class="offline-content">
+    <div class="offline-icon">
+      <svg width="40" height="40" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486z"/>
+        <path d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829z"/>
+        <path d="M3.35 5.47c-.18.16-.353.322-.518.486C1.633 6.884 1.172 7.608 1.172 8c0 .346.408.947 1.073 1.658.688.734 1.646 1.556 2.755 2.206C6.1 12.167 7.083 12.5 8 12.5c.527 0 1.028-.097 1.5-.264l.774.774A6.952 6.952 0 0 1 8 13.5C3 13.5 0 8 0 8s.94-1.72 2.641-3.238l.708.709zm10.896 9.09-12-12 .708-.708 12 12-.707.707z"/>
+      </svg>
+    </div>
+    <div class="offline-title">Sin conexión</div>
+    <div class="offline-subtitle">Modo offline</div>
+    <div class="offline-desc">La reproducción sigue funcionando sin problemas para canciones descargadas o la última que se esté reproduciendo</div>
+    <button id="offlineClose" class="btn-action-outline" style="margin-top:14px;">Cerrar</button>
+  </div>
+  <div class="offline-badge" id="offlineBadge">
+    Sin conexión
+  </div>
+</div>
+
+<!-- Modal: Personalizar botones -->
+<div class="modal-overlay" id="modalButtons">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-title">Personalizar botones</div>
+
+    <div class="effects-list">
+      <label class="effect-toggle">
+        <span>Botones +10s / −10s</span>
+        <div class="toggle-switch">
+          <input type="checkbox" id="toggleSeekBtns">
+          <span class="toggle-slider"></span>
+        </div>
+      </label>
+
+      <!-- Configuración de segundos del salto -->
+      <div class="btn-cfg-section" id="seekCfgSection" style="display:none;">
+        <div class="btn-cfg-row">
+          <label class="btn-cfg-label">Retroceder</label>
+          <div class="btn-cfg-stepper">
+            <button class="cfg-step-btn" id="btnBackMinus" aria-label="Disminuir retroceso">−</button>
+            <span class="cfg-step-val" id="seekBackVal">10</span>
+            <span class="cfg-step-unit">s</span>
+            <button class="cfg-step-btn" id="btnBackPlus" aria-label="Aumentar retroceso">+</button>
+          </div>
+        </div>
+        <div class="btn-cfg-row">
+          <label class="btn-cfg-label">Adelantar</label>
+          <div class="btn-cfg-stepper">
+            <button class="cfg-step-btn" id="btnFwdMinus" aria-label="Disminuir adelanto">−</button>
+            <span class="cfg-step-val" id="seekFwdVal">10</span>
+            <span class="cfg-step-unit">s</span>
+            <button class="cfg-step-btn" id="btnFwdPlus" aria-label="Aumentar adelanto">+</button>
+          </div>
+        </div>
+      </div>
+
+      <label class="effect-toggle">
+        <span>Botones Anterior / Siguiente</span>
+        <div class="toggle-switch">
+          <input type="checkbox" id="toggleTrackNav">
+          <span class="toggle-slider"></span>
+        </div>
+      </label>
+
+      <label class="effect-toggle">
+        <span>Botón Favorito en tracklist</span>
+        <div class="toggle-switch">
+          <input type="checkbox" id="toggleFavBtn" checked>
+          <span class="toggle-slider"></span>
+        </div>
+      </label>
+
+      <label class="effect-toggle">
+        <span>Mostrar duración de pistas</span>
+        <div class="toggle-switch">
+          <input type="checkbox" id="toggleDuration" checked>
+          <span class="toggle-slider"></span>
+        </div>
+      </label>
+
+      <label class="effect-toggle">
+        <span>Portada en tracklist</span>
+        <div class="toggle-switch">
+          <input type="checkbox" id="toggleTrackCover" checked>
+          <span class="toggle-slider"></span>
+        </div>
+      </label>
+
+      <label class="effect-toggle">
+        <span>Barra de volumen</span>
+        <div class="toggle-switch">
+          <input type="checkbox" id="toggleVolume" checked>
+          <span class="toggle-slider"></span>
+        </div>
+      </label>
+
+      <label class="effect-toggle">
+        <span>Botón editar álbum</span>
+        <div class="toggle-switch">
+          <input type="checkbox" id="toggleEditBtn" checked>
+          <span class="toggle-slider"></span>
+        </div>
+      </label>
+    </div>
+
+    <div class="edit-btns" style="margin-top:14px;">
+      <button class="btn-action-outline" id="btnButtonsClose">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modalAddAlbum">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-title">Agregar álbum</div>
+
+    <div class="edit-field">
+      <label class="edit-label">Nombre del álbum</label>
+      <input type="text" class="edit-input" id="addAlbumName" placeholder="Ej: Mi playlist favorita">
+    </div>
+
+    <div class="edit-field">
+      <label class="edit-label">Foto de portada</label>
+      <div class="edit-cover-area" style="margin-top:4px;">
+        <div class="edit-cover-preview" id="addCoverPreview">
+          <img id="addCoverImg" src="" alt="Portada" style="display:none;">
+          <span id="addCoverPlaceholder">
+            <svg width="22" height="22" fill="currentColor" viewBox="0 0 16 16"><path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/><path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/></svg>
+          </span>
+        </div>
+        <div class="edit-cover-btns">
+          <label class="btn-action" style="cursor:pointer;">
+            Seleccionar archivo
+            <input type="file" accept="image/*" id="addCoverInput" style="display:none;">
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="edit-field">
+      <label class="edit-label">URL de playlist de YouTube</label>
+      <input type="url" class="edit-input" id="addPlaylistUrl" placeholder="https://youtube.com/playlist?list=...">
+    </div>
+
+    <div class="edit-field" style="background:rgba(255,200,50,.08);border-radius:8px;padding:10px 12px;margin-top:6px;">
+      <div style="font-size:11px;color:rgba(255,200,50,.8);line-height:1.5;">
+        <strong>Solo streaming</strong><br>
+        Las canciones se reproducen vía YouTube y no estarán disponibles sin conexión.
+        Necesitás internet para escucharlas.
+      </div>
+    </div>
+
+    <div class="edit-btns" style="margin-top:14px;">
+      <button class="btn-action-outline" id="btnAddAlbumCancel">Cancelar</button>
+      <button class="btn-action primary" id="btnAddAlbumSave">Guardar álbum</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modalDownload">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-title" id="dlTitle">Obteniendo playlist...</div>
+    <div class="dl-body" id="dlBody">
+      <div class="dl-status" id="dlStatus">Obteniendo lista de videos...</div>
+      <div class="dl-bar-bg"><div class="dl-bar-fill" id="dlBarFill"></div></div>
+      <div class="dl-counter" id="dlCounter">0 / 0</div>
+      <div class="dl-current" id="dlCurrent">—</div>
+    </div>
+  </div>
+</div>
 
 <script>
   // Previene zoom táctil (pellizco) en toda la web
